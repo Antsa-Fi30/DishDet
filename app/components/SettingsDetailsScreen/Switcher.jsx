@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   list: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
   },

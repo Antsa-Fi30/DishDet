@@ -1,22 +1,8 @@
 //React
-import {
-  useCallback,
-  useState,
-  useMemo,
-  useEffect,
-  useTransition,
-} from "react";
-
-//Components
-import AppTopBar from "./app/components/AppTopBar";
-import Routes from "./app/routes/Routes";
-import SettingsScreen from "./app/screens/SettingsScreen/SettingsScreen";
-import SuggestionDetails from "./app/screens/SuggestionDetailsScreen/SuggestionDetails";
-import SettingsDetailsScreen from "./app/screens/SettingsDetailsScreen/SettingsDetailsScreen";
+import { useCallback, useState, useMemo, useEffect } from "react";
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //React native paper and it's Theming
 import { Provider as PaperProvider } from "react-native-paper";
@@ -36,10 +22,7 @@ import i18next from "i18next";
 
 //Save configuration(s)
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useTranslation } from "react-i18next";
-
-//Function creating Navigation:
-const Stack = createNativeStackNavigator();
+import AppRoutes from "./app/routes/AppRoutes";
 
 //Function loading languages
 const loadLang = async () => {
@@ -48,16 +31,14 @@ const loadLang = async () => {
     console.log(storedLanguage);
     if (storedLanguage) {
       i18next.changeLanguage(storedLanguage);
-      console.log("loaded");
     }
   } catch (err) {
-    console.log("Error at fetching item because : " + err);
+    alert("Error at fetching languages because : " + err);
   }
 };
 
 //Components exported
 export default function App() {
-  const { t } = useTranslation();
   // Loading customized fonts
   const [fontsLoaded, fontError] = useFonts({
     Poppins: require("./assets/fonts/Poppins-Regular.ttf"),
@@ -67,7 +48,9 @@ export default function App() {
 
   //Using context theme
   const [isThemeDark, setIsThemeDark] = useState(false);
+
   let theme = isThemeDark ? darkTheme : lightTheme; //Mamadibadika an le theme
+
   const toggleTheme = useCallback(() => {
     const newTheme = !isThemeDark;
     AsyncStorage.setItem("isThemeDark", JSON.stringify(newTheme))
@@ -75,9 +58,10 @@ export default function App() {
         setIsThemeDark(newTheme);
       })
       .catch((err) => {
-        console.log("Error in : " + err);
+        console.log("Error caused by : " + err);
       });
   }, [isThemeDark]);
+
   //Storing items
   const preferences = useMemo(
     () => ({
@@ -105,29 +89,7 @@ export default function App() {
     <ThemeContext.Provider value={preferences}>
       <PaperProvider theme={theme}>
         <NavigationContainer theme={theme}>
-          <Stack.Navigator
-            screenOptions={{
-              header: () => <AppTopBar />,
-            }}
-          >
-            <Stack.Screen name="Dish Detective" component={Routes} />
-            <Stack.Screen
-              name={"Suggestion details"}
-              options={({ route }) => ({
-                title: route.params.restaurant.name,
-              })}
-              component={SuggestionDetails}
-            />
-            <Stack.Screen
-              name={t("setting.appbar")}
-              component={SettingsScreen}
-            />
-            <Stack.Screen
-              name="Settings details"
-              options={({ route }) => ({ title: route.params.setting.label })}
-              component={SettingsDetailsScreen}
-            />
-          </Stack.Navigator>
+          <AppRoutes />
         </NavigationContainer>
       </PaperProvider>
     </ThemeContext.Provider>

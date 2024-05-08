@@ -9,7 +9,7 @@ export const Suggest = [
   },
   {
     id: "2",
-    name: "Buccky",
+    name: "Bucky",
     location: "Ambohimanandray",
     street: "123 Street Raseta...",
     star: "⭐⭐⭐",
@@ -17,7 +17,7 @@ export const Suggest = [
   },
   {
     id: "3",
-    name: "asdasd",
+    name: "placeholder",
     location: "Antanimena",
     street: "123 Street Raseta...",
     star: "⭐⭐",

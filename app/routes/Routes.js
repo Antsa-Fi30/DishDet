@@ -1,8 +1,6 @@
 import React from "react";
 //React Native components
-import {
-  StyleSheet,
-} from "react-native";
+import { StyleSheet } from "react-native";
 
 //React Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -17,6 +15,7 @@ import { BottomNavigation, useTheme } from "react-native-paper";
 //Pages in Home 's screen
 import Map from "../screens/HomeScreen/Map";
 import Suggestion from "../screens/HomeScreen/Suggestion";
+import PlaceSaved from "../screens/PlaceSaved/PlaceSaved";
 
 //Traductor
 import { useTranslation } from "react-i18next";
@@ -102,6 +101,17 @@ const Routes = () => {
                   color={color}
                 />
               );
+            },
+          }}
+        />
+
+        <Tab.Screen
+          name="Place Saved"
+          component={PlaceSaved}
+          options={{
+            tabBarLabel: `${t("menu3")}`,
+            tabBarIcon: ({ color, size }) => {
+              return <Icon name="flag" size={size} color={color} />;
             },
           }}
         />

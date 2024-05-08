@@ -1,8 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import SuggestionList from "../../components/SuggestionScreen/SuggestionList";
-import { SearchBar } from "react-native-screens";
 import { useTheme } from "react-native-paper";
+import { Suggest } from "../../constants/Suggest";
+
+// import {} from "react-native-google-places";
 
 export default function Suggestion() {
   const theme = useTheme();
@@ -11,7 +13,7 @@ export default function Suggestion() {
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      <SuggestionList />
+      <SuggestionList DATA={Suggest} />
     </View>
   );
 }

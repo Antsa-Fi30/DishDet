@@ -2,9 +2,8 @@ import { StyleSheet, FlatList, View } from "react-native";
 import React from "react";
 import SuggestionItem from "./SuggestionItem";
 import { useTheme } from "react-native-paper";
-import { Suggest } from "../../constants/Suggest";
 
-const SuggestionList = () => {
+const SuggestionList = ({ DATA }) => {
   const theme = useTheme();
   return (
     <View
@@ -12,7 +11,7 @@ const SuggestionList = () => {
     >
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={Suggest}
+        data={DATA}
         renderItem={({ item, index }) => (
           <SuggestionItem key={index} restaurant={item} />
         )}
