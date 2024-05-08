@@ -1,10 +1,8 @@
 {
   "translation": {
-    "placeholder": "To research...",
     "menu1": "Map",
     "menu2": "Suggestions",
-    "menu3": "News",
-    "menu4": "Itineraries",
+    "menu3": "Registered places",
     "setting": {
       "appbar": "Settings",
       "lang": "Languages",
@@ -12,6 +10,9 @@
       "prefs": {
         "theme": "Dark mode"
       }
+    },
+    "placeholder": {
+      "search": "To research..."
     },
     "Apropos": "About",
     "photos": "Pictures",

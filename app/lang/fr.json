@@ -1,10 +1,8 @@
 {
   "translation": {
-    "placeholder": "Rechercher...",
     "menu1": "Carte",
     "menu2": "Suggestions",
-    "menu3": "Actualités",
-    "menu4": "Itinéraires",
+    "menu3": "Places enregistrée(s)",
     "setting": {
       "appbar": "Paramètres",
       "lang": "Langages",
@@ -12,6 +10,9 @@
       "prefs": {
         "theme": "Mode sombre"
       }
+    },
+    "placeholder": {
+      "search": "Rechercher..."
     },
     "Apropos": "A propos",
     "photos": "Photos",

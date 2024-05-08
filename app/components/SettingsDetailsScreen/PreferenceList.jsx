@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 
 const PreferenceList = ({ OptionList }) => {
   const option = OptionList;
-  const { toggleTheme, isThemeDark } = React.useContext(ThemeContext);
   const { t } = useTranslation();
+  const { toggleTheme, isThemeDark } = React.useContext(ThemeContext);
 
   return (
     <View style={styles.container}>

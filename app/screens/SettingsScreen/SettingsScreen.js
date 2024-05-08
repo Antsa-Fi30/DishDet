@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { Text, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import Parameters from "../../components/SettingsScreen/Parameters";
 import { SettingsMenu } from "../../constants/SettingsMenu";
 
