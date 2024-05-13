@@ -1,12 +1,10 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import { useState } from "react";
 import SuggestionList from "../../components/SuggestionScreen/SuggestionList";
 import { useTheme } from "react-native-paper";
 import { Suggest } from "../../constants/Suggest";
-
-// import {} from "react-native-google-places";
-
 export default function Suggestion() {
+  const [loading, setLoading] = useState(false);
   const theme = useTheme();
 
   return (

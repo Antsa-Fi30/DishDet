@@ -19,6 +19,7 @@
     "read": "Learn more",
     "close": "Close",
     "btn_save": "Save for later",
-    "btn_find": "Find this"
+    "btn_find": "Find this",
+    "notice_saved": "All the locations you have saved will be displayed here"
   }
 }

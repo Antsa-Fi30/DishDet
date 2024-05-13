@@ -15,7 +15,7 @@ import { BottomNavigation, useTheme } from "react-native-paper";
 //Pages in Home 's screen
 import Map from "../screens/HomeScreen/Map";
 import Suggestion from "../screens/HomeScreen/Suggestion";
-import PlaceSaved from "../screens/PlaceSaved/PlaceSaved";
+import PlaceSaved from "../screens/HomeScreen/PlaceSaved";
 
 //Traductor
 import { useTranslation } from "react-i18next";

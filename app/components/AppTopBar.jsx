@@ -31,6 +31,7 @@ export default function AppTopBar({ title }) {
       return route.name;
     }
   };
+
   useEffect(() => {
     setShowBack(route.name != "Dish Detective");
 

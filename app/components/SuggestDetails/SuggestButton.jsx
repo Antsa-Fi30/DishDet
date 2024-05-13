@@ -18,7 +18,7 @@ const SuggestButton = () => {
         }}
         onPress={() => console.log("Pressed")}
       >
-        <Icon source="camera" color={theme.colors.secondary} size={30} />
+        <Icon source="flag-plus" color={theme.colors.secondary} size={30} />
         <Text style={styles.text}>{t("btn_save")}</Text>
       </TouchableOpacity>
     </View>
