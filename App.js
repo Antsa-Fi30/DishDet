@@ -80,7 +80,7 @@ export default function App() {
         }
       })
       .catch((err) => {
-        console.log("Not gotten because : " + err);
+        console.log("Theme not gotten because : " + err);
       });
     loadLang(); //Loading language in launch
   }, [loadLang]);

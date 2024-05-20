@@ -2,10 +2,16 @@ import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Icon, Text, useTheme } from "react-native-paper";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useRoute } from "@react-navigation/native";
 
 const SuggestButton = () => {
   const theme = useTheme();
+  const route = useRoute();
   const { t } = useTranslation();
+
+  const handleSave = async () => {
+    console.log(route.params.restaurant.id);
+  };
 
   return (
     <View style={styles.container}>
@@ -16,7 +22,7 @@ const SuggestButton = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        onPress={() => console.log("Pressed")}
+        onPress={handleSave}
       >
         <Icon source="flag-plus" color={theme.colors.secondary} size={30} />
         <Text style={styles.text}>{t("btn_save")}</Text>
