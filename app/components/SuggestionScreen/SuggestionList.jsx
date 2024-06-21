@@ -24,8 +24,6 @@ export default SuggestionList;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    margin: 5,
-    padding: 8,
+    paddingHorizontal: 10,
   },
 });

@@ -31,6 +31,7 @@ export default function AppTopBar({ title }) {
       return route.name;
     }
   };
+
   useEffect(() => {
     setShowBack(route.name != "Dish Detective");
 
@@ -42,10 +43,12 @@ export default function AppTopBar({ title }) {
     }
   }, [route]);
 
+  console.log(route);
+
   return (
     <Appbar.Header
       style={{
-        backgroundColor: theme.colors.background,
+        backgroundColor: theme.colors.onSecondary,
         padding: 10,
         paddingVertical: 14,
       }}

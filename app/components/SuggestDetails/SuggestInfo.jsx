@@ -5,6 +5,13 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 const SuggestInfo = ({ name, region, location, star }) => {
+  const getStars = (rating) => {
+    rating = Math.min(5, Math.max(0, rating));
+    const filledStars = Array.from({ length: rating }, (_, i) => "★");
+    const emptyStars = Array.from({ length: 5 - rating }, (_, i) => "☆");
+    const stars = filledStars.concat(emptyStars);
+    return stars.join(" ");
+  };
   const theme = useTheme();
   return (
     <View>
@@ -42,7 +49,7 @@ const SuggestInfo = ({ name, region, location, star }) => {
             alignItems: "center",
           }}
         >
-          {star}
+          {getStars(star)}
         </Text>
       </View>
       <View style={styles.subContainer}>

@@ -20,16 +20,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.DishDet"
+      "package": "com.devlock.DishDet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "google": {
-      "maps": {
-        "apiKey": "AIzaSyBdmg1sg_LxN-qjhCRU0fQbMblo2SeorGU"
-      }
-    },
+
     "plugins": [
       "expo-font",
       [

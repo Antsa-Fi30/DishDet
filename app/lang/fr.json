@@ -19,6 +19,7 @@
     "read": "En savoir plus",
     "close": "Fermer",
     "btn_save": "Enregistrer pour plus tard",
-    "btn_find": "Trouvez ceci"
+    "btn_find": "Trouvez ceci",
+    "notice_saved": "Tous les lieux que vous avez enregistrés seront affichés ici"
   }
 }

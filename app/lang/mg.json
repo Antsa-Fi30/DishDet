@@ -1,22 +1,25 @@
 {
   "translation": {
-    "menu1": "Carte",
+    "menu1": "Sarintany",
     "menu2": "Soso-kevitra",
+    "menu3": "Toerana voasoratra anarana",
     "setting": {
+      "appbar": "Fikirana",
       "lang": "Fiteny",
-      "pref": "Safidy manokana",
+      "pref": "Safidinao",
       "prefs": {
-        "theme": "Mode sombre"
+        "theme": "Fomba maizina"
       }
     },
     "placeholder": {
       "search": "Hikaroka..."
     },
-    "Apropos": "Mombamomba azy",
-    "photos": "Sary",
-    "read": "En savoir plus",
-    "close": "Fermer",
-    "btn_save": "Save for later",
-    "btn_find": "Find this"
+    "Apropos": "About",
+    "photos": "SARY",
+    "read": "Hamantatra bebe kokoa",
+    "close": "Hidina",
+    "btn_save": "Tehirizo ho any aoriana",
+    "btn_find": "Tadiavo ity",
+    "notice_saved": "Ny toerana rehetra voatahiry dia haseho eto"
   }
 }
