@@ -25,8 +25,9 @@ const SuggestAbout = ({ description }) => {
       <Text
         style={{
           lineHeight: 25,
-          fontSize: 16,
-          fontFamily: "Poppins-medium",
+          fontSize: 14,
+          fontWeight: "100",
+          fontFamily: "Poppins",
         }}
         numberOfLines={readMore ? 500 : 5}
       >

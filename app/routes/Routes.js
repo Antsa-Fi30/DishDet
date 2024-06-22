@@ -122,17 +122,4 @@ const Routes = () => {
 
 export default Routes;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  view: {
-    margin: 10,
-  },
-  bottombar: {
-    // padding: 2,
-  },
-});
+const styles = StyleSheet.create({});

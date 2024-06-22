@@ -4,7 +4,7 @@ export const Suggest = [
     name: "Pho res",
     location: "Ankorondrano",
     street: "123 Street Raseta...",
-    star: "⭐⭐⭐⭐⭐",
+    star: 4,
     description: "Lorem",
   },
   {
@@ -12,7 +12,7 @@ export const Suggest = [
     name: "Bucky",
     location: "Ambohimanandray",
     street: "123 Street Raseta...",
-    star: "⭐⭐⭐",
+    star: 3,
     description: "Lorem",
   },
   {
@@ -20,7 +20,7 @@ export const Suggest = [
     name: "placeholder",
     location: "Antanimena",
     street: "123 Street Raseta...",
-    star: "⭐⭐",
+    star: 3,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae assumenda voluptas exercitationem cum praesentium quos labore saepe. Harum quaerat incidunt suscipit dolor quibusdam mollitia dolorem sapiente distinctio esse ipsa, delectus, minus eligendi at illo consequatur adipisci. Dolores velit, suscipit laudantium voluptatibus praesentium nobis reiciendis voluptas quaerat. Laboriosam esse quae voluptas accusamus omnis. Fuga optio ducimus eligendi, exercitationem voluptas ab sint!",
   },
@@ -28,8 +28,8 @@ export const Suggest = [
     id: "4",
     name: "sasd",
     location: "Analakely",
-    street: "123 Street Raseta...",
-    star: "⭐⭐⭐⭐⭐",
+    street: "123 rue Ankadivato ",
+    star: 2,
     description: "Lorem",
   },
   {
@@ -37,7 +37,7 @@ export const Suggest = [
     name: "Blitz",
     location: "Ambohimanandray",
     street: "123 Street Raseta...",
-    star: "⭐⭐⭐⭐",
+    star: 1,
     description: "Lorem",
   },
   {
@@ -45,7 +45,7 @@ export const Suggest = [
     name: "Bmjuhibj",
     location: "Anosisoa",
     street: "123 Street Raseta...",
-    star: "⭐⭐⭐",
+    star: 3,
     description: "Lorem",
   },
 ];

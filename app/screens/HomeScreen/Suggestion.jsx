@@ -1,12 +1,12 @@
-import { StyleSheet, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { useEffect, useState } from "react";
 import SuggestionList from "../../components/SuggestionScreen/SuggestionList";
 import { Suggest } from "../../constants/Suggest";
+import { Text } from "react-native-paper";
 
 import { GOOGLE_API_KEY } from "@env";
 
 import * as Location from "expo-location";
-import { ActivityIndicator, Text } from "react-native-paper";
 
 const Suggestion = () => {
   const [loading, setLoading] = useState(true);
@@ -44,7 +44,12 @@ const Suggestion = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>{text}</Text>
+      {/* {text === "Waiting.." ? (
+        <ActivityIndicator size={"large"} />
+      ) : (
+        <Text>{text}</Text>
+      )} */}
+      <SuggestionList DATA={Suggest} />
     </View>
   );
 };
@@ -53,10 +58,8 @@ export default Suggestion;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
+    padding: 0,
+    margin: 0,
   },
   paragraph: {
     fontSize: 18,

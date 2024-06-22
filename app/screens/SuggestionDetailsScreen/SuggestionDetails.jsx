@@ -1,6 +1,3 @@
-//React components
-import React from "react";
-
 //React native's elements
 import { StyleSheet, Image, View, ScrollView } from "react-native";
 
@@ -55,14 +52,7 @@ const SuggestionDetails = () => {
             {/* About Section */}
             <SuggestAbout description={param.restaurant.description} />
             {/* Line divider */}
-            <View
-              style={{
-                borderWidth: 0.4,
-                borderColor: "#ddd",
-                marginTop: 20,
-                marginBottom: 10,
-              }}
-            />
+            <Divider />
             {/* If there is some photos of the restaurant, It would be here */}
             <SuggestPhoto />
           </View>
@@ -72,9 +62,10 @@ const SuggestionDetails = () => {
       <View style={styles.buttons}>
         <Button
           icon="map-search-outline"
+          style={{ borderRadius: 0 }}
           mode="contained"
           onPress={() => {
-            console.log("Tracking...");
+            console.log("Tracking " + param?.restaurant.name + "...");
           }}
         >
           {t("btn_find")}
@@ -99,6 +90,5 @@ const styles = StyleSheet.create({
   buttons: {
     display: "flex",
     flexDirection: "column",
-    gap: 15,
   },
 });
