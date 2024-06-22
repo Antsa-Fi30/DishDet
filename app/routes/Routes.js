@@ -36,7 +36,7 @@ const Routes = () => {
           <BottomNavigation.Bar
             style={[
               styles.bottombar,
-              { backgroundColor: theme.colors.background },
+              { backgroundColor: theme.colors.backdrop, opacity: 0.7 },
             ]}
             navigationState={state}
             safeAreaInsets={insets}
@@ -122,4 +122,16 @@ const Routes = () => {
 
 export default Routes;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  bottombar: {
+    backgroundColor: "red", // Couleur de fond de la barre
+    paddingVertical: 0,
+  },
+  icon: {
+    marginBottom: -3, // Ajustez l'espacement des icônes
+  },
+  label: {
+    fontSize: 12,
+    fontFamily: "Poppins",
+  },
+});
