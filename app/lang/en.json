@@ -8,7 +8,8 @@
       "lang": "Languages",
       "pref": "Preferences",
       "prefs": {
-        "theme": "Dark mode"
+        "theme": "Dark mode",
+        "pos": "Know your position"
       }
     },
     "placeholder": {

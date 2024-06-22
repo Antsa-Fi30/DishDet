@@ -1,23 +1,42 @@
 import { StyleSheet, View } from "react-native";
-import React from "react";
+import React, { useState, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import Switcher from "./Switcher";
 import { useTranslation } from "react-i18next";
 
 const PreferenceList = ({ OptionList }) => {
-  const option = OptionList;
   const { t } = useTranslation();
-  const { toggleTheme, isThemeDark } = React.useContext(ThemeContext);
+  const { toggleTheme, isThemeDark } = useContext(ThemeContext);
+  const [someOtherPreference, setSomeOtherPreference] = useState(false);
+
+  const toggleOtherPreference = () => {
+    setSomeOtherPreference((prevState) => !prevState);
+    console.log(someOtherPreference);
+  };
 
   return (
     <View style={styles.container}>
-      {option.map((item, index) => {
+      {OptionList.map((item, index) => {
+        let value;
+        let update = () => {};
+
+        switch (item.key) {
+          case "theme":
+            value = isThemeDark;
+            update = toggleTheme;
+            break;
+          case "position":
+            value = someOtherPreference;
+            update = toggleOtherPreference;
+            break;
+        }
+
         return (
           <Switcher
             key={index}
             label={t(item.label)}
-            value={isThemeDark}
-            update={toggleTheme}
+            value={value}
+            update={update}
           />
         );
       })}

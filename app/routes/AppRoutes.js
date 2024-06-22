@@ -20,7 +20,7 @@ const AppRoutes = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        header: () => false,
+        header: () => <AppTopBar />,
       }}
     >
       <Stack.Screen name="Dish Detective" component={Routes} />
