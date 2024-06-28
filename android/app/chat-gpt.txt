@@ -1,0 +1,168 @@
+1 - Configurer Google Maps API :
+
+Assurez-vous d'avoir configuré et activé l'API Directions Service et Maps JavaScript API depuis la console de développeur Google Cloud.
+2 -Installer les dépendances nécessaires :
+
+Assurez-vous que vous avez Expo installé sur votre projet React Native.
+Installez également la bibliothèque react-native-maps pour afficher la carte et expo-location pour gérer la géolocalisation.
+expo install react-native-maps
+expo install expo-location
+3 - Créer le composant de carte avec itinéraire :
+
+Voici un exemple de composant qui affiche une carte et trace l'itinéraire vers un restaurant spécifique à partir de la position actuelle de l'utilisateur.
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
+
+const MapScreen = () => {
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [restaurantCoords, setRestaurantCoords] = useState({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS === 'android' && !Constants.isDevice) {
+        setErrorMsg(
+          'Oops, this will not work on Snack in an Android emulator. Try it on your device!'
+        );
+        return;
+      }
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location.coords);
+    })();
+  }, []);
+
+  // Replace with actual restaurant coordinates
+  useEffect(() => {
+    setRestaurantCoords({
+      latitude: 37.78825,
+      longitude: -122.4324,
+    });
+  }, []);
+
+  let marker = null;
+  if (location) {
+    marker = <Marker coordinate={location} title="Your Location" />;
+  }
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: location ? location.latitude : 37.78825,
+          longitude: location ? location.longitude : -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        {marker}
+        <Marker
+          coordinate={{
+            latitude: restaurantCoords.latitude,
+            longitude: restaurantCoords.longitude,
+          }}
+          title="Restaurant"
+        />
+      </MapView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+});
+
+export default MapScreen;
+
+Io napotrany voalohany de aveo le eo amay de tsy haiko ze mety
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+
+const MapScreen = () => {
+  const restaurantLocation = {
+    latitude: 37.78825,
+    longitude: -122.4324,
+  };
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: restaurantLocation.latitude,
+          longitude: restaurantLocation.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+        <Marker
+          coordinate={{
+            latitude: restaurantLocation.latitude,
+            longitude: restaurantLocation.longitude,
+          }}
+          title="Restaurant"
+          description="Description du restaurant"
+        />
+        {/* Ajoutez d'autres marqueurs si nécessaire */}
+      </MapView>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
+});
+
+export default MapScreen;
+5- Ajouter l'itinéraire :
+Pour afficher l'itinéraire depuis la position actuelle de l'utilisateur jusqu'au restaurant, vous devez utiliser Directions API de Google Maps.
+
+Installez react-native-google-places-autocomplete pour la recherche d'adresses et l'intégration avec l'API Directions.
+npm install react-native-google-places-autocomplete
+Utilisez l'API Directions pour obtenir l'itinéraire et tracez-le sur la carte.
+// Exemple de fonction pour récupérer et tracer l'itinéraire
+import { DirectionsRenderer } from 'react-google-maps';
+
+const DirectionsService = new google.maps.DirectionsService();
+
+DirectionsService.route({
+    origin: new google.maps.LatLng(37.78825, -122.4324),
+    destination: new google.maps.LatLng(37.7809, -122.4138),
+    travelMode: google.maps.TravelMode.DRIVING,
+}, (result, status) => {
+    if (status === google.maps.DirectionsStatus.OK) {
+        this.setState({
+            directions: result,
+        });
+    } else {
+        console.error(Erreur lors du calcul de l'itinéraire: ${status});
+    }
+});
+
+// Affiche sur Via afficher Directions */}
