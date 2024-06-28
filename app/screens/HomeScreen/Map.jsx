@@ -1,43 +1,87 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-<<<<<<< HEAD
-import Color from "../../utils/Colors";
+import { useNavigation } from "@react-navigation/native";
+import React, { useTransition } from "react";
+import { useTranslation } from "react-i18next";
+import { View, StyleSheet, Dimensions } from "react-native";
 import MapView from "react-native-maps";
-=======
->>>>>>> 25df33749bb9973243b416e606ea0f4a287ebde2
+import { Searchbar, IconButton, useTheme } from "react-native-paper";
+
+const { width, height } = Dimensions.get("window");
+
+const ASPECT_RATIO = width / height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const Map = () => {
+  const navigation = useNavigation();
+  const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  const onChangeSearch = (query) => setSearchQuery(query);
+
+  const theme = useTheme();
+
   return (
-    <View>
-<<<<<<< HEAD
+    <View style={styles.container}>
+      <View style={styles.overlay}>
+        <Searchbar
+          placeholder="Search"
+          onChangeText={onChangeSearch}
+          value={searchQuery}
+          style={styles.searchBar}
+        />
+        <IconButton
+          icon="cog"
+          iconColor={theme.colors.primary}
+          style={styles.iconButton}
+          mode="contained"
+          size={20}
+          onPress={() => navigation.push(t("setting.appbar"))}
+        />
+      </View>
+
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: -18.87019,
-          longitude: 47.507905,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
         }}
       />
-=======
-      <Text>Map</Text>
->>>>>>> 25df33749bb9973243b416e606ea0f4a287ebde2
     </View>
   );
 };
-
-<<<<<<< HEAD
-const styles = StyleSheet.create({
-  title: {
-    color: Color.light.primary,
-  },
-  map: {
-    height: "100%",
-    width: "100%",
-  },
-});
-=======
 export default Map;
 
-const styles = StyleSheet.create({});
->>>>>>> 25df33749bb9973243b416e606ea0f4a287ebde2
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  searchBar: {
+    position: "absolute",
+    top: 20,
+    width: "90%",
+    alignSelf: "center",
+    borderRadius: 25,
+  },
+  iconButton: {
+    position: "absolute",
+    top: 80,
+    right: 10,
+    backgroundColor: "white", // Optional: to make it stand out against the map
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "space-between",
+    zIndex: 10000, // Ensure the overlay is on top
+  },
+});

@@ -1,6 +1,3 @@
-//React components
-import React, { useEffect, useState } from "react";
-
 //React native's elements
 import { StyleSheet, Image, View, ScrollView } from "react-native";
 
@@ -8,21 +5,19 @@ import { StyleSheet, Image, View, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 //React-native-paper components
-import { Button, Text, useTheme } from "react-native-paper";
+import { Button, useTheme } from "react-native-paper";
+
+//Language:
+import { useTranslation } from "react-i18next";
 
 //Local components
 import SuggestInfo from "../../components/SuggestDetails/SuggestInfo";
 import SuggestAbout from "../../components/SuggestDetails/SuggestAbout";
 import SuggestPhoto from "../../components/SuggestDetails/SuggestPhoto";
-import { useTranslation } from "react-i18next";
+import Divider from "../../components/SuggestDetails/Divider";
+import SuggestButton from "../../components/SuggestDetails/SuggestButton";
 
 const SuggestionDetails = () => {
-  const placeholder = [
-    {
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, quisquam inventore! Cumque tempore odio non pariatur commodi impedit ut harum nisi, asperiores placeat, illum unde, hic esse? Vel eius perspiciatis autem, voluptatum culpa ullam impedit fuga, dolorum, totam dolorem tempore. Necessitatibus cumque doloremque consequatur mollitia eum, est, facilis nihil, aliquam exercitationem iusto obcaecati consectetur placeat aut sit ratione perferendis. Culpa nemo asperiores consequuntur ipsum maiores! Est architecto ea dolores explicabo modi beatae iste officiis repellat fugit totam quo, accusamus, iure sed similique. Voluptates libero, ipsam sapiente esse nesciunt animi, laborum ad distinctio quam eveniet quae consectetur, ut aliquid minus enim!",
-    },
-  ];
   const param = useRoute().params;
   const theme = useTheme();
 
@@ -46,49 +41,31 @@ const SuggestionDetails = () => {
           />
 
           {/* Line divider */}
-          <View
-            style={{
-              borderWidth: 0.4,
-              borderColor: "#ddd",
-              marginTop: 20,
-              marginBottom: 10,
-            }}
-          />
+          <Divider />
+
+          <SuggestButton />
+
+          <Divider />
 
           {/* Description */}
           <View>
             {/* About Section */}
             <SuggestAbout description={param.restaurant.description} />
             {/* Line divider */}
-            <View
-              style={{
-                borderWidth: 0.4,
-                borderColor: "#ddd",
-                marginTop: 20,
-                marginBottom: 10,
-              }}
-            />
+            <Divider />
             {/* If there is some photos of the restaurant, It would be here */}
             <SuggestPhoto />
           </View>
         </View>
       </ScrollView>
+
       <View style={styles.buttons}>
         <Button
           icon="map-search-outline"
-          mode="outlined"
-          style={{}}
+          style={{ borderRadius: 0 }}
+          mode="contained"
           onPress={() => {
-            console.log("Tracking...");
-          }}
-        >
-          {t("btn_save")}
-        </Button>
-        <Button
-          icon="map-search-outline"
-          mode="contained-tonal"
-          onPress={() => {
-            console.log("Tracking...");
+            console.log("Tracking " + param?.restaurant.name + "...");
           }}
         >
           {t("btn_find")}
@@ -113,7 +90,5 @@ const styles = StyleSheet.create({
   buttons: {
     display: "flex",
     flexDirection: "column",
-    gap: 15,
-    marginHorizontal: 20,
   },
 });

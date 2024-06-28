@@ -1,8 +1,6 @@
 import React from "react";
 //React Native components
-import {
-  StyleSheet,
-} from "react-native";
+import { StyleSheet } from "react-native";
 
 //React Navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -17,6 +15,7 @@ import { BottomNavigation, useTheme } from "react-native-paper";
 //Pages in Home 's screen
 import Map from "../screens/HomeScreen/Map";
 import Suggestion from "../screens/HomeScreen/Suggestion";
+import PlaceSaved from "../screens/HomeScreen/PlaceSaved";
 
 //Traductor
 import { useTranslation } from "react-i18next";
@@ -37,7 +36,7 @@ const Routes = () => {
           <BottomNavigation.Bar
             style={[
               styles.bottombar,
-              { backgroundColor: theme.colors.background },
+              { backgroundColor: theme.colors.backdrop, opacity: 0.7 },
             ]}
             navigationState={state}
             safeAreaInsets={insets}
@@ -105,6 +104,17 @@ const Routes = () => {
             },
           }}
         />
+
+        <Tab.Screen
+          name="Place Saved"
+          component={PlaceSaved}
+          options={{
+            tabBarLabel: `${t("menu3")}`,
+            tabBarIcon: ({ color, size }) => {
+              return <Icon name="flag" size={size} color={color} />;
+            },
+          }}
+        />
       </Tab.Navigator>
     </>
   );
@@ -113,16 +123,15 @@ const Routes = () => {
 export default Routes;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  view: {
-    margin: 10,
-  },
   bottombar: {
-    // padding: 2,
+    backgroundColor: "red", // Couleur de fond de la barre
+    paddingVertical: 0,
+  },
+  icon: {
+    marginBottom: -3, // Ajustez l'espacement des icônes
+  },
+  label: {
+    fontSize: 12,
+    fontFamily: "Poppins",
   },
 });

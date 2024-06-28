@@ -2,11 +2,21 @@ import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from "react-i18next";
 import { useTheme, Text } from "react-native-paper";
 
 const SuggestionItem = ({ restaurant }) => {
   const navigation = useNavigation();
   const theme = useTheme();
+  const { t } = useTranslation();
+
+  const getStars = (rating) => {
+    rating = Math.min(5, Math.max(0, rating));
+    const filledStars = Array.from({ length: rating }, (_, i) => "★");
+    const emptyStars = Array.from({ length: 5 - rating }, (_, i) => "☆");
+    const stars = filledStars.concat(emptyStars);
+    return stars.join(" ");
+  };
 
   return (
     <TouchableOpacity
@@ -22,39 +32,47 @@ const SuggestionItem = ({ restaurant }) => {
 
         <View style={styles.subContainer}>
           <Text
-            style={{
-              fontWeight: "600",
-              fontSize: 13,
-              fontFamily: "Poppins-medium",
-            }}
+            style={[
+              styles.text,
+              styles.nameText,
+              { color: theme.colors.onSurface },
+            ]}
           >
             {restaurant.name}
           </Text>
-          <Text style={{ fontSize: 15, fontFamily: "Poppins-medium" }}>
+          <Text
+            style={[
+              styles.text,
+              styles.locationText,
+              { color: theme.colors.onSurfaceVariant },
+            ]}
+          >
             {restaurant.location}
           </Text>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={styles.row}>
             <Ionicons
               color={theme.colors.primary}
               name="location-sharp"
               size={20}
             />
             <Text
-              style={{
-                fontSize: 14,
-                fontFamily: "Poppins",
-                marginLeft: 5,
-              }}
+              style={[
+                styles.text,
+                styles.streetText,
+                { color: theme.colors.onSurface },
+              ]}
             >
               {restaurant.street}
             </Text>
           </View>
-          <Text>{restaurant.star}</Text>
+          <Text style={[styles.text, styles.starText]}>
+            {getStars(restaurant.star)}
+          </Text>
         </View>
       </View>
       <View
         style={[
-          styles.lastIconContainer,
+          styles.iconContainer,
           { backgroundColor: theme.colors.elevation.level4 },
         ]}
       >
@@ -76,31 +94,57 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
-    marginBottom: 15,
-    borderRadius: 15,
+    marginVertical: 8,
+    borderRadius: 12,
+    elevation: 1,
   },
   container: {
-    width: "auto",
-
     display: "flex",
     flexDirection: "row",
-    gap: 13,
+    alignItems: "center",
   },
   subContainer: {
     display: "flex",
-    gap: 1,
-    overflowX: "auto",
+    justifyContent: "space-between",
+    marginLeft: 12,
   },
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 15,
+    width: 80,
+    height: 80,
+    borderRadius: 10,
   },
-  lastIconContainer: {
+  row: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 2,
+  },
+  iconContainer: {
     borderRadius: 50,
-    padding: 3,
+    padding: 6,
     justifyContent: "center",
-    textAlign: "center",
+    alignItems: "center",
     alignSelf: "center",
+  },
+  text: {
+    fontFamily: "Poppins",
+  },
+  nameText: {
+    fontWeight: "800",
+    fontSize: 15,
+  },
+  locationText: {
+    fontSize: 14,
+    marginTop: 2,
+  },
+  streetText: {
+    fontWeight: "600",
+    fontSize: 14,
+    marginLeft: 5,
+    overflow: "scroll",
+  },
+  starText: {
+    fontSize: 14,
+    marginTop: 4,
   },
 });

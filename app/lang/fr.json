@@ -1,22 +1,26 @@
 {
   "translation": {
-    "placeholder": "Rechercher...",
     "menu1": "Carte",
     "menu2": "Suggestions",
-    "menu3": "Actualités",
-    "menu4": "Itinéraires",
+    "menu3": "Places enregistrée(s)",
     "setting": {
+      "appbar": "Paramètres",
       "lang": "Langages",
       "pref": "Préférences",
       "prefs": {
-        "theme": "Mode sombre"
+        "theme": "Mode sombre",
+        "pos": "Connaître votre position"
       }
+    },
+    "placeholder": {
+      "search": "Rechercher..."
     },
     "Apropos": "A propos",
     "photos": "Photos",
     "read": "En savoir plus",
     "close": "Fermer",
     "btn_save": "Enregistrer pour plus tard",
-    "btn_find": "Trouvez ceci"
+    "btn_find": "Trouvez ceci",
+    "notice_saved": "Tous les lieux que vous avez enregistrés seront affichés ici"
   }
 }
