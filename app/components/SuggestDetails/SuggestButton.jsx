@@ -10,7 +10,10 @@ const SuggestButton = () => {
   const { t } = useTranslation();
 
   const handleSave = async () => {
+    console.log(route.params.restaurant.id);
     console.log(route.params.restaurant.name);
+    console.log(route.params.restaurant.location);
+    console.log(route.params.restaurant.street);
   };
 
   return (

@@ -20,7 +20,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.devlock.DishDet"
+      "package": "com.devlock.DishDet",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBdmg1sg_LxN-qjhCRU0fQbMblo2SeorGU"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -16,7 +16,7 @@ import Loading from "../../components/Loading";
 
 const PlaceSaved = () => {
   const [empty, setEmpty] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
   const theme = useTheme();
 

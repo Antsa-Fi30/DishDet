@@ -5,12 +5,12 @@ import { StyleSheet, Image, View, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/native";
 
 //React-native-paper components
-import { Button, useTheme } from "react-native-paper";
+import { Button, useTheme, FAB } from "react-native-paper";
 
 //Language:
 import { useTranslation } from "react-i18next";
 
-//Local components
+//Local components:
 import SuggestInfo from "../../components/SuggestDetails/SuggestInfo";
 import SuggestAbout from "../../components/SuggestDetails/SuggestAbout";
 import SuggestPhoto from "../../components/SuggestDetails/SuggestPhoto";
@@ -25,7 +25,7 @@ const SuggestionDetails = () => {
 
   return (
     <View style={{ backgroundColor: theme.colors.background }}>
-      <ScrollView style={{ height: "93%" }}>
+      <ScrollView>
         <Image
           source={require("../../../assets/4.jpg")}
           style={{ width: "100%", height: 200 }}
@@ -58,19 +58,13 @@ const SuggestionDetails = () => {
           </View>
         </View>
       </ScrollView>
-
-      <View style={styles.buttons}>
-        <Button
-          icon="map-search-outline"
-          style={{ borderRadius: 0 }}
-          mode="contained"
-          onPress={() => {
-            console.log("Tracking " + param?.restaurant.name + "...");
-          }}
-        >
-          {t("btn_find")}
-        </Button>
-      </View>
+      <FAB
+        icon="crosshairs-gps"
+        style={styles.fab}
+        onPress={() => {
+          console.log("Tracking " + param?.restaurant.name + "...");
+        }}
+      />
     </View>
   );
 };
@@ -87,8 +81,10 @@ const styles = StyleSheet.create({
     display: "flex",
     gap: 4,
   },
-  buttons: {
-    display: "flex",
-    flexDirection: "column",
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 10,
+    bottom: 20,
   },
 });

@@ -1,12 +1,13 @@
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 import SuggestionList from "../../components/SuggestionScreen/SuggestionList";
 import { Suggest } from "../../constants/Suggest";
-import { Text } from "react-native-paper";
 
 import { GOOGLE_API_KEY } from "@env";
 
 import * as Location from "expo-location";
+
+import { Surface, Text } from "react-native-paper";
 
 const Suggestion = () => {
   const [loading, setLoading] = useState(true);
@@ -34,21 +35,14 @@ const Suggestion = () => {
     }
   }, []);
 
-  let text = "Waiting..";
   if (errorMsg) {
-    text = errorMsg;
+    console.log(errorMsg);
   } else if (location) {
     console.log(location);
-    text = JSON.stringify(location);
   }
 
   return (
     <View style={styles.container}>
-      {/* {text === "Waiting.." ? (
-        <ActivityIndicator size={"large"} />
-      ) : (
-        <Text>{text}</Text>
-      )} */}
       <SuggestionList DATA={Suggest} />
     </View>
   );

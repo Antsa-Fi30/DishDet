@@ -10,7 +10,6 @@ import { useTranslation } from "react-i18next";
 
 //React navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SearchBar from "../components/MapScreen/SearchBar";
 
 //Function creating Navigation:
 const Stack = createNativeStackNavigator();

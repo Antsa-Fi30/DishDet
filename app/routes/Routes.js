@@ -36,7 +36,7 @@ const Routes = () => {
           <BottomNavigation.Bar
             style={[
               styles.bottombar,
-              { backgroundColor: theme.colors.backdrop, opacity: 0.7 },
+              { backgroundColor: theme.colors.background },
             ]}
             navigationState={state}
             safeAreaInsets={insets}

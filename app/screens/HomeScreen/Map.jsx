@@ -1,53 +1,151 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useTransition } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { View, StyleSheet, Dimensions } from "react-native";
-import MapView from "react-native-maps";
+import { View, StyleSheet, Dimensions, ActivityIndicator } from "react-native";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Searchbar, IconButton, useTheme } from "react-native-paper";
+import * as Location from "expo-location";
+import axios from "axios";
 
 const { width, height } = Dimensions.get("window");
 
 const ASPECT_RATIO = width / height;
-const LATITUDE_DELTA = 0.0922;
+const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const Map = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [location, setLocation] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [restos, setRestos] = useState({});
+  const theme = useTheme();
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
-  const theme = useTheme();
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const res = await axios.get(
+          `https://nominatim.openstreetmap.org/search?`,
+          {
+            params: {
+              q: "restaurant",
+              format: "json",
+              viewbox: "47.4,-18.9,47.7,-18.7", // Coordonnées pour Antananarivo
+              bounded: 1,
+            },
+          }
+        );
+
+        setRestos(res.data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des restaurants:", error);
+      }
+    };
+
+    fetchRestaurants();
+  }, [location]);
+
+  console.log(restos);
+
+  const mapStyle = [
+    {
+      featureType: "administrative",
+      elementType: "geometry",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "poi",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "road",
+      elementType: "labels.icon",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+    {
+      featureType: "transit",
+      stylers: [
+        {
+          visibility: "off",
+        },
+      ],
+    },
+  ];
+
+  console.log(location);
+  console.log(restos);
+
+  if (loading) {
+    return (
+      <View style={styles.loading}>
+        <ActivityIndicator size={"large"} color={theme.colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.overlay}>
-        <Searchbar
-          placeholder="Search"
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-          style={styles.searchBar}
-        />
-        <IconButton
-          icon="cog"
-          iconColor={theme.colors.primary}
-          style={styles.iconButton}
-          mode="contained"
-          size={20}
-          onPress={() => navigation.push(t("setting.appbar"))}
-        />
-      </View>
-
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA,
-        }}
+      <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+        style={styles.searchBar}
       />
+      <IconButton
+        icon="cog"
+        iconColor={theme.colors.primary}
+        style={styles.iconButton}
+        mode="contained"
+        size={20}
+        onPress={() => navigation.push(t("setting.appbar"))}
+      />
+
+      {location && (
+        <MapView
+          style={styles.map}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}
+          customMapStyle={mapStyle}
+          showsUserLocation
+          showsMyLocationButton
+        ></MapView>
+      )}
     </View>
   );
 };
@@ -62,26 +160,32 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   searchBar: {
     position: "absolute",
     top: 20,
+    height: 45,
     width: "90%",
     alignSelf: "center",
     borderRadius: 25,
+    zIndex: 999999,
   },
   iconButton: {
     position: "absolute",
     top: 80,
     right: 10,
-    backgroundColor: "white", // Optional: to make it stand out against the map
+    backgroundColor: "white",
+    zIndex: 999999,
   },
-  overlay: {
+  iconButton1: {
     position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "space-between",
-    zIndex: 10000, // Ensure the overlay is on top
+    bottom: 60,
+    right: 5,
+    backgroundColor: "white",
+    zIndex: 999999,
   },
 });
