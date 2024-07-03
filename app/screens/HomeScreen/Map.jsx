@@ -1,7 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { View, StyleSheet, Dimensions, ActivityIndicator } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  ActivityIndicator,
+  Modal,
+  Text,
+  Button,
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Searchbar, IconButton, useTheme } from "react-native-paper";
 import * as Location from "expo-location";
@@ -19,7 +27,8 @@ const Map = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [restos, setRestos] = useState({});
+  const [restos, setRestos] = useState([]);
+  const [selectedResto, setSelectedResto] = useState(null);
   const theme = useTheme();
 
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -64,8 +73,6 @@ const Map = () => {
     fetchRestaurants();
   }, [location]);
 
-  console.log(restos);
-
   const mapStyle = [
     {
       featureType: "administrative",
@@ -103,9 +110,6 @@ const Map = () => {
     },
   ];
 
-  console.log(location);
-  console.log(restos);
-
   if (loading) {
     return (
       <View style={styles.loading}>
@@ -116,12 +120,6 @@ const Map = () => {
 
   return (
     <View style={styles.container}>
-      <Searchbar
-        placeholder="Search"
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        style={styles.searchBar}
-      />
       <IconButton
         icon="cog"
         iconColor={theme.colors.primary}
@@ -144,11 +142,41 @@ const Map = () => {
           customMapStyle={mapStyle}
           showsUserLocation
           showsMyLocationButton
-        ></MapView>
+        >
+          {restos.map((res) => (
+            <Marker
+              key={res.place_id}
+              coordinate={{
+                latitude: parseFloat(res.lat),
+                longitude: parseFloat(res.lon),
+              }}
+              title={res.name}
+              onPress={() => setSelectedResto(res)}
+            />
+          ))}
+        </MapView>
+      )}
+
+      {selectedResto && (
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={true}
+          onRequestClose={() => setSelectedResto(null)}
+        >
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{selectedResto.name}</Text>
+            <Text style={styles.modalText}>
+              Adresse : {selectedResto.display_name}
+            </Text>
+            <Button title="Fermer" onPress={() => setSelectedResto(null)} />
+          </View>
+        </Modal>
       )}
     </View>
   );
 };
+
 export default Map;
 
 const styles = StyleSheet.create({
@@ -187,5 +215,24 @@ const styles = StyleSheet.create({
     right: 5,
     backgroundColor: "white",
     zIndex: 999999,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
   },
 });
