@@ -54,7 +54,7 @@ const SuggestionDetails = () => {
             {/* Line divider */}
             <Divider />
             {/* If there is some photos of the restaurant, It would be here */}
-            <SuggestPhoto />
+            {/* <SuggestPhoto /> */}
           </View>
         </View>
       </ScrollView>

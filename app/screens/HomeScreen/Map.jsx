@@ -6,12 +6,11 @@ import {
   StyleSheet,
   Dimensions,
   ActivityIndicator,
-  Modal,
-  Text,
   Button,
+  Image,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import { Searchbar, IconButton, useTheme } from "react-native-paper";
+import { Text, IconButton, useTheme, Modal } from "react-native-paper";
 import * as Location from "expo-location";
 import axios from "axios";
 
@@ -21,6 +20,8 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
+const GOOGLE_PLACES_API_KEY = "AIzaSyBdmg1sg_LxN-qjhCRU0fQbMblo2SeorGU";
+
 const Map = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
@@ -29,6 +30,7 @@ const Map = () => {
   const [loading, setLoading] = useState(true);
   const [restos, setRestos] = useState([]);
   const [selectedResto, setSelectedResto] = useState(null);
+  const [restoDetails, setRestoDetails] = useState(null);
   const theme = useTheme();
 
   const onChangeSearch = (query) => setSearchQuery(query);
@@ -49,8 +51,26 @@ const Map = () => {
     getLocation();
   }, []);
 
+  const haversineDistance = (coords1, coords2) => {
+    const toRad = (value) => (value * Math.PI) / 180;
+    const R = 6371; // Rayon de la Terre en km
+    const dLat = toRad(coords2.latitude - coords1.latitude);
+    const dLon = toRad(coords2.longitude - coords1.longitude);
+    const lat1 = toRad(coords1.latitude);
+    const lat2 = toRad(coords2.latitude);
+
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return R * c; // Distance en km
+  };
+
   useEffect(() => {
     const fetchRestaurants = async () => {
+      if (!location) return;
+
       try {
         const res = await axios.get(
           `https://nominatim.openstreetmap.org/search?`,
@@ -64,7 +84,22 @@ const Map = () => {
           }
         );
 
-        setRestos(res.data);
+        const maxDistance = 5; // Distance maximale en km
+        const filteredRestos = res.data.filter((res) => {
+          const distance = haversineDistance(
+            {
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+            },
+            {
+              latitude: parseFloat(res.lat),
+              longitude: parseFloat(res.lon),
+            }
+          );
+          return distance <= maxDistance;
+        });
+
+        setRestos(filteredRestos);
       } catch (error) {
         console.error("Erreur lors de la récupération des restaurants:", error);
       }
@@ -72,6 +107,27 @@ const Map = () => {
 
     fetchRestaurants();
   }, [location]);
+
+  const fetchRestaurantDetails = async (placeId) => {
+    try {
+      const res = await axios.get(
+        `https://maps.googleapis.com/maps/api/place/details/json?`,
+        {
+          params: {
+            place_id: placeId,
+            key: GOOGLE_PLACES_API_KEY,
+          },
+        }
+      );
+
+      setRestoDetails(res.data.result);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des détails du restaurant:",
+        error
+      );
+    }
+  };
 
   const mapStyle = [
     {
@@ -110,6 +166,8 @@ const Map = () => {
     },
   ];
 
+  console.log(restoDetails);
+
   if (loading) {
     return (
       <View style={styles.loading}>
@@ -117,6 +175,8 @@ const Map = () => {
       </View>
     );
   }
+
+  console.log(restos);
 
   return (
     <View style={styles.container}>
@@ -151,7 +211,10 @@ const Map = () => {
                 longitude: parseFloat(res.lon),
               }}
               title={res.name}
-              onPress={() => setSelectedResto(res)}
+              onPress={() => {
+                setSelectedResto(res);
+                fetchRestaurantDetails(res.place_id);
+              }}
             />
           ))}
         </MapView>
@@ -164,12 +227,43 @@ const Map = () => {
           visible={true}
           onRequestClose={() => setSelectedResto(null)}
         >
-          <View style={styles.modalView}>
+          <View
+            style={[
+              styles.modalView,
+              { backgroundColor: theme.colors.background },
+            ]}
+          >
             <Text style={styles.modalText}>{selectedResto.name}</Text>
             <Text style={styles.modalText}>
               Adresse : {selectedResto.display_name}
             </Text>
-            <Button title="Fermer" onPress={() => setSelectedResto(null)} />
+
+            {restoDetails && (
+              <View>
+                <Text style={styles.modalText}>
+                  Note : {restoDetails.rating}
+                </Text>
+                {restoDetails.photos &&
+                  restoDetails.photos.map((photo, index) => (
+                    <Image
+                      key={index}
+                      style={styles.photo}
+                      source={{
+                        uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${GOOGLE_PLACES_API_KEY}`,
+                      }}
+                    />
+                  ))}
+              </View>
+            )}
+
+            <View style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              <Button
+                color={theme.colors.secondary}
+                title="Tracer une itineraire"
+                onPress={() => setSelectedResto(null)}
+              />
+              <Button title="Fermer" onPress={() => setSelectedResto(null)} />
+            </View>
           </View>
         </Modal>
       )}
@@ -234,5 +328,10 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+  photo: {
+    width: 100,
+    height: 100,
+    marginBottom: 10,
   },
 });
