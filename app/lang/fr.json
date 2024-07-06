@@ -3,6 +3,8 @@
     "menu1": "Carte",
     "menu2": "Suggestions",
     "menu3": "Places enregistrée(s)",
+    "menu4": "Acceuil",
+    "menu5": "Paramètres",
     "setting": {
       "appbar": "Paramètres",
       "lang": "Langages",

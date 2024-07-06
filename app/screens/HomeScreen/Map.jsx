@@ -20,7 +20,7 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.02;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-const GOOGLE_PLACES_API_KEY = "AIzaSyBdmg1sg_LxN-qjhCRU0fQbMblo2SeorGU";
+const Foursquare = "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=";
 
 const Map = () => {
   const navigation = useNavigation();
@@ -30,8 +30,7 @@ const Map = () => {
   const [loading, setLoading] = useState(true);
   const [restos, setRestos] = useState([]);
   const [selectedResto, setSelectedResto] = useState(null);
-  const [restoDetails, setRestoDetails] = useState(null);
-  const theme = useTheme();
+  var theme = useTheme();
 
   const onChangeSearch = (query) => setSearchQuery(query);
 
@@ -51,83 +50,32 @@ const Map = () => {
     getLocation();
   }, []);
 
-  const haversineDistance = (coords1, coords2) => {
-    const toRad = (value) => (value * Math.PI) / 180;
-    const R = 6371; // Rayon de la Terre en km
-    const dLat = toRad(coords2.latitude - coords1.latitude);
-    const dLon = toRad(coords2.longitude - coords1.longitude);
-    const lat1 = toRad(coords1.latitude);
-    const lat2 = toRad(coords2.latitude);
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    return R * c; // Distance en km
-  };
-
   useEffect(() => {
-    const fetchRestaurants = async () => {
-      if (!location) return;
-
-      try {
-        const res = await axios.get(
-          `https://nominatim.openstreetmap.org/search?`,
-          {
-            params: {
-              q: "restaurant",
-              format: "json",
-              viewbox: "47.4,-18.9,47.7,-18.7", // Coordonnées pour Antananarivo
-              bounded: 1,
-            },
-          }
-        );
-
-        const maxDistance = 5; // Distance maximale en km
-        const filteredRestos = res.data.filter((res) => {
-          const distance = haversineDistance(
+    if (location) {
+      const fetchRestaurants = async (latitude, longitude) => {
+        try {
+          const res = await axios.get(
+            `https://api.foursquare.com/v3/places/search`,
             {
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-            },
-            {
-              latitude: parseFloat(res.lat),
-              longitude: parseFloat(res.lon),
+              headers: {
+                Authorization: Foursquare,
+              },
+              params: {
+                query: "restaurant",
+                ll: `${latitude},${longitude}`,
+                radius: 10000, // Radius in meters
+                limit: 50,
+              },
             }
           );
-          return distance <= maxDistance;
-        });
-
-        setRestos(filteredRestos);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des restaurants:", error);
-      }
-    };
-
-    fetchRestaurants();
-  }, [location]);
-
-  const fetchRestaurantDetails = async (placeId) => {
-    try {
-      const res = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/details/json?`,
-        {
-          params: {
-            place_id: placeId,
-            key: GOOGLE_PLACES_API_KEY,
-          },
+          setRestos(res.data.results);
+        } catch (err) {
+          console.log("Erreur lors du fetch : " + err);
         }
-      );
-
-      setRestoDetails(res.data.result);
-    } catch (error) {
-      console.error(
-        "Erreur lors de la récupération des détails du restaurant:",
-        error
-      );
+      };
+      fetchRestaurants(location.coords.latitude, location.coords.longitude);
     }
-  };
+  }, [location]);
 
   const mapStyle = [
     {
@@ -166,7 +114,15 @@ const Map = () => {
     },
   ];
 
-  console.log(restoDetails);
+  const getDetails = (fsq_id) => {
+    try {
+      axios
+        .get(`https://api.foursquare.com/v3/places/${fsq_id}`)
+        .then((res) => console.log(res));
+    } catch (error) {
+      console.log("Erreur lors de la fetch du details : " + error);
+    }
+  };
 
   if (loading) {
     return (
@@ -176,19 +132,12 @@ const Map = () => {
     );
   }
 
-  console.log(restos);
+  if (selectedResto != null) {
+    getDetails(selectedResto.fsq_id);
+  }
 
   return (
     <View style={styles.container}>
-      <IconButton
-        icon="cog"
-        iconColor={theme.colors.primary}
-        style={styles.iconButton}
-        mode="contained"
-        size={20}
-        onPress={() => navigation.push(t("setting.appbar"))}
-      />
-
       {location && (
         <MapView
           style={styles.map}
@@ -205,16 +154,13 @@ const Map = () => {
         >
           {restos.map((res) => (
             <Marker
-              key={res.place_id}
+              key={res.fsq_id}
               coordinate={{
-                latitude: parseFloat(res.lat),
-                longitude: parseFloat(res.lon),
+                latitude: parseFloat(res.geocodes.main.latitude),
+                longitude: parseFloat(res.geocodes.main.longitude),
               }}
               title={res.name}
-              onPress={() => {
-                setSelectedResto(res);
-                fetchRestaurantDetails(res.place_id);
-              }}
+              onPress={() => setSelectedResto(res)}
             />
           ))}
         </MapView>
@@ -233,29 +179,25 @@ const Map = () => {
               { backgroundColor: theme.colors.background },
             ]}
           >
-            <Text style={styles.modalText}>{selectedResto.name}</Text>
-            <Text style={styles.modalText}>
-              Adresse : {selectedResto.display_name}
+            <Text
+              style={[
+                styles.modalText,
+                { fontSize: 20, fontFamily: "Poppins-bold" },
+              ]}
+            >
+              {selectedResto.name}
             </Text>
 
-            {restoDetails && (
-              <View>
-                <Text style={styles.modalText}>
-                  Note : {restoDetails.rating}
-                </Text>
-                {restoDetails.photos &&
-                  restoDetails.photos.map((photo, index) => (
-                    <Image
-                      key={index}
-                      style={styles.photo}
-                      source={{
-                        uri: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${GOOGLE_PLACES_API_KEY}`,
-                      }}
-                    />
-                  ))}
-              </View>
-            )}
+            <Text style={styles.modalText}>
+              Adresse : {selectedResto.location.formatted_address}
+            </Text>
+            <Text style={styles.modalText}>
+              Localisation : {selectedResto.location.locality}
+            </Text>
 
+            <Text style={styles.modalText}>
+              Distance depuis votre position : {selectedResto.distance} m
+            </Text>
             <View style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <Button
                 color={theme.colors.secondary}
@@ -327,11 +269,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
+    fontFamily: "Poppins",
     textAlign: "center",
-  },
-  photo: {
-    width: 100,
-    height: 100,
-    marginBottom: 10,
   },
 });

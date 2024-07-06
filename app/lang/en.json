@@ -3,6 +3,8 @@
     "menu1": "Map",
     "menu2": "Suggestions",
     "menu3": "Registered places",
+    "menu4": "Home",
+    "menu5": "Settings",
     "setting": {
       "appbar": "Settings",
       "lang": "Languages",

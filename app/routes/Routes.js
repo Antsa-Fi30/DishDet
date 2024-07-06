@@ -14,11 +14,12 @@ import { BottomNavigation, useTheme } from "react-native-paper";
 
 //Pages in Home 's screen
 import Map from "../screens/HomeScreen/Map";
-import Suggestion from "../screens/HomeScreen/Suggestion";
 import PlaceSaved from "../screens/HomeScreen/PlaceSaved";
 
 //Traductor
 import { useTranslation } from "react-i18next";
+import Home from "../screens/HomeScreen/Home";
+import SettingsScreen from "../screens/SettingsScreen/SettingsScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -34,10 +35,7 @@ const Routes = () => {
         }}
         tabBar={({ navigation, state, descriptors, insets }) => (
           <BottomNavigation.Bar
-            style={[
-              styles.bottombar,
-              { backgroundColor: theme.colors.background },
-            ]}
+            style={[{ backgroundColor: theme.colors.background }]}
             navigationState={state}
             safeAreaInsets={insets}
             onTabPress={({ route, preventDefault }) => {
@@ -59,7 +57,7 @@ const Routes = () => {
             renderIcon={({ route, focused, color }) => {
               const { options } = descriptors[route.key];
               if (options.tabBarIcon) {
-                return options.tabBarIcon({ focused, color, size: 24 });
+                return options.tabBarIcon({ focused, color, size: 25 });
               }
 
               return null;
@@ -78,29 +76,23 @@ const Routes = () => {
         )}
       >
         <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarLabel: `${t("menu4")}`,
+            tabBarIcon: ({ color, size }) => {
+              return <Icon name="home" size={size} color={color} />;
+            },
+          }}
+        />
+
+        <Tab.Screen
           name="Map"
           component={Map}
           options={{
             tabBarLabel: `${t("menu1")}`,
             tabBarIcon: ({ color, size }) => {
               return <Icon name="map" size={size} color={color} />;
-            },
-          }}
-        />
-
-        <Tab.Screen
-          name="Suggestion"
-          component={Suggestion}
-          options={{
-            tabBarLabel: `${t("menu2")}`,
-            tabBarIcon: ({ color, size }) => {
-              return (
-                <Icon
-                  name="map-marker-multiple-outline"
-                  size={size}
-                  color={color}
-                />
-              );
             },
           }}
         />
@@ -115,6 +107,18 @@ const Routes = () => {
             },
           }}
         />
+        <Tab.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            headerShown: true,
+            headerStatusBarHeight: 20,
+            tabBarLabel: `${t("menu5")}`,
+            tabBarIcon: ({ color, size }) => {
+              return <Icon name="cog" size={size} color={color} />;
+            },
+          }}
+        />
       </Tab.Navigator>
     </>
   );
@@ -122,16 +126,4 @@ const Routes = () => {
 
 export default Routes;
 
-const styles = StyleSheet.create({
-  bottombar: {
-    backgroundColor: "red", // Couleur de fond de la barre
-    paddingVertical: 0,
-  },
-  icon: {
-    marginBottom: -3, // Ajustez l'espacement des icônes
-  },
-  label: {
-    fontSize: 12,
-    fontFamily: "Poppins",
-  },
-});
+const styles = StyleSheet.create({});

@@ -1,9 +1,9 @@
 //React
 import { useCallback, useState, useMemo, useEffect } from "react";
+import { SafeAreaView } from "react-native";
 
 //React navigation
 import { NavigationContainer } from "@react-navigation/native";
-
 //React native paper and it's Theming
 import { Provider as PaperProvider } from "react-native-paper";
 
