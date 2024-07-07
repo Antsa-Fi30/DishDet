@@ -16,6 +16,7 @@ const Items = ({ name, adresse, id, item, icon }) => {
   const [isLoading, setIsLoading] = useState(true);
   const theme = useTheme();
 
+  //Photo fetching:
   useEffect(() => {
     if (item) {
       const options = {
@@ -30,12 +31,12 @@ const Items = ({ name, adresse, id, item, icon }) => {
 
       axios
         .request(options)
-        .then(function (response) {
+        .then((response) => {
           if (response.data.length > 0) {
             setPhoto(response.data[0]);
           }
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.error(error);
         })
         .finally(() => {
@@ -56,7 +57,7 @@ const Items = ({ name, adresse, id, item, icon }) => {
     >
       <View style={styles.image}>
         {isLoading ? (
-          <ActivityIndicator size="small" color="#0000ff" />
+          <ActivityIndicator size="small" color={theme.colors.primary} />
         ) : photoUrl ? (
           <Image source={{ uri: photoUrl }} style={styles.photo} />
         ) : (

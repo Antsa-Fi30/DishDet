@@ -9,8 +9,11 @@ import { ScrollView } from "react-native";
 import { getRestaurantNearby } from "../../api/GlobalApi";
 import { useFonts } from "expo-font";
 import axios from "axios";
+import { useTheme } from "react-native-paper";
 
 export default function Home() {
+  const theme = useTheme();
+  const [restoFav, setRestoFav] = useState([]);
   const [location, setLocation] = useState(null);
   const [restoNear, setRestoNear] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +65,9 @@ export default function Home() {
       };
 
       fetchRestaurants(location.coords.latitude, location.coords.longitude);
+    } else {
+      setIsLoading(false);
+      console.log("Verifier votre connexion");
     }
   }, [location]);
 
@@ -71,7 +77,7 @@ export default function Home() {
   if (!fontsLoaded || isLoading) {
     return (
       <View style={{ justifyContent: "center", marginTop: 50 }}>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
       </View>
     );
   }
@@ -85,7 +91,7 @@ export default function Home() {
       <View style={styles.container}>
         <Slider title="Offres speciales" />
         <Slider data={restoNear} title="À proximité" />
-        <Slider title="Favoris" />
+        <Slider data={restoFav} title="Favoris" />
       </View>
     </ScrollView>
   );

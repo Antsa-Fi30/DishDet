@@ -45,6 +45,7 @@ export default Slider;
 const styles = StyleSheet.create({
   noData: {
     padding: 10,
+    fontFamily: "Poppins",
     color: "red",
     textAlign: "center",
   },
