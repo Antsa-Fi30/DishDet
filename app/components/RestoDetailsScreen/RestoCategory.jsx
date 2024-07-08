@@ -7,7 +7,8 @@ const RestoCategory = ({ categoryName, categoryIcon }) => {
   const [fontsLoaded] = useFonts({
     "Poppins-medium": require("../../../assets/fonts/Poppins-Medium.ttf"),
   });
-  if (!fontsLoaded || isLoading) {
+
+  if (!fontsLoaded) {
     return (
       <View style={{ justifyContent: "center", marginTop: 50 }}>
         <ActivityIndicator size="large" color={theme.colors.primary} />

@@ -77,9 +77,6 @@ export default function Home() {
     );
   }
 
-  console.log(specialOffers);
-  console.log(favorites);
-
   return (
     <ScrollView>
       <View style={styles.header}>

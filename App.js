@@ -31,7 +31,6 @@ import AppRoutes from "./app/routes/AppRoutes";
 const loadLang = async () => {
   try {
     const storedLanguage = await AsyncStorage.getItem("LANGUAGE");
-    console.log(storedLanguage);
     if (storedLanguage) {
       i18next.changeLanguage(storedLanguage);
     }

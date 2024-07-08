@@ -11,7 +11,6 @@ const PreferenceList = ({ OptionList }) => {
 
   const toggleOtherPreference = () => {
     setSomeOtherPreference((prevState) => !prevState);
-    console.log(someOtherPreference);
   };
 
   return (

@@ -30,7 +30,6 @@ export const getSpecialOffers = async (latitude, longitude) => {
         },
       }
     );
-    console.log(response.data.results);
     return response.data.results;
   } catch (error) {
     console.error(

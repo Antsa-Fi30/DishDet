@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
-import { Avatar, Card, Text } from "react-native-paper";
+import { Avatar, Card, Text, useTheme } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="account" />;
 
 const TipsBlock = ({ date, content }) => {
+  const theme = useTheme();
   const formatDate = (dates) => {
     const dateStr = dates;
     const dated = new Date(dateStr);
@@ -39,12 +40,10 @@ const styles = StyleSheet.create({
   date: {
     fontFamily: "Poppins",
     fontSize: 13,
-    color: "#dddd",
     opacity: 0.9,
   },
   content: {
     fontFamily: "Poppins",
     fontSize: 16,
-    color: "#dddd",
   },
 });

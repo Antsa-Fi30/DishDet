@@ -14,7 +14,7 @@ const Slider = ({ title, data }) => {
   }
 
   return (
-    <View>
+    <View style={styles.SliderContainer}>
       <Heading text={title} />
       <FlatList
         data={data}
@@ -48,5 +48,8 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins",
     color: "red",
     textAlign: "center",
+  },
+  SliderContainer: {
+    marginVertical: 15,
   },
 });

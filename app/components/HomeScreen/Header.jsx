@@ -22,7 +22,6 @@ const Header = ({ location }) => {
     axios
       .request(options)
       .then((response) => {
-        console.log("API Response:", response.data); // Vérifiez la structure des données ici
         if (response.data.results) {
           setSearchResults(response.data.results);
         } else {
@@ -37,28 +36,38 @@ const Header = ({ location }) => {
 
   console.log("Search Results:", searchResults);
 
-  const renderItem = ({ item }) => (
-    <View style={styles.resultItem}>
-      <Text>{item.name}</Text>
-    </View>
-  );
+  if (searchResults.length === 0) {
+    var renderItem = ({ item }) => (
+      <View style={styles.resultItem}>
+        <Text>Nothing Found</Text>
+      </View>
+    );
+  } else {
+    var renderItem = ({ item }) => (
+      <View style={styles.resultItem}>
+        <Text>{item.place.name}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <Text style={styles.title}>Dish Detective</Text>
-        <Searchbar
+        {/* <Searchbar
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
-        />
-        <FlatList
-          data={searchResults}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()} // Utilisez index si vous n'avez pas d'id unique
-          style={styles.resultsList}
-        />
+        /> */}
+        {searchResults && (
+          <FlatList
+            data={searchResults}
+            renderItem={renderItem}
+            keyExtractor={(index) => index.toString()} // Utilisez index si vous n'avez pas d'id unique
+            style={styles.resultsList}
+          />
+        )}
       </View>
     </View>
   );
@@ -82,9 +91,6 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     marginBottom: 10,
-  },
-  resultsList: {
-    marginTop: 10,
   },
   resultItem: {
     padding: 10,

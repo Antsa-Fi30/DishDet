@@ -30,14 +30,12 @@ const RestoDetailsScreen = () => {
   const [tips, setTips] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [isModalVisible, setModalVisible] = useState(false);
-
-  const dispatch = useDispatch();
-  const favorites = useSelector((state) => state.favorites);
-
   const theme = useTheme();
   const params = useRoute().params;
-  const navigation = useNavigation();
 
+  //Redux:
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.favorites);
   const isFavorite = favorites.some((fav) => fav.id === params?.resto.fsq_id);
 
   const toggleFavorite = () => {
