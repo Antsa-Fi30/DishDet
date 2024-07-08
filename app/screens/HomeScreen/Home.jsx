@@ -21,8 +21,9 @@ export default function Home() {
   const favorites = useSelector((state) => state.favorites);
 
   const [fontsLoaded] = useFonts({
-    "Poppins-Bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
-    // Add other fonts here if needed
+    Poppins: require("../../../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-medium": require("../../../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-bold": require("../../../assets/fonts/Poppins-Bold.ttf"),
   });
 
   useEffect(() => {
@@ -83,10 +84,10 @@ export default function Home() {
     <ScrollView>
       <View style={styles.header}>
         <StatusBar style="auto" />
-        <Header />
+        <Header location={location} />
       </View>
       <View style={styles.container}>
-        <Slider data={specialOffers} title="spéciales" />
+        <Slider data={specialOffers} title="Spéciales" />
         {/* Utilisez specialOffers ici */}
         <Slider data={restoNear} title="À proximité" />
         <Slider data={favorites} title="Favoris" />

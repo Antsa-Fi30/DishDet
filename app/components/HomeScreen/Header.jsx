@@ -1,11 +1,47 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { useState } from "react";
 import { Searchbar, Text } from "react-native-paper";
+import axios from "axios";
 
-const Header = () => {
+const Header = ({ location }) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const onChangeSearch = (query) => {
+    setSearchQuery(query);
+
+    const options = {
+      method: "GET",
+      url: `https://api.foursquare.com/v3/autocomplete?query=${query}&ll=${location.coords.latitude}%2C${location.coords.longitude}`,
+      headers: {
+        accept: "application/json",
+        Authorization: "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=",
+      },
+    };
+
+    axios
+      .request(options)
+      .then((response) => {
+        console.log("API Response:", response.data); // Vérifiez la structure des données ici
+        if (response.data.results) {
+          setSearchResults(response.data.results);
+        } else {
+          setSearchResults([]);
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+        setSearchResults([]);
+      });
+  };
+
+  console.log("Search Results:", searchResults);
+
+  const renderItem = ({ item }) => (
+    <View style={styles.resultItem}>
+      <Text>{item.name}</Text>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
@@ -16,6 +52,12 @@ const Header = () => {
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
+        />
+        <FlatList
+          data={searchResults}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()} // Utilisez index si vous n'avez pas d'id unique
+          style={styles.resultsList}
         />
       </View>
     </View>
@@ -37,5 +79,16 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     gap: 10,
+  },
+  searchBar: {
+    marginBottom: 10,
+  },
+  resultsList: {
+    marginTop: 10,
+  },
+  resultItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
 });

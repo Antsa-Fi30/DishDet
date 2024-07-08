@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import { Text, IconButton, useTheme, Modal } from "react-native-paper";
+import { Text, useTheme, Modal } from "react-native-paper";
 import * as Location from "expo-location";
 import axios from "axios";
 import { getSpecialOffers } from "../../api/GlobalApi";
@@ -24,17 +24,20 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const Foursquare = "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=";
 
 const Map = () => {
-  const navigation = useNavigation();
-  const { t } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [restos, setRestos] = useState([]);
   const [specials, setSpecials] = useState([]);
   const [selectedResto, setSelectedResto] = useState(null);
-  var theme = useTheme();
+  const navigation = useNavigation();
 
-  const onChangeSearch = (query) => setSearchQuery(query);
+  const openDetailScreen = () => {
+    // Naviguer vers l'écran de détail avec les informations du restaurant sélectionné
+    navigation.navigate("Restos details", {
+      resto: selectedResto,
+    });
+  };
+  var theme = useTheme();
 
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
@@ -80,6 +83,7 @@ const Map = () => {
         location.coords.latitude,
         location.coords.longitude
       );
+      console.log(fetchSpecials);
 
       fetchRestaurants(location.coords.latitude, location.coords.longitude);
     }
@@ -171,15 +175,15 @@ const Map = () => {
               onPress={() => setSelectedResto(res)}
             />
           ))}
-          {specials.map((res) => (
+          {specials.map((spe) => (
             <Marker
-              key={res.fsq_id}
+              key={spe.fsq_id}
               coordinate={{
-                latitude: parseFloat(res.geocodes.main.latitude),
-                longitude: parseFloat(res.geocodes.main.longitude),
+                latitude: parseFloat(spe.geocodes.main.latitude),
+                longitude: parseFloat(spe.geocodes.main.longitude),
               }}
-              title={res.name}
-              onPress={() => setSelectedResto(res)}
+              title={spe.name}
+              onPress={() => setSelectedResto(spe)}
             />
           ))}
         </MapView>
@@ -218,11 +222,6 @@ const Map = () => {
               Distance depuis votre position : {selectedResto.distance} m
             </Text>
             <View style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              <Button
-                color={theme.colors.secondary}
-                title="Tracer une itineraire"
-                onPress={() => setSelectedResto(null)}
-              />
               <Button title="Fermer" onPress={() => setSelectedResto(null)} />
             </View>
           </View>

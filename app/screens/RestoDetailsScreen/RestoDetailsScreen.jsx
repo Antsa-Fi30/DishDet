@@ -19,6 +19,9 @@ import TipsBlock from "../../components/RestoDetailsScreen/TipsBlock";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/FavoritesSlice";
+import RestoDetailsHeader from "../../components/RestoDetailsScreen/RestoDetailsHeader";
+import RestoInfo from "../../components/RestoDetailsScreen/RestoInfo";
+import RestoCategory from "../../components/RestoDetailsScreen/RestoCategory";
 
 const { width: screenWidth } = Dimensions.get("window");
 
@@ -77,52 +80,21 @@ const RestoDetailsScreen = () => {
   return (
     <View>
       <ScrollView>
-        <View>
-          <Image
-            source={{ uri: params?.photo }}
-            style={{ width: "100%", height: 300 }}
-          />
-          <TouchableOpacity
-            style={styles.btnContainer}
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back-outline" size={30} color="black" />
-          </TouchableOpacity>
-        </View>
+        <RestoDetailsHeader uriPhoto={params?.photo} />
         <View style={styles.detailsContainer}>
-          <Text style={[styles.title, { color: theme.colors.primary }]}>
-            {params?.resto.name}
-          </Text>
-          <View>
-            <Text style={styles.address}>
-              {params?.resto.location.formatted_address}
-            </Text>
-            <Text style={styles.info}>
-              Distance: {params?.resto.distance} meters
-            </Text>
-            <Text style={styles.info}>
-              Region: {params?.resto.location.region}
-            </Text>
-          </View>
+          <RestoInfo
+            name={params?.resto.name}
+            address={params?.resto.location.formatted_address}
+            distance={params?.resto.distance}
+            region={params?.resto.location.region}
+          />
           <Dividers />
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Text
-              style={[
-                styles.info,
-                { fontFamily: "Poppins-medium", fontSize: 20 },
-              ]}
-            >
-              {params?.resto.categories[0].name}
-            </Text>
-            <Image source={{ uri: params?.icon }} style={styles.itemIcon} />
-          </View>
+
+          <RestoCategory
+            categoryName={params?.resto.categories[0].name}
+            categoryIcon={params?.icon}
+          />
+
           <Dividers />
           <View
             style={{
@@ -223,7 +195,7 @@ export default RestoDetailsScreen;
 
 const styles = StyleSheet.create({
   detailsContainer: {
-    padding: 20,
+    padding: 15,
     display: "flex",
     gap: 7,
   },

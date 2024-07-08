@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 //React navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import RestoDetailsScreen from "../screens/RestoDetailsScreen/RestoDetailsScreen";
+import Welcome from "../screens/WelcomeScreen/Welcome";
 
 //Function creating Navigation:
 const Stack = createNativeStackNavigator();
