@@ -14,7 +14,6 @@ import { BottomNavigation, useTheme } from "react-native-paper";
 
 //Pages in Home 's screen
 import Map from "../screens/HomeScreen/Map";
-import PlaceSaved from "../screens/HomeScreen/PlaceSaved";
 
 //Traductor
 import { useTranslation } from "react-i18next";
@@ -97,16 +96,6 @@ const Routes = () => {
           }}
         />
 
-        <Tab.Screen
-          name="Place Saved"
-          component={PlaceSaved}
-          options={{
-            tabBarLabel: `${t("menu3")}`,
-            tabBarIcon: ({ color, size }) => {
-              return <Icon name="flag" size={size} color={color} />;
-            },
-          }}
-        />
         <Tab.Screen
           name="Settings"
           component={SettingsScreen}

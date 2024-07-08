@@ -13,6 +13,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { Text, IconButton, useTheme, Modal } from "react-native-paper";
 import * as Location from "expo-location";
 import axios from "axios";
+import { getSpecialOffers } from "../../api/GlobalApi";
 
 const { width, height } = Dimensions.get("window");
 
@@ -29,6 +30,7 @@ const Map = () => {
   const [location, setLocation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [restos, setRestos] = useState([]);
+  const [specials, setSpecials] = useState([]);
   const [selectedResto, setSelectedResto] = useState(null);
   var theme = useTheme();
 
@@ -73,6 +75,12 @@ const Map = () => {
           console.log("Erreur lors du fetch : " + err);
         }
       };
+
+      const fetchSpecials = getSpecialOffers(
+        location.coords.latitude,
+        location.coords.longitude
+      );
+
       fetchRestaurants(location.coords.latitude, location.coords.longitude);
     }
   }, [location]);
@@ -153,6 +161,17 @@ const Map = () => {
           showsMyLocationButton
         >
           {restos.map((res) => (
+            <Marker
+              key={res.fsq_id}
+              coordinate={{
+                latitude: parseFloat(res.geocodes.main.latitude),
+                longitude: parseFloat(res.geocodes.main.longitude),
+              }}
+              title={res.name}
+              onPress={() => setSelectedResto(res)}
+            />
+          ))}
+          {specials.map((res) => (
             <Marker
               key={res.fsq_id}
               coordinate={{

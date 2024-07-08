@@ -14,17 +14,24 @@ export const FoursquareAPI = axios.create({
     client_secret: FOURSQUARE_CLIENT_SECRET,
   },
 });
-
 export const getSpecialOffers = async (latitude, longitude) => {
   try {
-    const response = await FoursquareAPI.get("/venues/explore", {
-      params: {
-        ll: `${latitude},${longitude}`,
-        section: "specials",
-        limit: 10,
-      },
-    });
-    return response.data.response.groups[0].items;
+    const response = await axios.get(
+      "https://api.foursquare.com/v3/places/search",
+      {
+        headers: {
+          Authorization: Foursquare,
+        },
+        params: {
+          query: "restaurant special",
+          ll: `${latitude},${longitude}`,
+          radius: 10000,
+          limit: 10,
+        },
+      }
+    );
+    console.log(response.data.results);
+    return response.data.results;
   } catch (error) {
     console.error(
       "Erreur lors de la récupération des offres spéciales:",
