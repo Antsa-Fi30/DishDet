@@ -8,10 +8,12 @@ import {
 import { useEffect, useState } from "react";
 import { Text, useTheme } from "react-native-paper";
 import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 const Foursquare = "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=";
 
 const Items = ({ name, adresse, id, item, icon }) => {
+  const navigate = useNavigation();
   const [photo, setPhoto] = useState(null); // Initialize as null
   const [isLoading, setIsLoading] = useState(true);
   const theme = useTheme();
@@ -54,6 +56,13 @@ const Items = ({ name, adresse, id, item, icon }) => {
         styles.container,
         { backgroundColor: theme.colors.elevation.level2 },
       ]}
+      onPress={() => {
+        navigate.push("Restos details", {
+          resto: item,
+          photo: photoUrl,
+          icon: iconUrl,
+        });
+      }}
     >
       <View style={styles.image}>
         {isLoading ? (

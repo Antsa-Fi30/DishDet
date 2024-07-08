@@ -58,23 +58,20 @@ export const getRestaurantNearby = async (latitude, longitude) => {
 };
 
 export const getPhotos = async (fsq_id) => {
-  const result = [];
   const options = {
     method: "GET",
     url: `https://api.foursquare.com/v3/places/${fsq_id}/photos`,
-    params: { limit: "1" },
+    params: { limit: "10" },
     headers: {
       accept: "application/json",
       Authorization: Foursquare,
     },
   };
 
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (err) {
+    console.log("Erreur : " + err);
+  }
 };

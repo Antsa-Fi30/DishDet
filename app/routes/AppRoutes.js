@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 //React navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import RestoDetailsScreen from "../screens/RestoDetailsScreen/RestoDetailsScreen";
 
 //Function creating Navigation:
 const Stack = createNativeStackNavigator();
@@ -15,22 +16,19 @@ const Stack = createNativeStackNavigator();
 const AppRoutes = () => {
   const { t } = useTranslation();
 
-  const Header = ({ route }) => {
-    return route.name !== "Dish Detective";
-  };
-
   return (
     <>
       <Stack.Navigator
-        screenOptions={({ route }) => ({
-          header: () => <Header route={route} />,
-        })}
+        screenOptions={{
+          header: () => false,
+        }}
       >
         <Stack.Screen name="Dish Detective" component={Routes} />
         <Stack.Screen
           name="Settings details"
           component={SettingsDetailsScreen}
         />
+        <Stack.Screen name="Restos details" component={RestoDetailsScreen} />
       </Stack.Navigator>
     </>
   );
