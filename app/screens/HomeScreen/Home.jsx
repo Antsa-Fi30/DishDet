@@ -10,6 +10,7 @@ import { getRestaurantNearby } from "../../api/GlobalApi";
 import { useFonts } from "expo-font";
 import axios from "axios";
 import { useTheme } from "react-native-paper";
+import { useSelector } from "react-redux";
 
 export default function Home() {
   const theme = useTheme();
@@ -17,6 +18,7 @@ export default function Home() {
   const [location, setLocation] = useState(null);
   const [restoNear, setRestoNear] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const favorites = useSelector((state) => state.favorites);
 
   const Foursquare = "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=";
 
@@ -71,9 +73,6 @@ export default function Home() {
     }
   }, [location]);
 
-  console.log(location);
-  console.log(restoNear);
-
   if (!fontsLoaded || isLoading) {
     return (
       <View style={{ justifyContent: "center", marginTop: 50 }}>
@@ -91,7 +90,7 @@ export default function Home() {
       <View style={styles.container}>
         <Slider title="Offres speciales" />
         <Slider data={restoNear} title="À proximité" />
-        <Slider data={restoFav} title="Favoris" />
+        <Slider data={favorites} title="Favoris" />
       </View>
     </ScrollView>
   );

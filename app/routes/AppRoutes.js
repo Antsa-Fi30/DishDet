@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 //React navigation
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import RestoDetailsScreen from "../screens/RestoDetailsScreen/RestoDetailsScreen";
+import PlaceSaved from "../screens/HomeScreen/PlaceSaved";
 
 //Function creating Navigation:
 const Stack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ const AppRoutes = () => {
           component={SettingsDetailsScreen}
         />
         <Stack.Screen name="Restos details" component={RestoDetailsScreen} />
+        <Stack.Screen name="Favorites" component={PlaceSaved} />
       </Stack.Navigator>
     </>
   );

@@ -75,3 +75,21 @@ export const getPhotos = async (fsq_id) => {
     console.log("Erreur : " + err);
   }
 };
+
+export const getTips = async (fsq_id) => {
+  const options = {
+    method: "GET",
+    url: `https://api.foursquare.com/v3/places/${fsq_id}/tips`,
+    headers: {
+      accept: "application/json",
+      Authorization: "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=",
+    },
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (err) {
+    console.log("Erreur : " + err);
+  }
+};

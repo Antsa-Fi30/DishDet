@@ -7,6 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 //React native paper and it's Theming
 import { Provider as PaperProvider } from "react-native-paper";
 
+//Redux
+import { Provider } from "react-redux";
+import store from "./app/redux/store";
 //Expo
 import { useFonts } from "expo-font";
 
@@ -86,12 +89,14 @@ export default function App() {
   }, [loadLang]);
 
   return (
-    <ThemeContext.Provider value={preferences}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme}>
-          <AppRoutes />
-        </NavigationContainer>
-      </PaperProvider>
-    </ThemeContext.Provider>
+    <Provider store={store}>
+      <ThemeContext.Provider value={preferences}>
+        <PaperProvider theme={theme}>
+          <NavigationContainer theme={theme}>
+            <AppRoutes />
+          </NavigationContainer>
+        </PaperProvider>
+      </ThemeContext.Provider>
+    </Provider>
   );
 }
