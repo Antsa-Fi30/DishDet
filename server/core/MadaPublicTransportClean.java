@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set; 
 import java.util.Stack; 
+
 public class MadaPublicTransportClean { 
     private final static int TOP_N_TO_PRINT = 3; 
     private final static int TWELVE_HOURS_IN_MIN = 720; 

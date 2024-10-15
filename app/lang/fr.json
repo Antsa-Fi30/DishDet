@@ -5,6 +5,11 @@
     "menu3": "Places enregistrée(s)",
     "menu4": "Acceuil",
     "menu5": "Paramètres",
+    "item1": "Spéciales",
+    "item2": "A proximité",
+    "item3": "Favoris",
+    "Nodata": "Aucune donnée disponible",
+    "SaveFav": "Favoriser",
     "setting": {
       "appbar": "Paramètres",
       "lang": "Langages",
@@ -18,6 +23,7 @@
       "search": "Rechercher..."
     },
     "Apropos": "A propos",
+    "avis": "Avi(s)",
     "photos": "Photos",
     "read": "En savoir plus",
     "close": "Fermer",

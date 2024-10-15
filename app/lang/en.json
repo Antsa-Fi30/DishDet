@@ -5,6 +5,11 @@
     "menu3": "Registered places",
     "menu4": "Home",
     "menu5": "Settings",
+    "item1": "Specials",
+    "item2": "Near",
+    "item3": "Favorite(s)",
+    "Nodata": "No data available",
+    "SaveFav": "Save as favorite",
     "setting": {
       "appbar": "Settings",
       "lang": "Languages",
@@ -18,6 +23,7 @@
       "search": "To research..."
     },
     "Apropos": "About",
+    "avis": "Advice(s)",
     "photos": "Pictures",
     "read": "Learn more",
     "close": "Close",
