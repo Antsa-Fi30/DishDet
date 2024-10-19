@@ -10,7 +10,7 @@ const HomeContent = ({ navigation }) => {
       <Text style={styles.presentation}>
         Navigate the safest food outlet in few clicks!
       </Text>
-      <RestoNearby />
+      <RestoNearby navigation={navigation} />
     </SafeAreaView>
   );
 };

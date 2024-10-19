@@ -12,12 +12,16 @@ const data = [
   { id: "6", name: "Restaurant 6" },
 ];
 
-const RestoNearby = () => {
+const RestoNearby = ({ navigation }) => {
   const numColumns = 3; // Nombre de colonnes que tu souhaites afficher
 
   return (
     <View style={styles.container}>
-      <HeadingTitle text={"Outlet around you"} />
+      <HeadingTitle
+        nav={navigation}
+        text={"Outlet around you"}
+        viewAll={"Restaurant List"}
+      />
       <FlatList
         data={data}
         renderItem={({ item }) => <RestaurantCard style={styles.card} />}
