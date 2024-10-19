@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Routes from "./Routes";
 import SearchScreen from "../screens/HomeScreen/SearchScreen";
+import HeaderSearch from "../components/SearchScreen/HeaderSearch";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,11 @@ const StackRoutes = () => {
           name="App"
           component={Routes}
         />
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen
+          options={{ header: () => <HeaderSearch /> }}
+          name="Search"
+          component={SearchScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

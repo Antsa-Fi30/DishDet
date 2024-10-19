@@ -123,12 +123,13 @@ export default function TabBar({ state, descriptors, navigation }) {
 const styles = StyleSheet.create({
   tabbar: {
     position: "relative",
-    bottom: 2,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#fff",
-    paddingVertical: 15,
+    paddingVertical: 20,
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
     borderCurve: "continuous",
   },
 });

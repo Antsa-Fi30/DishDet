@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexWrap: "no-wrap",
     justifyContent: "center",
-    paddingVertical: 15,
+    paddingBottom: 15,
   },
   presentation: {
     fontFamily: "Montserrat-Bold",

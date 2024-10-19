@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Montserrat-SemiBold",
-    fontSize: 18,
+    fontSize: 15,
   },
 });

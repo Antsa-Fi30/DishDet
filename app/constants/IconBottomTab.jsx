@@ -1,4 +1,5 @@
 import Octicons from "@expo/vector-icons/Octicons";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const iconSize = 22;
 const greyColor = "#222";
@@ -9,6 +10,9 @@ export const icons = {
   ),
   Saved: (props) => (
     <Octicons name="bookmark" size={iconSize} color={greyColor} {...props} />
+  ),
+  Map: (props) => (
+    <FontAwesome name="map-o" size={iconSize} color={greyColor} {...props} />
   ),
   Booking: (props) => (
     <Octicons name="checklist" size={iconSize} color={greyColor} {...props} />
