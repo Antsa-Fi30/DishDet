@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 
 //React navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -18,7 +18,7 @@ import BookingScreen from "../screens/BookingScreen/BookingScreen";
 
 const Tab = createBottomTabNavigator();
 
-export default function Routes() {
+const Routes = () => {
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen
@@ -45,4 +45,8 @@ export default function Routes() {
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
-}
+};
+
+export default Routes;
+
+const styles = StyleSheet.create({});

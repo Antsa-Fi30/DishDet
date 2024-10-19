@@ -7,14 +7,17 @@ import Octicons from "@expo/vector-icons/Octicons";
 // React Native Paper
 import { TextInput, Text } from "react-native-paper";
 
-const SearchSource = () => {
+const SearchSource = ({ navigation }) => {
   const [text, setText] = useState("");
 
   return (
-    <TouchableOpacity style={styles.searchbar}>
+    <TouchableOpacity
+      style={styles.searchbar}
+      onPress={() => navigation.navigate("Search")}
+    >
       <Octicons name="search" size={24} color="red" style={styles.icon} />
       <View style={styles.inputbar}>
-        <Text>View source</Text>
+        <Text style={{ fontFamily: "Montserrat-Regular" }}>View source</Text>
       </View>
     </TouchableOpacity>
   );

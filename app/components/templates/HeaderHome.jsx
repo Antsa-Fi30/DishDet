@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
 
 //Icons
 import Octicons from "@expo/vector-icons/Octicons";
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   location: {
+    fontFamily: "Montserrat-Regular",
     fontSize: 16,
     color: "#ddd",
   },

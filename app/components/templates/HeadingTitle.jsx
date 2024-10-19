@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
   },
   detailLink: {
     color: "red",
+    fontFamily: "Montserrat-Medium",
   },
   title: {
-    fontFamily: "Roboto",
-    fontWeight: "700",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 18,
   },
 });

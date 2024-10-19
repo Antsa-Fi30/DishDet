@@ -57,11 +57,12 @@ const styles = StyleSheet.create({
     height: 150,
   },
   title: {
+    fontFamily: "Montserrat-Bold",
     marginTop: 10,
     fontSize: 18,
-    fontWeight: "bold",
   },
   location: {
+    fontFamily: "Montserrat-Regular",
     flexDirection: "row",
     alignItems: "center",
     color: "gray",
