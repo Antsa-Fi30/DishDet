@@ -1,9 +1,9 @@
-import Routes from "./app/routes/Routes";
+import StackRoutes from "./app/routes/StackRoutes";
 
 const App = () => {
   return (
     <>
-      <Routes />
+      <StackRoutes />
     </>
   );
 };

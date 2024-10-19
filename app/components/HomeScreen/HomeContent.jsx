@@ -8,9 +8,8 @@ const HomeContent = () => {
     <SafeAreaView style={styles.container}>
       <SearchSource />
       <Text style={styles.presentation}>
-        Navigate the safest lorem ipsumsss
+        Navigate the safest food outlet in few clicks!
       </Text>
-      <RestoNearby />
       <RestoNearby />
     </SafeAreaView>
   );
@@ -20,6 +19,7 @@ export default HomeContent;
 
 const styles = StyleSheet.create({
   container: {
+    marginVertical: 10,
     display: "flex",
     flexWrap: "no-wrap",
     justifyContent: "center",
@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
   presentation: {
     textAlign: "center",
     fontSize: 25,
+    marginHorizontal: 20,
   },
 });
