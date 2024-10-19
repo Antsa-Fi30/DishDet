@@ -13,14 +13,10 @@ const resources = {
   mg: mg,
 };
 
-i18n
-  .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
-  .init({
-    compatibilityJSON: "v3",
-    resources,
-    lng: "en", // default language to use.
-  });
+i18n.use(initReactI18next).init({
+  compatibilityJSON: "v3",
+  resources,
+  lng: "fr", // default language to use.
+});
 
 export default { i18n };

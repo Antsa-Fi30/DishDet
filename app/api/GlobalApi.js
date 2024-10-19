@@ -1,10 +1,10 @@
-// api/GlobalApi.js
-
 import axios from "axios";
 
 const FOURSQUARE_CLIENT_ID = "NPLZSPH4R1VZ2WPVWC1KSXHFSIRHJNSCECGFE311MJCD40PD";
+
 const FOURSQUARE_CLIENT_SECRET =
   "GH2WVM2P4XTMEBGXGEQEAZEN2DHHUXQWXT3ZQTF1OYWK45ES";
+
 const Foursquare = "fsq3N7raVaNIbphpvNu/Wn0e/5AajPf7ixOYOsQaMxyIUc4=";
 
 export const FoursquareAPI = axios.create({
@@ -14,6 +14,7 @@ export const FoursquareAPI = axios.create({
     client_secret: FOURSQUARE_CLIENT_SECRET,
   },
 });
+
 export const getSpecialOffers = async (latitude, longitude) => {
   try {
     const response = await axios.get(

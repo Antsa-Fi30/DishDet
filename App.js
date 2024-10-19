@@ -1,17 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Routes from "./app/routes/Routes";
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <View>
-        <Text>Hello world</Text>
-      </View>
-    </SafeAreaView>
+    <>
+      <Routes />
+    </>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({});
