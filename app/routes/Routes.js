@@ -31,7 +31,7 @@ const Routes = () => {
         component={HomeScreen}
       />
       <Tab.Screen
-        options={{ header: () => <HeaderSaved /> }}
+        options={{ header: () => <HeaderHome /> }}
         name="Saved"
         component={SavedScreen}
       />

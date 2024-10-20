@@ -9,6 +9,19 @@ import { TextInput, Chip, Text } from "react-native-paper";
 
 const SearchInput = () => {
   const [text, setText] = useState("");
+  const [selectedFilters, setSelectedFilters] = useState({
+    cuisine: false,
+    distance: false,
+    openNow: false,
+    price: false,
+  });
+
+  const toggleFilter = (filter) => {
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      [filter]: !prevFilters[filter],
+    }));
+  };
 
   return (
     <>
@@ -28,25 +41,32 @@ const SearchInput = () => {
       </View>
       <View style={styles.chipContainer}>
         <Chip
-          icon="map-marker"
+          selected={selectedFilters.cuisine}
+          onPress={() => toggleFilter("cuisine")}
           style={styles.chip}
-          onPress={() => console.log("Nearest pressed")}
         >
-          <Text style={styles.label}>Nearest</Text>
+          Type de cuisine
         </Chip>
         <Chip
-          icon="clock"
+          selected={selectedFilters.distance}
+          onPress={() => toggleFilter("distance")}
           style={styles.chip}
-          onPress={() => console.log("Opened pressed")}
         >
-          <Text style={styles.label}>Opened</Text>
+          Distance
         </Chip>
         <Chip
-          icon="shield"
+          selected={selectedFilters.openNow}
+          onPress={() => toggleFilter("openNow")}
           style={styles.chip}
-          onPress={() => console.log("Safest pressed")}
         >
-          <Text style={styles.label}>Safest</Text>
+          Ouvert maintenant
+        </Chip>
+        <Chip
+          selected={selectedFilters.price}
+          onPress={() => toggleFilter("price")}
+          style={styles.chip}
+        >
+          Prix
         </Chip>
       </View>
     </>
@@ -76,12 +96,13 @@ const styles = StyleSheet.create({
   },
   chipContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
-    marginHorizontal: 20,
-    marginTop: 10,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    paddingVertical: 10,
   },
   chip: {
-    backgroundColor: "#f5f5f5",
+    margin: 5,
+    backgroundColor: "#f0f0f0",
   },
   label: {
     fontFamily: "Montserrat-Medium",
