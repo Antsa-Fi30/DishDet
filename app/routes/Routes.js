@@ -35,7 +35,11 @@ const Routes = () => {
         name="Saved"
         component={SavedScreen}
       />
-      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen
+        options={{ headerShown: false }}
+        name="Map"
+        component={MapScreen}
+      />
       <Tab.Screen
         options={{ header: () => <BookingHeader /> }}
         name="Booking"

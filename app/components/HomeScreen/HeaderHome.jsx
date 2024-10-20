@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   header: {
-    paddingTop: 25,
-    paddingBottom: 10,
+    paddingVertical: 20,
     backgroundColor: "transparent",
   },
   label: {

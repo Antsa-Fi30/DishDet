@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Card, Text, Title, Paragraph } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ name }) => {
   return (
     <TouchableOpacity>
       <Card mode="contained" style={styles.card}>
@@ -12,7 +12,7 @@ const RestaurantCard = () => {
 
         {/* Contenu de la carte */}
         <Card.Content>
-          <Title style={styles.title}>Nom du Restaurant</Title>
+          <Title style={styles.title}>{name}</Title>
           <Paragraph style={styles.location}>
             <MaterialIcons name="location-on" size={16} color="gray" /> Paris,
             France
@@ -43,6 +43,8 @@ export default RestaurantCard;
 
 const styles = StyleSheet.create({
   card: {
+    width: 200,
+    maxWidth: 200,
     backgroundColor: "#fff",
     marginTop: 10,
     borderRadius: 20,
@@ -57,8 +59,8 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 150,
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   title: {
     fontFamily: "Montserrat-Bold",

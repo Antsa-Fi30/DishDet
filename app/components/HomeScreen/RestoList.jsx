@@ -1,30 +1,18 @@
-import React from "react";
 import { StyleSheet, View, FlatList, Dimensions } from "react-native";
 import HeadingTitle from "../templates/HeadingTitle";
 import RestaurantCard from "./RestaurantCard";
+import { Text } from "react-native-paper";
 
-const data = [
-  { id: "1", name: "Restaurant 1" },
-  { id: "2", name: "Restaurant 2" },
-  { id: "3", name: "Restaurant 3" },
-  { id: "4", name: "Restaurant 4" },
-  { id: "5", name: "Restaurant 5" },
-  { id: "6", name: "Restaurant 6" },
-];
-
-const RestoNearby = ({ navigation }) => {
-  const numColumns = 3; // Nombre de colonnes que tu souhaites afficher
-
+const RestoList = ({ restos, type, label }) => {
   return (
     <View style={styles.container}>
-      <HeadingTitle
-        nav={navigation}
-        text={"Outlet around you"}
-        viewAll={"Restaurant List"}
-      />
+      <HeadingTitle text={type} viewAll={"Restaurant List"} />
+      {label ? <Text style={styles.label}>{label}</Text> : <></>}
       <FlatList
-        data={data}
-        renderItem={({ item }) => <RestaurantCard style={styles.card} />}
+        data={restos}
+        renderItem={({ item }) => (
+          <RestaurantCard name={item.name} style={styles.card} />
+        )}
         keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -34,7 +22,7 @@ const RestoNearby = ({ navigation }) => {
   );
 };
 
-export default RestoNearby;
+export default RestoList;
 
 const styles = StyleSheet.create({
   container: {
@@ -47,6 +35,11 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingVertical: 2,
     paddingHorizontal: 1,
+  },
+  label: {
+    fontFamily: "Montserrat-Regular",
+    paddingVertical: 10,
+    marginLeft: 5,
   },
   card: {
     flex: 1,

@@ -5,7 +5,7 @@ import SearchContent from "../../components/SearchScreen/SearchContent";
 
 const SearchScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <SearchContent />
     </SafeAreaView>
   );
@@ -13,4 +13,10 @@ const SearchScreen = () => {
 
 export default SearchScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    marginBottom: 10,
+  },
+});

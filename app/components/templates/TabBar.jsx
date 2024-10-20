@@ -87,7 +87,7 @@ export default function TabBar({ state, descriptors, navigation }) {
           ]}
         />
         {state.routes.map((route, index) => {
-          const { options } = descriptors[route.key];
+          // const { options } = descriptors[route.key];
           const isFocused = state.index === index;
 
           return (
