@@ -45,28 +45,28 @@ const SearchInput = () => {
           onPress={() => toggleFilter("cuisine")}
           style={styles.chip}
         >
-          Type de cuisine
+          <Text style={styles.labelChip}>Type de cuisine</Text>
         </Chip>
         <Chip
           selected={selectedFilters.distance}
           onPress={() => toggleFilter("distance")}
           style={styles.chip}
         >
-          Distance
+          <Text style={styles.labelChip}>Distance</Text>
         </Chip>
         <Chip
           selected={selectedFilters.openNow}
           onPress={() => toggleFilter("openNow")}
           style={styles.chip}
         >
-          Ouvert maintenant
+          <Text style={styles.labelChip}>Ouvert maintenant</Text>
         </Chip>
         <Chip
           selected={selectedFilters.price}
           onPress={() => toggleFilter("price")}
           style={styles.chip}
         >
-          Prix
+          <Text style={styles.labelChip}>Prix</Text>
         </Chip>
       </View>
     </>
@@ -85,6 +85,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderWidth: 1,
     borderColor: "#ddd",
+  },
+  labelChip: {
+    fontFamily: "Montserrat-Medium",
   },
   icon: {
     marginRight: 10,

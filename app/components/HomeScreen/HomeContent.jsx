@@ -32,7 +32,7 @@ const HomeContent = ({ navigation }) => {
         Navigate the safest food outlet in few clicks!
       </Text>
       <RestoList restos={data1} type={"Nearby"} />
-      <RestoList restos={data1} type={"Nearby"} />
+      <RestoList restos={data2} type={"Newest"} />
       <RestoList restos={data3} type={"Popular"} />
     </SafeAreaView>
   );

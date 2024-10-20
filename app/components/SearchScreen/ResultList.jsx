@@ -21,23 +21,23 @@ const ResultList = () => {
       rating: 4.0,
     },
     {
-      id: 2,
+      id: 3,
       image: "assets/1.jpg",
-      name: "Restaurant B",
+      name: "Restaurant C",
       location: "Berlin, Germany",
       rating: 4.0,
     },
     {
-      id: 2,
+      id: 4,
       image: "assets/1.jpg",
-      name: "Restaurant B",
+      name: "Restaurant D",
       location: "Berlin, Germany",
-      rating: 4.0,
+      rating: 5,
     },
     {
-      id: 2,
+      id: 5,
       image: "assets/1.jpg",
-      name: "Restaurant B",
+      name: "Restaurant E",
       location: "Berlin, Germany",
       rating: 4.0,
     },
@@ -48,15 +48,9 @@ const ResultList = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.label}>Results:</Text>
 
-      <ScrollView>
+      <ScrollView style={styles.containerList}>
         {data.map((item) => (
-          <ResultCard
-            key={item.id}
-            image={item.image}
-            name={item.name}
-            location={item.location}
-            rating={item.rating}
-          />
+          <ResultCard key={item.id} item={item} />
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -64,10 +58,8 @@ const ResultList = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: "#f9f9f9",
+  containerList: {
+    paddingVertical: 15,
   },
   label: {
     fontFamily: "Montserrat-SemiBold",

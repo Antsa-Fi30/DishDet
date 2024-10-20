@@ -1,57 +1,93 @@
 // ResultCard.js
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 
-const ResultCard = ({ image, name, location, rating }) => {
+const ResultCard = ({ item }) => {
+  const navigation = useNavigation();
+  const getStars = (rating) => {
+    rating = Math.min(3, Math.max(0, rating));
+    const filledStars = Array.from({ length: rating }, (_, i) => "★");
+    const emptyStars = Array.from({ length: 3 - rating }, (_, i) => "☆");
+    const stars = filledStars.concat(emptyStars);
+    return stars.join(" ");
+  };
+
   return (
     <>
-      <View style={styles.ResultCard}>
-        <Image source={require("../../../assets/1.jpg")} style={styles.image} />
-        <View style={styles.details}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.location}>{location}</Text>
-          <Text style={styles.rating}>⭐ {rating}</Text>
+      <TouchableOpacity
+        style={styles.card}
+        onPress={() => navigation.push("Restaurant details", { product: item })}
+      >
+        <Image style={styles.image} source={require("../../../assets/1.jpg")} />
+        <View style={styles.cardContent}>
+          <Text style={styles.title}>{item.name}</Text>
+          <Text style={styles.description}>{item.location}</Text>
+          <Text style={styles.rating}>{getStars(item.rating)}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  ResultCard: {
-    flexDirection: "row",
-    borderRadius: 10,
-    overflow: "hidden",
-    backgroundColor: "#fff",
-    elevation: 3, // For Android shadow
-    shadowColor: "#000", // For iOS shadow
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    marginBottom: 10,
+  contentList: {
+    margin: 1,
+    flex: 1,
+  },
+  cardContent: {
+    marginLeft: 20,
+    marginTop: 10,
+    flex: 1,
   },
   image: {
-    width: 100,
-    height: 100,
-    resizeMode: "cover",
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    borderWidth: 2,
+    borderColor: "#ebf0f7",
   },
-  details: {
-    flex: 1,
+
+  card: {
+    shadowColor: "#00000021",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12,
+    marginLeft: 10,
+    marginRight: 10,
+    marginVertical: 10,
+    backgroundColor: "white",
     padding: 10,
-    justifyContent: "center",
+    flexDirection: "row",
+    borderRadius: 20,
   },
-  name: {
+  title: {
     fontSize: 18,
+    flex: 1,
+    color: "black",
+    fontFamily: "Montserrat-Bold",
+  },
+  description: {
+    fontSize: 14,
+    fontFamily: "Montserrat-Medium",
+    flex: 1,
+    marginTop: 5,
+    marginBottom: 5,
+    color: "black",
+    justifyContent: "text-align",
+  },
+  price: {
     fontWeight: "bold",
   },
-  location: {
-    color: "gray",
-    marginVertical: 5,
-  },
   rating: {
-    fontSize: 16,
-    color: "#FFD700", // Gold color for star rating
+    color: "orange",
+    marginTop: 5,
+    fontSize: 18,
   },
 });
 
