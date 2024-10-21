@@ -16,7 +16,6 @@ const promotions = [
     description:
       "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
     validity: "Valable jusqu'au 31 octobre 2024",
-    cta: "Commander maintenant",
     restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
     badge: "Populaire",
     rating: "⭐️⭐️⭐️⭐️ 4.5/5",
@@ -28,7 +27,6 @@ const promotions = [
     description:
       "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
     validity: "Valable jusqu'au 31 octobre 2024",
-    cta: "Commander maintenant",
     restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
     badge: "Dummy",
     rating: "⭐️⭐️⭐️⭐️ 4.5/5",
@@ -40,7 +38,6 @@ const promotions = [
     description:
       "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
     validity: "Valable jusqu'au 31 octobre 2024",
-    cta: "Commander maintenant",
     restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
     badge: "Unknown",
     rating: "⭐️⭐️⭐️⭐️ 4.5/5",
@@ -52,7 +49,6 @@ const promotions = [
     description:
       "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
     validity: "Valable jusqu'au 31 octobre 2024",
-    cta: "Commander maintenant",
     restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
     badge: "VIP",
     rating: "⭐️⭐️⭐️⭐️ 4.5/5",
@@ -64,7 +60,6 @@ const promotions = [
     description:
       "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
     validity: "Valable jusqu'au 31 octobre 2024",
-    cta: "Commander maintenant",
     restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
     badge: "Dunno",
     rating: "⭐️⭐️⭐️⭐️ 4.5/5",

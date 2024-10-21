@@ -1,52 +1,28 @@
-import { StyleSheet, Text, SafeAreaView } from "react-native";
-import React from "react";
-import SearchSource from "./SearchSource";
-import RestoList from "././RestoList";
-import Actuality from "./Actuality";
-import ExploreList from "./ExploreList";
-import Promotions from "./Promotions";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  ActivityIndicator,
+} from "react-native";
+import { useState, useCallback, lazy, Suspense } from "react";
+import NavigationBar from "./NavigationBar";
 
-const data1 = [
-  { id: "1", name: "Restaurant 1" },
-  { id: "2", name: "Restaurant 2" },
-  { id: "3", name: "Restaurant 3" },
-  { id: "4", name: "Restaurant 4" },
-  { id: "5", name: "Restaurant 5" },
-  { id: "6", name: "Restaurant 6" },
-];
-
-const data2 = [
-  { id: "4", name: "Restaurant 4" },
-  { id: "5", name: "Restaurant 5" },
-  { id: "6", name: "Restaurant 6" },
-];
-
-const data3 = [
-  { id: "4", name: "Restaurant 4" },
-  { id: "5", name: "Restaurant 5" },
-  { id: "9", name: "Restaurant 9" },
-];
-
-const typeresto = [
-  { id: "1", name: "Emotions" },
-  { id: "2", name: "Hungry" },
-  { id: "3", name: "Romantic" },
-  { id: "4", name: "Nothing" },
-  { id: "5", name: "Something" },
-  { id: "6", name: "Sad" },
-];
+const NearbyContent = lazy(() => import("./NearbyContent"));
+const Actuality = lazy(() => import("./Actuality"));
 
 const HomeContent = ({ navigation }) => {
+  const [activeTab, setActiveTab] = useState("Nearby");
+
+  const handleTabChange = useCallback((tab) => {
+    setActiveTab(tab);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-      <SearchSource navigation={navigation} />
-      <Promotions />
-      {/* <Text style={styles.presentation}>
-        Navigate the safest food outlet in few clicks!
-      </Text> */}
-      <ExploreList typeresto={typeresto} />
-      <RestoList restos={data1} type={"Nearby"} />
-      <Actuality />
+      <NavigationBar activeTab={activeTab} setActiveTab={handleTabChange} />
+      <Suspense fallback={<ActivityIndicator size="large" />}>
+        {activeTab === "Nearby" ? <NearbyContent /> : <Actuality />}
+      </Suspense>
     </SafeAreaView>
   );
 };

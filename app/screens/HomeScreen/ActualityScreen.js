@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import Actuality from "../../components/HomeScreen/Actuality";
 
-const NotificationScreen = () => {
+const ActualityScreen = () => {
   return (
     <View>
-      <Text>NotificationScreen</Text>
+      <Actuality />
     </View>
   );
 };
 
-export default NotificationScreen;
+export default ActualityScreen;
 
 const styles = StyleSheet.create({});

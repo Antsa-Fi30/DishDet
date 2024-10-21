@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { useState } from "react";
 
 // Icons
@@ -26,7 +26,9 @@ const SearchInput = () => {
   return (
     <>
       <View style={styles.searchbar}>
-        <Octicons name="search" size={24} color="red" style={styles.icon} />
+        <TouchableOpacity>
+          <Octicons name="search" size={24} color="red" style={styles.icon} />
+        </TouchableOpacity>
         <TextInput
           style={styles.inputbar}
           placeholder={"Search for food source"}
@@ -37,7 +39,9 @@ const SearchInput = () => {
           underlineColor="transparent"
           activeUnderlineColor="transparent"
         />
-        <Octicons name="filter" size={24} color="red" />
+        <TouchableOpacity>
+          <Octicons name="filter" size={24} color="red" />
+        </TouchableOpacity>
       </View>
       <View style={styles.chipContainer}>
         <Chip

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Octicons from "@expo/vector-icons/Octicons";
+import { useNavigation } from "@react-navigation/native";
 
 const SettingsButton = ({ icon, label, onPress, isLogout }) => {
   return (
@@ -19,13 +20,34 @@ const SettingsButton = ({ icon, label, onPress, isLogout }) => {
 };
 
 const ProfilContent = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <SettingsButton icon="person" label="Edit Profile" onPress={() => {}} />
-      <SettingsButton icon="location" label="Location" onPress={() => {}} />
-      <SettingsButton icon="globe" label="Language" onPress={() => {}} />
-      <SettingsButton icon="bell" label="Notification" onPress={() => {}} />
-      <SettingsButton icon="comment" label="Feedback" onPress={() => {}} />
+      <SettingsButton
+        icon="person"
+        label="Edit Profile"
+        onPress={() => navigation.navigate("Edit")}
+      />
+      <SettingsButton
+        icon="location"
+        label="Location"
+        onPress={() => navigation.navigate("Location")}
+      />
+      <SettingsButton
+        icon="globe"
+        label="Language"
+        onPress={() => navigation.navigate("Language")}
+      />
+      <SettingsButton
+        icon="bell"
+        label="Notification"
+        onPress={() => navigation.navigate("Notification")}
+      />
+      <SettingsButton
+        icon="comment"
+        label="Feedback"
+        onPress={() => navigation.navigate("Feedback")}
+      />
     </View>
   );
 };

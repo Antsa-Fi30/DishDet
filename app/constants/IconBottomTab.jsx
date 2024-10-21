@@ -9,6 +9,7 @@ export const icons = {
   Home: (props) => (
     <Octicons name="home" size={iconSize} color={greyColor} {...props} />
   ),
+
   Chat: (props) => (
     <AntDesign name="message1" size={iconSize} color={greyColor} {...props} />
   ),

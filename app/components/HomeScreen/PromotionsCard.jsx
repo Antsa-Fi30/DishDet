@@ -21,13 +21,13 @@ const PromotionsCard = ({ index, item }) => {
               style={styles.ctaButton}
               labelStyle={styles.ctaLabel}
             >
-              {item.cta}
+              Commander
             </Button>
-            <Badge size={25} style={styles.badge}>
-              {item.badge}
-            </Badge>
           </View>
         </View>
+        <Badge size={25} style={styles.badge}>
+          {item.badge}
+        </Badge>
       </ImageBackground>
     </Surface>
   );
@@ -54,7 +54,11 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   badge: {
+    position: "absolute",
+    bottom: 25,
+    right: 20,
     backgroundColor: "#2ecc71",
+    fontFamily: "Montserrat-Medium",
     color: "white",
   },
   title: {
@@ -64,27 +68,31 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   description: {
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     color: "#ddd",
     marginBottom: 10,
   },
   validity: {
+    fontFamily: "Montserrat-Medium",
     fontSize: 12,
     color: "#aaa",
     marginBottom: 15,
   },
   ctaButton: {
     backgroundColor: "#f39c12",
+
     alignSelf: "flex-start",
   },
   ctaLabel: {
+    fontFamily: "Montserrat-Medium",
     color: "white",
-    fontSize: 14,
+    fontSize: 12,
   },
   ctacontainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: 10,
+    gap: 5,
   },
 });

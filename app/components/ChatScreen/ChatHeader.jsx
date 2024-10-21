@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const ChatHeader = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <View>
         <Text>ChatHeader</Text>
       </View>
@@ -14,4 +14,8 @@ const ChatHeader = () => {
 
 export default ChatHeader;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 25,
+  },
+});
