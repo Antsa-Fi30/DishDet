@@ -1,9 +1,10 @@
 import * as React from "react";
-import { Dimensions, View, StyleSheet } from "react-native";
+import { Dimensions, View, StyleSheet, FlatList } from "react-native";
 
 import { Text } from "react-native-paper";
 
 import PromotionsCard from "./PromotionsCard";
+import HeadingTitle from "../templates/HeadingTitle";
 
 const width = Dimensions.get("window").width;
 
@@ -73,7 +74,17 @@ const promotions = [
 const Promotions = () => {
   return (
     <View style={styles.container}>
-      <Text>Hello world</Text>
+      <HeadingTitle text={"Promotions"} />
+      <FlatList
+        data={promotions}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => (
+          <PromotionsCard item={item} index={index} />
+        )}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.flatListContent}
+      />
     </View>
   );
 };
@@ -82,6 +93,8 @@ export default Promotions;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
   },
 });

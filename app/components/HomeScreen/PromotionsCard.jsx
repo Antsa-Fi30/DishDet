@@ -6,7 +6,7 @@ const PromotionsCard = ({ index, item }) => {
   return (
     <Surface key={index} style={styles.surface}>
       <ImageBackground
-        source={{ uri: item.image }}
+        source={require("../../../assets/1.jpg")}
         style={styles.imageBackground}
         imageStyle={styles.imageStyle}
       >
@@ -36,23 +36,26 @@ const PromotionsCard = ({ index, item }) => {
 export default PromotionsCard;
 
 const styles = StyleSheet.create({
+  surface: {
+    borderRadius: 25,
+    marginRight: 10,
+  },
   imageBackground: {
-    width: "100%",
-    height: 200,
+    width: 300, // Ajustement de la largeur de la carte pour une meilleure proportion
+    height: 300,
     justifyContent: "flex-end",
   },
   imageStyle: {
-    borderRadius: 15,
+    borderRadius: 25,
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     padding: 20,
+    borderRadius: 25,
   },
   badge: {
-    alignSelf: "flex-start",
     backgroundColor: "#2ecc71",
     color: "white",
-    marginBottom: 10,
   },
   title: {
     fontFamily: "Montserrat-Bold",
@@ -79,9 +82,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   ctacontainer: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    gap: 10,
   },
 });
