@@ -14,9 +14,9 @@ const SearchContent = () => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <SeachInput />
+      <Recommendations data={data} />
       <Recent />
       <Result data={data.filter((item) => item.name === "Restaurant 1")} />
-      <Recommendations data={data} />
     </ScrollView>
   );
 };

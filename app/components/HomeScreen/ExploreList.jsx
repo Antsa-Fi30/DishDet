@@ -2,16 +2,17 @@ import { StyleSheet, View, FlatList, Dimensions } from "react-native";
 import HeadingTitle from "../templates/HeadingTitle";
 import RestaurantCard from "./RestaurantCard";
 import { Text } from "react-native-paper";
+import ExploreAvatar from "./ExploreAvatar";
 
-const RestoList = ({ restos, type, label }) => {
+const ExploreList = ({ typeresto, label }) => {
   return (
     <View style={styles.container}>
-      <HeadingTitle text={type} viewAll={"Restaurant List"} />
+      <HeadingTitle text={"Explore"} viewAll={"Restaurant List"} />
       {label ? <Text style={styles.label}>{label}</Text> : <></>}
       <FlatList
-        data={restos}
+        data={typeresto}
         renderItem={({ item }) => (
-          <RestaurantCard name={item.name} style={styles.card} />
+          <ExploreAvatar name={item.name} style={styles.card} />
         )}
         keyExtractor={(item) => item.id}
         horizontal={true}
@@ -22,11 +23,11 @@ const RestoList = ({ restos, type, label }) => {
   );
 };
 
-export default RestoList;
+export default ExploreList;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: "2%",
+    marginTop: "5%",
   },
   list: {
     display: "flex",
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingVertical: 2,
     paddingHorizontal: 1,
+    marginVertical: 10,
   },
   label: {
     fontFamily: "Montserrat-Regular",

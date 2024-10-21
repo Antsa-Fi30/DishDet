@@ -16,6 +16,6 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
   },
 });

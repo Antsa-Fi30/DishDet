@@ -15,7 +15,7 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     paddingVertical: 0,
     marginBottom: 10,
   },

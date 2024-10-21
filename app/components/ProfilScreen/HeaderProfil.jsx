@@ -2,15 +2,16 @@ import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, Avatar } from "react-native-paper";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const HeaderProfil = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Pressable
         style={styles.button1}
-        onPress={() => console.log("Pressed something1")}
+        onPress={() => console.log("Pressed logout")}
       >
-        <Text style={styles.title}>Logout</Text>
+        <AntDesign name="logout" size={24} color="black" />
       </Pressable>
       <View style={styles.subContainer}>
         <Avatar.Image size={70} source={require("../../../assets/1.jpg")} />
@@ -54,6 +55,10 @@ const styles = StyleSheet.create({
   //Pas bon mais efficace
   button1: {
     position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
     top: 60,
     left: 25,
   },

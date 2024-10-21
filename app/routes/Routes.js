@@ -10,15 +10,23 @@ import Octicons from "@expo/vector-icons/Octicons";
 import TabBar from "../components/templates/TabBar";
 
 //Pages:
+//Acceuil page:
 import HomeScreen from "../screens/HomeScreen/HomeScreen";
-import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
-import SavedScreen from "../screens/SavedScreen/SavedScreen";
-import BookingScreen from "../screens/BookingScreen/BookingScreen";
-import MapScreen from "../screens/MapScreen/MapScreen";
 import HeaderHome from "../components/HomeScreen/HeaderHome";
-import HeaderSaved from "../components/SavedScreen/HeaderSaved";
+
+//Profil page:
 import HeaderProfil from "../components/ProfilScreen/HeaderProfil";
-import BookingHeader from "../components/BookingScreen/BookingHeader";
+import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
+
+//Saved
+import SavedScreen from "../screens/SavedScreen/SavedScreen";
+
+//Map
+import MapScreen from "../screens/MapScreen/MapScreen";
+
+//Chat page
+import ChatScreen from "../screens/ChatScreen/ChatScreen";
+import ChatHeader from "../components/ChatScreen/ChatHeader";
 
 const Tab = createBottomTabNavigator();
 
@@ -31,9 +39,9 @@ const Routes = () => {
         component={HomeScreen}
       />
       <Tab.Screen
-        options={{ header: () => <HeaderHome /> }}
-        name="Saved"
-        component={SavedScreen}
+        options={{ header: () => <ChatHeader /> }}
+        name="Chat"
+        component={ChatScreen}
       />
       <Tab.Screen
         options={{ headerShown: false }}
@@ -41,9 +49,9 @@ const Routes = () => {
         component={MapScreen}
       />
       <Tab.Screen
-        options={{ header: () => <BookingHeader /> }}
-        name="Booking"
-        component={BookingScreen}
+        options={{ header: () => <HeaderHome /> }}
+        name="Saved"
+        component={SavedScreen}
       />
       <Tab.Screen
         options={{ header: () => <HeaderProfil /> }}

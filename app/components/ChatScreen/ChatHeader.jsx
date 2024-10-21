@@ -2,16 +2,16 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const BookingHeader = () => {
+const ChatHeader = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>BookingHeader</Text>
+        <Text>ChatHeader</Text>
       </View>
     </SafeAreaView>
   );
 };
 
-export default BookingHeader;
+export default ChatHeader;
 
 const styles = StyleSheet.create({});

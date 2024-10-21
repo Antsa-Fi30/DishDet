@@ -2,6 +2,9 @@ import { StyleSheet, Text, SafeAreaView } from "react-native";
 import React from "react";
 import SearchSource from "./SearchSource";
 import RestoList from "././RestoList";
+import Actuality from "./Actuality";
+import ExploreList from "./ExploreList";
+import Promotions from "./Promotions";
 
 const data1 = [
   { id: "1", name: "Restaurant 1" },
@@ -24,16 +27,26 @@ const data3 = [
   { id: "9", name: "Restaurant 9" },
 ];
 
+const typeresto = [
+  { id: "1", name: "Emotions" },
+  { id: "2", name: "Hungry" },
+  { id: "3", name: "Romantic" },
+  { id: "4", name: "Nothing" },
+  { id: "5", name: "Something" },
+  { id: "6", name: "Sad" },
+];
+
 const HomeContent = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <SearchSource navigation={navigation} />
-      <Text style={styles.presentation}>
+      <Promotions />
+      {/* <Text style={styles.presentation}>
         Navigate the safest food outlet in few clicks!
-      </Text>
+      </Text> */}
+      <ExploreList typeresto={typeresto} />
       <RestoList restos={data1} type={"Nearby"} />
-      <RestoList restos={data2} type={"Newest"} />
-      <RestoList restos={data3} type={"Popular"} />
+      <Actuality />
     </SafeAreaView>
   );
 };

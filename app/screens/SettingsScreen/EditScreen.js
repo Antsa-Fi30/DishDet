@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const SettingsScreen = () => {
+const EditScreen = () => {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Settings</Text>
@@ -9,6 +9,6 @@ const SettingsScreen = () => {
   );
 };
 
-export default SettingsScreen;
+export default EditScreen;
 
 const styles = StyleSheet.create({});

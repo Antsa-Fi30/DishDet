@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet, TouchableOpacity } from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { icons } from "../../constants/IconBottomTab";
 import Animated, {
   useSharedValue,
@@ -6,7 +7,6 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from "react-native-reanimated";
-import { useEffect } from "react";
 
 const TabBarButton = ({
   onPress,
@@ -15,7 +15,6 @@ const TabBarButton = ({
   routeName,
   color,
 }) => {
-  const primaryColor = "red";
   const greyColor = "#222";
 
   const scale = useSharedValue(0);
