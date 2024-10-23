@@ -2,21 +2,14 @@ import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton, Text } from "react-native-paper";
+import SettingsHead from "../../components/templates/SettingsHead";
 
 const LocationScreen = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.subContainer}>
-        <View style={styles.headTitle}>
-          <IconButton
-            style={styles.buttonback}
-            icon={"arrow-left"}
-            size={30}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.title}>Change your location </Text>
-        </View>
+        <SettingsHead title={"Change your location"} />
         <View style={styles.parameters}>
           <Text style={styles.title}>You are </Text>
         </View>

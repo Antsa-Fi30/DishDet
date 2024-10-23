@@ -1,22 +1,15 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { IconButton, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
+import SettingsHead from "../../components/templates/SettingsHead";
 
 const LanguageScreen = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.subContainer}>
-        <View style={styles.headTitle}>
-          <IconButton
-            style={styles.buttonback}
-            icon={"arrow-left"}
-            size={30}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.title}>Change language </Text>
-        </View>
+        <SettingsHead title={"Change your language"} />
         <View style={styles.parameters}>
           <Text style={styles.title}>You are </Text>
         </View>
@@ -51,6 +44,7 @@ const styles = StyleSheet.create({
   buttonback: {
     position: "absolute",
     left: -10,
+    color: "red",
   },
   parameters: {
     marginVertical: 10,

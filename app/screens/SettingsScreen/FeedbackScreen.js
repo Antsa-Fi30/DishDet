@@ -2,21 +2,14 @@ import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton, Text } from "react-native-paper";
+import SettingsHead from "../../components/templates/SettingsHead";
 
 const FeedbackScreen = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <View style={styles.subContainer}>
-        <View style={styles.headTitle}>
-          <IconButton
-            style={styles.buttonback}
-            icon={"arrow-left"}
-            size={30}
-            onPress={() => navigation.goBack()}
-          />
-          <Text style={styles.title}>Give us your feedback </Text>
-        </View>
+        <SettingsHead title={"Give us a feedback"} />
         <View style={styles.parameters}>
           <Text style={styles.title}>You are </Text>
         </View>

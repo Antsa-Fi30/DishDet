@@ -1,17 +1,22 @@
 // ChatItem.js
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 const ChatItem = ({ name, lastMessage, timestamp }) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate("Message")}
+    >
       <Image source={require("../../../assets/15.jpg")} style={styles.avatar} />
       <View style={styles.details}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.lastMessage}>{lastMessage}</Text>
       </View>
       <Text style={styles.timestamp}>{timestamp}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -21,9 +26,9 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+    padding: 15,
+    marginBottom: 15,
+    borderRadius: 25,
   },
   avatar: {
     width: 50,
@@ -36,13 +41,15 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Montserrat-Bold",
   },
   lastMessage: {
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     color: "gray",
   },
   timestamp: {
+    fontFamily: "Montserrat-Regular",
     fontSize: 12,
     color: "gray",
   },

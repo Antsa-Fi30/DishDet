@@ -1,24 +1,25 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { IconButton, Text } from "react-native-paper";
-import SettingsHead from "../../components/templates/SettingsHead";
+import { Text } from "react-native-paper";
+import Octicons from "@expo/vector-icons/Octicons";
 
-const EditScreen = () => {
+const SettingsHead = ({ title }) => {
   const navigation = useNavigation();
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.subContainer}>
-        <SettingsHead title={"Edit your profil"} />
-        <View style={styles.parameters}>
-          <Text style={styles.title}>You are </Text>
-        </View>
-      </View>
-    </ScrollView>
+    <View style={styles.headTitle}>
+      <TouchableOpacity
+        style={styles.buttonback}
+        onPress={() => navigation.goBack()}
+      >
+        <Octicons name="arrow-left" size={30} color="black" />
+      </TouchableOpacity>
+      <Text style={styles.title}>{title}</Text>
+    </View>
   );
 };
 
-export default EditScreen;
+export default SettingsHead;
 
 const styles = StyleSheet.create({
   container: {
@@ -43,9 +44,7 @@ const styles = StyleSheet.create({
   },
   buttonback: {
     position: "absolute",
-    left: -10,
-  },
-  parameters: {
-    marginVertical: 10,
+    left: 2,
+    color: "red",
   },
 });

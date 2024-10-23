@@ -4,6 +4,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //Pages:
 //Home Page
 import Routes from "./Routes";
+
+//Message Page:
+import MessageScreen from "../screens/ChatScreen/MessageScreen";
+
 //Search page:
 import SearchScreen from "../screens/HomeScreen/SearchScreen";
 
@@ -14,9 +18,9 @@ import RestoListScreen from "../screens/RestosScreen/RestoListScreen";
 import RestoDetailsScreen from "../screens/RestosScreen/RestoDetailsScreen";
 
 //Notification page:
-
 import HeaderPage from "../components/templates/HeaderPage";
 import NotificationsScreen from "../screens/NotificationScreen/NotificationsScreen";
+import MessageHeader from "../components/ChatScreen/MessageHeader";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +57,11 @@ const StackRoutes = () => {
           options={{ headerShown: false }}
           name="Notification details"
           component={RestoDetailsScreen}
+        />
+        <Stack.Screen
+          options={{ header: () => <MessageHeader /> }}
+          name="Message"
+          component={MessageScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
