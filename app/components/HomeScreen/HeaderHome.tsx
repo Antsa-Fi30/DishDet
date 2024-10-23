@@ -12,7 +12,7 @@ const HeaderHome = () => {
           <Octicons name="location" size={20} color="black" />
           <Text style={styles.label}>Time square way, Brooklyn street</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
           <Octicons name="bell" size={20} color="black" />
         </TouchableOpacity>
       </View>

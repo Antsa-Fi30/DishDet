@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import ChatSearch from "./ChatSearch";
+import ChatMessages from "./ChatMessages";
 
 const ChatContent = () => {
   return (
     <View>
-      <Text>ChatContent</Text>
+      <ChatSearch />
+      <ChatMessages />
     </View>
   );
 };

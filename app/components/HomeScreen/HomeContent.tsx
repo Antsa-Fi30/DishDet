@@ -11,7 +11,7 @@ const NearbyContent = lazy(() => import("./NearbyContent"));
 const Actuality = lazy(() => import("./Actuality"));
 
 const HomeContent = ({ navigation }) => {
-  const [activeTab, setActiveTab] = useState("Nearby");
+  const [activeTab, setActiveTab] = useState("Actuality");
 
   const handleTabChange = useCallback((tab) => {
     setActiveTab(tab);

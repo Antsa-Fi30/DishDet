@@ -14,8 +14,9 @@ import RestoListScreen from "../screens/RestosScreen/RestoListScreen";
 import RestoDetailsScreen from "../screens/RestosScreen/RestoDetailsScreen";
 
 //Notification page:
-import NotificationScreen from "../screens/NotificationScreen/NotificationScreen";
+
 import HeaderPage from "../components/templates/HeaderPage";
+import NotificationsScreen from "../screens/NotificationScreen/NotificationsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -35,8 +36,8 @@ const StackRoutes = () => {
         />
         <Stack.Screen
           options={{ header: () => <HeaderPage title={"Notification"} /> }}
-          name="Notification"
-          component={NotificationScreen}
+          name="Notifications"
+          component={NotificationsScreen}
         />
         <Stack.Screen
           options={{ header: () => <HeaderPage title={"Restaurant List"} /> }}
@@ -46,6 +47,11 @@ const StackRoutes = () => {
         <Stack.Screen
           options={{ headerShown: false }}
           name="Restaurant details"
+          component={RestoDetailsScreen}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Notification details"
           component={RestoDetailsScreen}
         />
       </Stack.Navigator>

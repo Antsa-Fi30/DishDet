@@ -10,11 +10,12 @@ const EditScreen = () => {
       <View style={styles.subContainer}>
         <View style={styles.headTitle}>
           <IconButton
+            style={styles.buttonback}
             icon={"arrow-left"}
             size={30}
             onPress={() => navigation.goBack()}
           />
-          <Text style={styles.title}>Change your location? </Text>
+          <Text style={styles.title}>Edit your profil </Text>
         </View>
         <View style={styles.parameters}>
           <Text style={styles.title}>You are </Text>
@@ -43,8 +44,13 @@ const styles = StyleSheet.create({
   headTitle: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "center",
+    marginBottom: 15,
+  },
+  buttonback: {
+    position: "absolute",
+    left: -10,
   },
   parameters: {
     marginVertical: 10,

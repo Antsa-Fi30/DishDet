@@ -19,13 +19,13 @@ const NavigationBar = ({ activeTab, setActiveTab }) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.tab, activeTab === "Actualité" && styles.activeTab]}
-        onPress={() => setActiveTab("Actualité")}
+        style={[styles.tab, activeTab === "Actuality" && styles.activeTab]}
+        onPress={() => setActiveTab("Actuality")}
       >
         <Text
           style={[
             styles.tabText,
-            activeTab === "Actualité" && styles.activeTabText,
+            activeTab === "Actuality" && styles.activeTabText,
           ]}
         >
           Actuality
