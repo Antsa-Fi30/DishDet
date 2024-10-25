@@ -1,22 +1,30 @@
 // ChatItem.js
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import { ChatItemNavigationProp } from "../../constants/NavigationType";
+import { Avatar } from "react-native-paper";
 
-const ChatItem = ({ name, lastMessage, timestamp }) => {
-  const navigation = useNavigation();
+const ChatItem = ({ chat }) => {
+  const navigation = useNavigation<ChatItemNavigationProp>();
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => navigation.navigate("Message")}
-    >
-      <Image source={require("../../../assets/15.jpg")} style={styles.avatar} />
-      <View style={styles.details}>
-        <Text style={styles.name}>{name}</Text>
-        <Text style={styles.lastMessage}>{lastMessage}</Text>
-      </View>
-      <Text style={styles.timestamp}>{timestamp}</Text>
-    </TouchableOpacity>
+    <>
+      <Pressable
+        style={styles.container}
+        onPress={() => navigation.navigate("Message", { chatId: "123" })}
+      >
+        <Avatar.Image
+          source={require("../../../assets/15.jpg")}
+          size={40}
+          style={styles.avatar}
+        />
+        <View style={styles.details}>
+          <Text style={styles.name}>{chat.name}</Text>
+          <Text style={styles.lastMessage}>{chat.lastMessage}</Text>
+        </View>
+        <Text style={styles.timestamp}>{chat.timestamp}</Text>
+      </Pressable>
+    </>
   );
 };
 
@@ -26,30 +34,26 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 15,
+    padding: 10,
     marginBottom: 15,
     borderRadius: 25,
   },
   avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
     marginRight: 10,
   },
   details: {
     flex: 1,
   },
   name: {
-    fontSize: 16,
-    fontFamily: "Montserrat-Bold",
+    fontSize: 15,
+    marginBottom: 3,
+    fontWeight: "700",
   },
   lastMessage: {
-    fontFamily: "Montserrat-Medium",
-    fontSize: 14,
+    fontSize: 13,
     color: "gray",
   },
   timestamp: {
-    fontFamily: "Montserrat-Regular",
     fontSize: 12,
     color: "gray",
   },

@@ -1,0 +1,51 @@
+{
+  "id": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  "name": [
+    "Chez Toutou",
+    "Gastronomie Pizza Ankadindramamy",
+    "Kafé Smooth",
+    "Phô Resto Bel Air",
+    "L arrivage",
+    "Tend M",
+    "Niaouly",
+    "Les Artistes",
+    "Le Paris-Delhi",
+    "Le Citizen",
+    "Le Pourquoi Pas",
+    "Restaurant Ravimpôntsy",
+    "La Toque Enchantée",
+    "La Belle Ville",
+    "Bucky Burger"
+  ],
+  "latitude": [
+    -18.915206, -18.8929549, -18.8995517, -18.9070244, -18.9068276, -18.9167703,
+    -18.9139992, -18.9083256, -18.9059473, -18.913476, -18.9123495, -18.9175568,
+    -18.9134307, -18.9101361, -18.9105061
+  ],
+  "longitude": [
+    47.5480098, 47.5413998, 47.5544483, 47.5338975, 47.5279466, 47.5403083,
+    47.5290913, 47.5252619, 47.5225165, 47.5204461, 47.5201144, 47.5444806,
+    47.5420693, 47.5365003, 47.5362363
+  ],
+  "reservations": [
+    200, 150, 180, 120, 300, 123, 78, 56, 345, 90, 341, 239, 100, 321, 67
+  ],
+  "menu": [
+    "déjeuner desserts traiteur",
+    "pizza glace tacos kebab frites mushu nuggets steak",
+    "salade plat poisson poulet crevettes côte de porc crêpe glace dessert",
+    "soupe steak frites saucisses onion rings carbonara misao côte pané",
+    "huîtres sashimis de thon tartare mer canard sanglier tarte tiramisu crevettes zébu poisson ceviche gratin ",
+    "soupe carbonara steak crabe crevettes misao chinoise pizza glace crêpe milk shake frites poulet",
+    "terre mer riz steak porc zébu brochettes poisson poulet",
+    "",
+    "terrine foie volaille poulet tarte glace mille feuille penne rigate saporito poisson mousse française indienne papillottes légumes fruits pâtes saucisses",
+    "",
+    "foie de zébu poisson riz steak pommes frites salade brochettes pâtes magrets",
+    "bar concert plat",
+    "traiteur mariage terrine crevettes salade foei gras pizza sushis poisson mer vorona voanjobory fruits bavarois genoise thé café misao steak charcuterie calmar gambas porc rôti nuggets tarte mousse",
+    "cuisses de nymphe seiches crevettes poisson cabot chinoise pâtes misao riz cantonnais tsock soupe nems salade rougail dou fu omelettes laqué cochon cha-siu canard oie saucisses boeuf porc volaille concombre de mer crabes marmites tipans fondue",
+    "burger tacos buckets frites soupe pizza misao samoussa"
+  ],
+  "imageUrl": []
+}

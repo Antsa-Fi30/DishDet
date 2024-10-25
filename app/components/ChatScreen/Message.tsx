@@ -59,7 +59,7 @@ export default Message;
 const styles = StyleSheet.create({
   messageRow: {
     flexDirection: "row",
-    alignItems: "flex-start",
+    alignItems: "flex-end",
     marginVertical: 8,
     marginHorizontal: 5,
   },
