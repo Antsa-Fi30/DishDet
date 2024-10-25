@@ -2,18 +2,29 @@ import { StyleSheet, View, FlatList, Dimensions } from "react-native";
 import HeadingTitle from "../templates/HeadingTitle";
 import RestaurantCard from "./RestaurantCard";
 import { Text } from "react-native-paper";
+import React from "react";
 
-const RestoList = ({ restos, type, label }) => {
+type RestoType = {
+  id: number;
+  name: string;
+};
+
+type RestoProps = {
+  restos: RestoType[];
+  title: string;
+  label: string;
+};
+
+const RestoList: React.FC<RestoProps> = ({ restos, title, label }) => {
   return (
     <View style={styles.container}>
-      <HeadingTitle text={type} viewAll={"Restaurant List"} />
-      {label ? <Text style={styles.label}>{label}</Text> : <></>}
+      <HeadingTitle text={title} viewAll />
+      {label && <Text style={styles.label}>{label}</Text>}
       <FlatList
         data={restos}
-        renderItem={({ item }) => (
-          <RestaurantCard name={item.name} style={styles.card} />
+        renderItem={({ index, item }) => (
+          <RestaurantCard key={index} name={item.name} />
         )}
-        keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.list}

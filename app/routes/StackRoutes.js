@@ -21,6 +21,8 @@ import RestoDetailsScreen from "../screens/RestosScreen/RestoDetailsScreen";
 import HeaderPage from "../components/templates/HeaderPage";
 import NotificationsScreen from "../screens/NotificationScreen/NotificationsScreen";
 import MessageHeader from "../components/ChatScreen/MessageHeader";
+import NotificationDetailsScreen from "../screens/NotificationScreen/NotificationDetailsScreen";
+import NotificationDetailsHeader from "../components/NotificationScreen/NotificationDetailsHeader";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,24 +41,24 @@ const StackRoutes = () => {
           component={SearchScreen}
         />
         <Stack.Screen
-          options={{ header: () => <HeaderPage title={"Notification"} /> }}
+          options={{ header: () => <HeaderPage title={"Notifications"} /> }}
           name="Notifications"
           component={NotificationsScreen}
         />
         <Stack.Screen
           options={{ header: () => <HeaderPage title={"Restaurant List"} /> }}
-          name="Restaurant List"
+          name="RestaurantList"
           component={RestoListScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Restaurant details"
+          name="RestaurantDetails"
           component={RestoDetailsScreen}
         />
         <Stack.Screen
-          options={{ headerShown: false }}
-          name="Notification details"
-          component={RestoDetailsScreen}
+          options={{ header: () => <NotificationDetailsHeader /> }}
+          name="NotificationDetails"
+          component={NotificationDetailsScreen}
         />
         <Stack.Screen
           options={{ header: () => <MessageHeader /> }}

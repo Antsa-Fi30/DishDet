@@ -1,7 +1,12 @@
 import React, { memo } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const NavigationBar = ({ activeTab, setActiveTab }) => {
+type NavBarProps = {
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
+};
+
+const NavigationBar: React.FC<NavBarProps> = ({ activeTab, setActiveTab }) => {
   return (
     <View style={styles.navigationBar}>
       <TouchableOpacity
@@ -47,8 +52,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ddd",
   },
   tab: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   activeTab: {
     borderBottomWidth: 2,
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
   tabText: {
     fontFamily: "Montserrat-Medium",
     color: "#333",
-    fontSize: 16,
+    fontSize: 14,
   },
   activeTabText: {
     fontFamily: "Montserrat-Bold",

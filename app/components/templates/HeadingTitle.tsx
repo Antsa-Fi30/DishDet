@@ -1,19 +1,24 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { RestaurantListNavigationProp } from "../../constants/NavigationType";
 import React from "react";
 
-const HeadingTitle = ({ text, viewAll }) => {
-  const navigation = useNavigation();
+type HeadingTitleProps = {
+  text: string;
+  viewAll: boolean;
+};
+
+const HeadingTitle: React.FC<HeadingTitleProps> = ({ text, viewAll }) => {
+  const navigation = useNavigation<RestaurantListNavigationProp>();
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{text}</Text>
-      <TouchableOpacity
-        style={styles.detailLink}
-        onPress={() => navigation.push(viewAll)}
-      >
-        <Text style={styles.detailLink}>View All</Text>
-      </TouchableOpacity>
+      {viewAll && (
+        <TouchableOpacity onPress={() => navigation.navigate("RestaurantList")}>
+          <Text style={styles.detailLink}>View All</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

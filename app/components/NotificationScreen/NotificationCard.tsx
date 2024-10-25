@@ -2,15 +2,18 @@ import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { NotificationNavigationProp } from "../../constants/NavigationType";
 
 const NotificationCard = ({ notification }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NotificationNavigationProp>();
 
   return (
     <TouchableOpacity
       style={styles.card}
       onPress={() =>
-        navigation.push("Notification details", { notification: notification })
+        navigation.push("NotificationDetails", {
+          notificationId: notification.id,
+        })
       }
     >
       <Image

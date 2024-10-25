@@ -2,7 +2,23 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 import { Text, Surface, Badge, Button } from "react-native-paper";
 import React from "react";
 
-const PromotionsCard = ({ index, item }) => {
+type promotions = {
+  id: string;
+  image: string;
+  title: string;
+  description: string;
+  validity: string;
+  restaurantLogo: string;
+  badge: string;
+  rating: string;
+};
+
+type promotionsProps = {
+  item: promotions;
+  index: number;
+};
+
+const PromotionsCard: React.FC<promotionsProps> = ({ index, item }) => {
   return (
     <Surface key={index} style={styles.surface}>
       <ImageBackground

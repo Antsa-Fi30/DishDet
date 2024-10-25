@@ -1,7 +1,5 @@
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import React from "react";
 import { Text, Avatar } from "react-native-paper";
-import HeaderPage from "../templates/HeaderPage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import Octicons from "@expo/vector-icons/Octicons";

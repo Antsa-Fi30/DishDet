@@ -4,7 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native-paper";
 import Octicons from "@expo/vector-icons/Octicons";
 
-const SettingsHead = ({ title }) => {
+type SettingsHeadProps = {
+  title: string;
+};
+
+const SettingsHead: React.FC<SettingsHeadProps> = ({ title }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.headTitle}>
@@ -12,7 +16,7 @@ const SettingsHead = ({ title }) => {
         style={styles.buttonback}
         onPress={() => navigation.goBack()}
       >
-        <Octicons name="arrow-left" size={30} color="black" />
+        <Octicons name="arrow-left" size={25} color="black" />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>
@@ -33,7 +37,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Montserrat-SemiBold",
-    fontSize: 20,
+    fontSize: 18,
   },
   headTitle: {
     display: "flex",

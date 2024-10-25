@@ -1,7 +1,4 @@
-import * as React from "react";
 import { Dimensions, View, StyleSheet, FlatList } from "react-native";
-
-import { Text } from "react-native-paper";
 
 import PromotionsCard from "./PromotionsCard";
 import HeadingTitle from "../templates/HeadingTitle";
@@ -69,7 +66,7 @@ const promotions = [
 const Promotions = () => {
   return (
     <View style={styles.container}>
-      <HeadingTitle text={"Promotions"} />
+      <HeadingTitle viewAll={""} text={"Promotions"} />
       <FlatList
         data={promotions}
         keyExtractor={(item) => item.id}
@@ -78,7 +75,6 @@ const Promotions = () => {
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.flatListContent}
       />
     </View>
   );

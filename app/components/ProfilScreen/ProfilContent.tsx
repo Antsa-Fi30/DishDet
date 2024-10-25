@@ -1,20 +1,29 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import Octicons from "@expo/vector-icons/Octicons";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  GestureResponderEvent,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Octicons from "@expo/vector-icons/Octicons";
 
-const SettingsButton = ({ icon, label, onPress, isLogout }) => {
+type SettingsButtonProps = {
+  icon: any;
+  label: string;
+  onPress: (event: GestureResponderEvent) => void;
+};
+
+const SettingsButton: React.FC<SettingsButtonProps> = ({
+  icon,
+  label,
+  onPress,
+}) => {
   return (
-    <TouchableOpacity
-      style={[styles.button, isLogout && styles.logoutButton]}
-      onPress={onPress}
-    >
-      <View style={styles.iconContainer}>
-        <Octicons name={icon} size={20} color={isLogout ? "orange" : "red"} />
-      </View>
-      <Text style={[styles.buttonText, isLogout && styles.logoutText]}>
-        {label}
-      </Text>
+    <TouchableOpacity style={[styles.button]} onPress={onPress}>
+      <Octicons style={{ color: "red" }} name={icon} size={24} color="black" />
+      <Text style={[styles.buttonText]}>{label}</Text>
     </TouchableOpacity>
   );
 };
@@ -71,6 +80,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderWidth: 1,
     borderColor: "#ddd",
+    gap: 10,
   },
   logoutButton: {
     borderColor: "orange",
@@ -82,7 +92,6 @@ const styles = StyleSheet.create({
     color: "#121212",
     fontFamily: "Montserrat-Regular",
     fontSize: 14,
-    fontWeight: "500",
   },
   logoutText: {
     color: "orange",

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "Montserrat-SemiBold",
-    fontSize: 21,
+    fontSize: 20,
     color: "#000",
   },
   location: {

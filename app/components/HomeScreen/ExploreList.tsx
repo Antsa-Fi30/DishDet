@@ -1,20 +1,28 @@
 import { StyleSheet, View, FlatList, Dimensions } from "react-native";
 import HeadingTitle from "../templates/HeadingTitle";
-import RestaurantCard from "./RestaurantCard";
 import { Text } from "react-native-paper";
 import ExploreAvatar from "./ExploreAvatar";
 
-const ExploreList = ({ typeresto, label }) => {
+type RestoType = {
+  id: number;
+  name: string;
+};
+
+type ExploreListProps = {
+  typeresto: RestoType[];
+  label?: string;
+};
+
+const ExploreList: React.FC<ExploreListProps> = ({ typeresto, label }) => {
   return (
     <View style={styles.container}>
-      <HeadingTitle text={"Explore"} viewAll={"Restaurant List"} />
-      {label ? <Text style={styles.label}>{label}</Text> : <></>}
+      <HeadingTitle text={"Explore"} viewAll />
+      {label && <Text style={styles.label}>{label}</Text>}
       <FlatList
         data={typeresto}
         renderItem={({ item }) => (
-          <ExploreAvatar name={item.name} style={styles.card} />
+          <ExploreAvatar key={item.id} name={item.name} />
         )}
-        keyExtractor={(item) => item.id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.list}
@@ -45,6 +53,6 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     marginHorizontal: 5,
-    maxWidth: Dimensions.get("window").width / 3 - 20, // Limite la largeur de chaque carte à 1/3 de l'écran
+    maxWidth: Dimensions.get("window").width / 3 - 20, //Limite la largeur de la carte selon l'ecran a 1/3
   },
 });

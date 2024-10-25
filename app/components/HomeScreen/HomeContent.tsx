@@ -1,19 +1,16 @@
-import {
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  ActivityIndicator,
-} from "react-native";
 import { useState, useCallback, lazy, Suspense } from "react";
+import { StyleSheet, SafeAreaView, ActivityIndicator } from "react-native";
+
 import NavigationBar from "./NavigationBar";
 
+//Lazy load contents:
 const NearbyContent = lazy(() => import("./NearbyContent"));
 const Actuality = lazy(() => import("./Actuality"));
 
-const HomeContent = ({ navigation }) => {
+const HomeContent = () => {
   const [activeTab, setActiveTab] = useState("Actuality");
 
-  const handleTabChange = useCallback((tab) => {
+  const handleTabChange = useCallback((tab: any) => {
     setActiveTab(tab);
   }, []);
 
@@ -32,7 +29,7 @@ export default HomeContent;
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    flexWrap: "no-wrap",
+    flexWrap: "nowrap",
     justifyContent: "center",
     paddingBottom: 15,
   },

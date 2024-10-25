@@ -1,17 +1,96 @@
 import { RouteProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 // Définissez vos routes et leurs paramètres (s'il y en a)
 export type RootStackParamList = {
   Home: undefined;
-  Message: { chatId: string }; // Ajoutez des paramètres si nécessaire
+  NotificationDetails: { notificationId: number };
+  RestaurantList: undefined;
+  RestaurantDetails: any;
+  Search: any;
+  Message: { chatId: string };
+  EditProfile: undefined;
+  Location: undefined;
+  Language: undefined;
+  Notification: undefined;
+  Feedback: undefined;
 };
 
-// Propriété de navigation pour l'écran ChatItem
-export type ChatItemNavigationProp = StackNavigationProp<
+// Propriétés de navigation pour chaque écran
+export type NotificationNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "NotificationDetails"
+>;
+
+export type RestaurantListNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "RestaurantList"
+>;
+
+export type RestaurantDetailsProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "RestaurantDetails"
+>;
+
+export type SearchNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Search"
+>;
+
+export type ChatItemNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "Message"
 >;
 
-// Propriété de route pour l'écran Message
+export type EditProfileNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "EditProfile"
+>;
+
+export type LocationNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Location"
+>;
+
+export type LanguageNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Language"
+>;
+
+export type FeedbackNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Feedback"
+>;
+
+// Propriétés de route pour chaque écran
+export type RestaurantListRouteProp = RouteProp<
+  RootStackParamList,
+  "RestaurantList"
+>;
+
+export type RestaurantDetailsRouteProp = RouteProp<
+  RootStackParamList,
+  "RestaurantDetails"
+>;
+
+export type SearchRouteProp = RouteProp<RootStackParamList, "Search">;
+
 export type MessageRouteProp = RouteProp<RootStackParamList, "Message">;
+
+export type NotificationDetailsRouteProp = RouteProp<
+  RootStackParamList,
+  "NotificationDetails"
+>;
+
+export type EditProfileRouteProp = RouteProp<RootStackParamList, "EditProfile">;
+
+export type LocationRouteProp = RouteProp<RootStackParamList, "Location">;
+
+export type LanguageRouteProp = RouteProp<RootStackParamList, "Language">;
+
+export type NotificationRouteProp = RouteProp<
+  RootStackParamList,
+  "Notification"
+>;
+
+export type FeedbackRouteProp = RouteProp<RootStackParamList, "Feedback">;

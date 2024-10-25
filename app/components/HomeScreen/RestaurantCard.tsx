@@ -2,8 +2,14 @@ import React from "react";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Card, Text, Title, Paragraph } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
-const RestaurantCard = ({ name }) => {
+type RestoCardProps = {
+  name: string;
+};
+
+const RestaurantCard: React.FC<RestoCardProps> = ({ name }) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity>
       <Card mode="contained" style={styles.card}>

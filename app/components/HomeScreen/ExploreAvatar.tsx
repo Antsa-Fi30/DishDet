@@ -2,12 +2,16 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
 import { Avatar } from "react-native-paper";
 
-const ExploreAvatar = ({ name }) => {
+type ExploreProps = {
+  name: string;
+};
+
+const ExploreAvatar: React.FC<ExploreProps> = ({ name }) => {
   return (
     <TouchableOpacity style={styles.container}>
       {/* Avatar Image */}
       <Avatar.Image
-        size={90}
+        size={85}
         source={require("../../../assets/15.jpg")}
         style={styles.avatar}
       />
@@ -35,8 +39,8 @@ const styles = StyleSheet.create({
   overlay: {
     position: "absolute",
     backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent grey overlay
-    width: 95,
-    height: 95,
+    width: 90,
+    height: 90,
     borderRadius: 50, // To match the circular shape of the avatar
   },
   title: {

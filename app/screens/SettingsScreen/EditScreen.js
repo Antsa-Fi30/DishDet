@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Montserrat-SemiBold",
-    fontSize: 20,
+    fontSize: 16,
   },
   headTitle: {
     display: "flex",
