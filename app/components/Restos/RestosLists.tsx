@@ -70,7 +70,9 @@ const ViewAllPage: React.FC = () => {
   const renderRestaurant = ({ item }: { item: Restaurant }) => (
     <TouchableOpacity
       style={styles.restaurantCard}
-      onPress={() => navigation.navigate("RestaurantDetails")}
+      onPress={() =>
+        navigation.navigate("RestaurantDetails", { restaurant: item })
+      }
     >
       <Image
         source={require("../../../assets/15.jpg")}

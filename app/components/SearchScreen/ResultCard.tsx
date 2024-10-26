@@ -33,7 +33,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
     <>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.push("RestaurantDetails", { product: item })}
+        onPress={() =>
+          navigation.push("RestaurantDetails", { restaurant: item })
+        }
       >
         <Avatar.Image source={require("../../../assets/1.jpg")} />
         <View style={styles.cardContent}>
