@@ -1,18 +1,26 @@
-import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useState } from "react";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 // Icons
 import Octicons from "@expo/vector-icons/Octicons";
 
 // React Native Paper
-import { TextInput, Text } from "react-native-paper";
+import { TextInput, Text, useTheme } from "react-native-paper";
+import { SearchNavigationProp } from "../../constants/NavigationType";
 
-const SearchSource = ({ navigation }) => {
-  const [text, setText] = useState("");
+const SearchSource = () => {
+  const navigation = useNavigation<SearchNavigationProp>();
+  const theme = useTheme();
 
   return (
     <TouchableOpacity
-      style={styles.searchbar}
+      style={[
+        styles.searchbar,
+        {
+          backgroundColor: theme.colors.secondaryContainer,
+          borderColor: theme.colors.secondary,
+        },
+      ]}
       onPress={() => navigation.navigate("Search")}
     >
       <Octicons name="search" size={24} color="red" style={styles.icon} />
@@ -29,7 +37,6 @@ const styles = StyleSheet.create({
   searchbar: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff", // Dark background color
     borderRadius: 15,
     paddingHorizontal: 16,
     marginHorizontal: 18,

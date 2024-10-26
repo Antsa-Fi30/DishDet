@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Avatar } from "react-native-paper";
+import { Avatar, useTheme } from "react-native-paper";
 
 const Message = ({ message, sender, timestamp }) => {
   const isUser = sender === "user";
+  const theme = useTheme();
 
   const formattedTime = new Date(timestamp).toLocaleTimeString([], {
     hour: "2-digit",
@@ -23,14 +24,20 @@ const Message = ({ message, sender, timestamp }) => {
       <View
         style={[
           styles.messageContainer,
-          isUser ? styles.userMessageContainer : styles.botMessageContainer,
+          isUser
+            ? (styles.userMessageContainer,
+              { backgroundColor: theme.colors.primary })
+            : (styles.botMessageContainer,
+              { backgroundColor: theme.colors.surfaceDisabled }),
         ]}
       >
         {/* Message */}
         <Text
           style={[
             styles.messageText,
-            isUser ? styles.userText : styles.botText,
+            isUser
+              ? { color: "#fff" }
+              : { color: theme.dark ? "#fff" : "#F0f0f0" },
           ]}
         >
           {message}
@@ -39,7 +46,9 @@ const Message = ({ message, sender, timestamp }) => {
         <Text
           style={[
             styles.timestamp,
-            isUser ? styles.userTimestamp : styles.botTimestamp,
+            isUser
+              ? { color: "#fff" }
+              : { color: theme.dark ? "#fff" : "#F0f0f0" },
           ]}
         >
           {formattedTime}
@@ -82,12 +91,7 @@ const styles = StyleSheet.create({
   messageText: {
     fontSize: 14,
   },
-  userText: {
-    color: "#fff", // Couleur du texte utilisateur
-  },
-  botText: {
-    color: "#333", // Couleur du texte bot
-  },
+
   avatar: {
     marginHorizontal: 5,
   },

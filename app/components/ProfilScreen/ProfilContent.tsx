@@ -1,13 +1,13 @@
 import React from "react";
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   GestureResponderEvent,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Octicons from "@expo/vector-icons/Octicons";
+import { Text, useTheme } from "react-native-paper";
 
 type SettingsButtonProps = {
   icon: any;
@@ -30,8 +30,14 @@ const SettingsButton: React.FC<SettingsButtonProps> = ({
 
 const ProfilContent = () => {
   const navigation = useNavigation();
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
+    >
       <SettingsButton
         icon="person"
         label="Edit Profile"
@@ -65,7 +71,6 @@ export default ProfilContent;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     justifyContent: "center",
     padding: 20,
     marginVertical: 10,
@@ -74,7 +79,6 @@ const styles = StyleSheet.create({
   button: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
     padding: 15,
     borderRadius: 10,
     marginVertical: 8,
@@ -89,7 +93,6 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   buttonText: {
-    color: "#121212",
     fontFamily: "Montserrat-Regular",
     fontSize: 14,
   },

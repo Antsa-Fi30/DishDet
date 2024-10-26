@@ -1,14 +1,20 @@
 import React, { memo } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, useTheme } from "react-native-paper";
 type NavBarProps = {
   activeTab: string;
   setActiveTab: (tab: string) => void;
 };
 
 const NavigationBar: React.FC<NavBarProps> = ({ activeTab, setActiveTab }) => {
+  const theme = useTheme();
   return (
-    <View style={styles.navigationBar}>
+    <View
+      style={[
+        styles.navigationBar,
+        { backgroundColor: theme.colors.onSecondary, borderRadius: 15 },
+      ]}
+    >
       <TouchableOpacity
         style={[styles.tab, activeTab === "Nearby" && styles.activeTab]}
         onPress={() => setActiveTab("Nearby")}
@@ -46,10 +52,9 @@ const styles = StyleSheet.create({
   navigationBar: {
     flexDirection: "row",
     justifyContent: "space-around",
-    backgroundColor: "#f8f8f8",
     paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    // borderBottomWidth: 1,
+    // borderBottomColor: "#ddd",
   },
   tab: {
     paddingVertical: 5,
@@ -61,7 +66,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontFamily: "Montserrat-Medium",
-    color: "#333",
     fontSize: 14,
   },
   activeTabText: {

@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 //Pages:
@@ -26,9 +26,9 @@ import NotificationDetailsHeader from "../components/NotificationScreen/Notifica
 
 const Stack = createNativeStackNavigator();
 
-const StackRoutes = () => {
+const StackRoutes = ({ theme }) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Stack.Navigator>
         <Stack.Screen
           options={{ headerShown: false }}

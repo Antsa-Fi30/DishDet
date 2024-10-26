@@ -4,7 +4,6 @@ import SearchSource from "./SearchSource";
 import RestoList from "././RestoList";
 import ExploreList from "./ExploreList";
 import Promotions from "./Promotions";
-import { useNavigation } from "@react-navigation/native";
 
 const data1 = [
   { id: 1, name: "Restaurant 1" },
@@ -37,10 +36,9 @@ const typeresto = [
 ];
 
 const NearbyContent = () => {
-  const navigation = useNavigation();
   return (
     <>
-      <SearchSource navigation={navigation} />
+      <SearchSource />
       <Promotions />
       <ExploreList typeresto={typeresto} label={""} />
       <RestoList restos={data1} title={"Nearby"} label={""} />

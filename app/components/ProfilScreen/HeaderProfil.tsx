@@ -1,17 +1,27 @@
 import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, Avatar } from "react-native-paper";
+import { Text, Avatar, useTheme } from "react-native-paper";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
 const HeaderProfil = () => {
+  const theme = useTheme();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
+    >
       <Pressable
         style={styles.button1}
         onPress={() => console.log("Pressed logout")}
       >
-        <AntDesign name="logout" size={24} color="black" />
+        <AntDesign
+          name="logout"
+          size={24}
+          color={theme.dark ? "white" : "black"}
+        />
       </Pressable>
       <View style={styles.subContainer}>
         <Avatar.Image size={70} source={require("../../../assets/1.jpg")} />

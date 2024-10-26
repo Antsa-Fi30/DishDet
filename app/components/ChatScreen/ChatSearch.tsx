@@ -2,14 +2,20 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useState } from "react";
 import Octicons from "@expo/vector-icons/Octicons";
-import { TextInput, Chip, Text } from "react-native-paper";
+import { TextInput, Chip, Text, useTheme } from "react-native-paper";
 
 const ChatSearch = () => {
   const [placename, setPlacename] = useState("");
+  const theme = useTheme();
 
   return (
     <SafeAreaView>
-      <View style={styles.searchbar}>
+      <View
+        style={[
+          styles.searchbar,
+          { backgroundColor: theme.colors.elevation.level0 },
+        ]}
+      >
         <TouchableOpacity>
           <Octicons name="search" size={16} color="red" style={styles.icon} />
         </TouchableOpacity>
@@ -39,7 +45,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 10,
     marginHorizontal: 28,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: "#ddd",
   },
   labelChip: {

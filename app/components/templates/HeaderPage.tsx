@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text, useTheme } from "react-native-paper";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Octicons from "@expo/vector-icons/Octicons";
@@ -7,8 +8,11 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 const HeaderPage = ({ title }) => {
   const navigation = useNavigation();
   const route = useRoute();
+  const theme = useTheme();
   return (
-    <SafeAreaView style={styles.header}>
+    <SafeAreaView
+      style={[styles.header, { backgroundColor: theme.colors.background }]}
+    >
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.backbutton}
@@ -18,7 +22,7 @@ const HeaderPage = ({ title }) => {
             style={{ marginRight: 20 }}
             name="arrow-left"
             size={30}
-            color="black"
+            color={theme.colors.primary}
           />
         </TouchableOpacity>
         <View style={styles.location}>
@@ -46,7 +50,6 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: "Montserrat-SemiBold",
     fontSize: 20,
-    color: "#000",
   },
   location: {
     display: "flex",

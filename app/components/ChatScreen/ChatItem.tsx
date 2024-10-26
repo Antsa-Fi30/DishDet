@@ -1,9 +1,9 @@
 // ChatItem.js
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, View, Image, Pressable } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ChatItemNavigationProp } from "../../constants/NavigationType";
-import { Avatar } from "react-native-paper";
+import { Avatar, Text } from "react-native-paper";
 
 const ChatItem = ({ chat }) => {
   const navigation = useNavigation<ChatItemNavigationProp>();

@@ -1,15 +1,16 @@
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { NotificationNavigationProp } from "../../constants/NavigationType";
 
 const NotificationCard = ({ notification }) => {
   const navigation = useNavigation<NotificationNavigationProp>();
+  const theme = useTheme();
 
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[styles.card, { backgroundColor: theme.colors.elevation.level1 }]}
       onPress={() =>
         navigation.push("NotificationDetails", {
           notificationId: notification.id,
@@ -53,7 +54,6 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: "#f0f0f0", // Couleur de fond par défaut si l'image est absente
     marginRight: 10,
   },
   cardContent: {
@@ -63,18 +63,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontFamily: "Montserrat-Bold",
-    color: "#333",
     marginBottom: 5,
   },
   message: {
     fontSize: 14,
     fontFamily: "Montserrat-Regular",
-    color: "#555",
   },
   timestamp: {
     fontSize: 12,
     fontFamily: "Montserrat-Regular",
-    color: "#888",
     marginTop: 5,
   },
 });

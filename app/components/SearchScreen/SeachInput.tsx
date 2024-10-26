@@ -5,7 +5,7 @@ import { useState } from "react";
 import Octicons from "@expo/vector-icons/Octicons";
 
 // React Native Paper
-import { TextInput, Chip, Text } from "react-native-paper";
+import { TextInput, Chip, Text, useTheme } from "react-native-paper";
 
 const SearchInput = () => {
   const [text, setText] = useState("");
@@ -16,6 +16,8 @@ const SearchInput = () => {
     price: false,
   });
 
+  const theme = useTheme();
+
   const toggleFilter = (filter) => {
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,
@@ -24,8 +26,10 @@ const SearchInput = () => {
   };
 
   return (
-    <>
-      <View style={styles.searchbar}>
+    <View>
+      <View
+        style={[styles.searchbar, { backgroundColor: theme.colors.background }]}
+      >
         <TouchableOpacity>
           <Octicons name="search" size={24} color="red" style={styles.icon} />
         </TouchableOpacity>
@@ -73,7 +77,7 @@ const SearchInput = () => {
           <Text style={styles.labelChip}>Prix</Text>
         </Chip>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   searchbar: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+
     borderRadius: 20,
     paddingHorizontal: 16,
     marginBottom: 10,
@@ -109,7 +113,6 @@ const styles = StyleSheet.create({
   },
   chip: {
     margin: 5,
-    backgroundColor: "#f0f0f0",
   },
   label: {
     fontFamily: "Montserrat-Medium",

@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { RestaurantListNavigationProp } from "../../constants/NavigationType";
 import React from "react";

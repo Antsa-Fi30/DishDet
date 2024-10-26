@@ -1,7 +1,15 @@
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
+
+//Routes Navigation
 import StackRoutes from "./app/routes/StackRoutes";
 
-//Fonts
+//Expo fonts
 import { useFonts } from "expo-font";
+
+import { PaperProvider, MD3LightTheme, MD3DarkTheme } from "react-native-paper";
+
+import { FlatUITheme, DarkFlatUITheme } from "./app/utils/theme"; // Importer les thèmes
 
 const App = () => {
   const [loaded, error] = useFonts({
@@ -16,10 +24,12 @@ const App = () => {
   }
 
   return (
-    <>
-      <StackRoutes />
-    </>
+    <PaperProvider theme={MD3DarkTheme}>
+      <StackRoutes theme={DarkFlatUITheme} />
+    </PaperProvider>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default App;

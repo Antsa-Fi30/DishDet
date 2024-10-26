@@ -1,20 +1,26 @@
-import { useState, useMemo, useCallback } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import {
-  View,
-  StyleSheet,
   InteractionManager,
   SafeAreaView,
+  StyleSheet,
+  View,
 } from "react-native";
-import TabBarButton from "./TabBarButton";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import TabBarButton from "./TabBarButton";
+import { useTheme } from "react-native-paper";
 
-export default function TabBar({ state, descriptors, navigation }) {
-  const primaryColor = "red";
-  const greyColor = "#222";
+const TabBar = ({ state, navigation }) => {
+  const theme = useTheme();
+
+  const primaryColor = theme.colors.primary;
+  const greyColor = theme.colors.secondary;
+  const backgroundTab = theme.colors.elevation.level1;
+
+  const tabPositionX = useSharedValue(0);
 
   const [dimension, setDimension] = useState({ height: 20, width: 100 });
 
@@ -62,8 +68,6 @@ export default function TabBar({ state, descriptors, navigation }) {
     [navigation]
   );
 
-  const tabPositionX = useSharedValue(0);
-
   const animatedBg = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: tabPositionX.value }],
@@ -71,8 +75,11 @@ export default function TabBar({ state, descriptors, navigation }) {
   });
 
   return (
-    <SafeAreaView edge={["bottom"]}>
-      <View onLayout={onTabbarLayout} style={styles.tabbar}>
+    <SafeAreaView>
+      <View
+        onLayout={onTabbarLayout}
+        style={[styles.tabbar, { backgroundColor: backgroundTab }]}
+      >
         <Animated.View
           style={[
             animatedBg,
@@ -87,7 +94,6 @@ export default function TabBar({ state, descriptors, navigation }) {
           ]}
         />
         {state.routes.map((route, index) => {
-          // const { options } = descriptors[route.key];
           const isFocused = state.index === index;
 
           return (
@@ -97,39 +103,27 @@ export default function TabBar({ state, descriptors, navigation }) {
               onLongPress={() => onLongPress(route)}
               isFocused={isFocused}
               routeName={route.name}
-              color={isFocused ? "fff" : greyColor}
+              color={isFocused ? "#fff" : greyColor}
             />
-            // <TouchableOpacity
-            //
-            //   accessibilityRole="button"
-            //   accessibilityState={isFocused ? { selected: true } : {}}
-            //   accessibilityLabel={options.tabBarAccessibilityLabel}
-            //   testID={options.tabBarTestID}
-            //   onPress={onPress}
-            //   onLongPress={onLongPress}
-            //   style={[styles.tabbarItem, { flex: 1 }]}
-            // >
-            //   {icons[route.name]({
-            //     color: isFocused ? primaryColor : greyColor,
-            //   })}
-            // </TouchableOpacity>
           );
         })}
       </View>
     </SafeAreaView>
   );
-}
-
+};
+export default TabBar;
 const styles = StyleSheet.create({
   tabbar: {
-    position: "relative",
+    // position: "absolute",
+    position: "static",
+    // bottom: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#fff",
     paddingVertical: 20,
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
+    // borderRadius: 35,
     borderCurve: "continuous",
   },
 });

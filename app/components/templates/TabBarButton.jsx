@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from "react-native-reanimated";
+import { useTheme } from "react-native-paper";
 
 const TabBarButton = ({
   onPress,
@@ -15,7 +16,9 @@ const TabBarButton = ({
   routeName,
   color,
 }) => {
-  const greyColor = "#222";
+  const theme = useTheme();
+  const iconColor = theme.dark ? "white" : "black";
+  const focusedIconColor = theme.dark ? "black" : "white";
 
   const scale = useSharedValue(0);
 
@@ -49,7 +52,7 @@ const TabBarButton = ({
     >
       <Animated.View style={animatedIcon}>
         {icons[routeName]({
-          color: isFocused ? "#fff" : greyColor,
+          color: isFocused ? focusedIconColor : iconColor,
         })}
       </Animated.View>
     </TouchableOpacity>

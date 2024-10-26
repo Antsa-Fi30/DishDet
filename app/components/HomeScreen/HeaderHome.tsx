@@ -1,19 +1,21 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Octicons from "@expo/vector-icons/Octicons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
+import { Text } from "react-native-paper";
 
 const HeaderHome = () => {
   const navigation = useNavigation();
+  const theme = useTheme();
   return (
     <SafeAreaView style={styles.header}>
       <View style={styles.container}>
         <View style={styles.location}>
-          <Octicons name="location" size={20} color="black" />
+          <Octicons name="location" size={20} color={theme.colors.primary} />
           <Text style={styles.label}>Time square way, Brooklyn street</Text>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("Notifications")}>
-          <Octicons name="bell" size={20} color="black" />
+          <Octicons name="bell" size={20} color={theme.colors.primary} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -36,7 +38,6 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: "Montserrat-Regular",
     fontSize: 13,
-    color: "#000",
   },
   location: {
     display: "flex",

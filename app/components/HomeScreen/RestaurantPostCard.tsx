@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { Avatar, Surface } from "react-native-paper";
+import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { Avatar, Text, Surface, useTheme } from "react-native-paper";
 import Octicons from "@expo/vector-icons/Octicons";
 
 type RestaurantActuality = {
@@ -15,8 +15,12 @@ type RestaurantPostCardProps = {
 };
 
 const RestaurantPostCard: React.FC<RestaurantPostCardProps> = ({ post }) => {
+  const theme = useTheme();
   return (
-    <Surface mode="flat" style={styles.card}>
+    <Surface
+      mode="flat"
+      style={[styles.card, { backgroundColor: theme.colors.elevation.level2 }]}
+    >
       {/* Header avec Avatar et Nom du restaurant */}
       <View style={styles.cardHeader}>
         <Avatar.Image size={40} source={require("../../../assets/1.jpg")} />
@@ -38,10 +42,18 @@ const RestaurantPostCard: React.FC<RestaurantPostCardProps> = ({ post }) => {
           <Octicons name="heart" size={24} color="red" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Octicons name="comment" size={24} color="black" />
+          <Octicons
+            name="comment"
+            size={24}
+            color={theme.dark ? "#fff" : "black"}
+          />
         </TouchableOpacity>
         <TouchableOpacity style={styles.actionButton}>
-          <Octicons name="share" size={24} color="black" />
+          <Octicons
+            name="share"
+            size={24}
+            color={theme.dark ? "#fff" : "black"}
+          />
         </TouchableOpacity>
       </View>
     </Surface>
@@ -52,7 +64,6 @@ export default RestaurantPostCard;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
     borderRadius: 10,
     marginVertical: 5,
     padding: 10,
@@ -76,7 +87,6 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     fontFamily: "Montserrat-Regular",
-    color: "#333",
     marginVertical: 5,
   },
   actionRow: {

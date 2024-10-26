@@ -2,7 +2,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Text, Avatar } from "react-native-paper";
+import { Text, Avatar, useTheme } from "react-native-paper";
 import { RestaurantDetailsProp } from "../../constants/NavigationType";
 
 type RestaurantResult = {
@@ -17,6 +17,7 @@ type ResultCardProps = {
 
 const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
   const navigation = useNavigation<RestaurantDetailsProp>();
+  const theme = useTheme();
 
   const getStars = (rating: number) => {
     rating = Math.min(3, Math.max(0, rating));
@@ -29,7 +30,10 @@ const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
   return (
     <>
       <TouchableOpacity
-        style={styles.card}
+        style={[
+          styles.card,
+          { backgroundColor: theme.colors.elevation.level4 },
+        ]}
         onPress={() =>
           navigation.push("RestaurantDetails", { restaurant: item })
         }
@@ -56,14 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   card: {
-    shadowColor: "#00000021",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-    elevation: 10,
     marginLeft: 10,
     marginRight: 10,
     marginVertical: 10,
@@ -75,7 +71,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     flex: 1,
-    color: "black",
     fontFamily: "Montserrat-Bold",
   },
   description: {
@@ -84,7 +79,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 5,
     marginBottom: 5,
-    color: "black",
     justifyContent: "flex-start",
   },
   price: {

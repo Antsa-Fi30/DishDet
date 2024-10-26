@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Modal } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, TextInput, Button } from "react-native-paper";
+import { Text, TextInput, Button, useTheme } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
@@ -10,6 +10,7 @@ const ChatHeader = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [newMessage, setNewMessage] = useState("");
   const [user, setUser] = useState("");
+  const theme = useTheme();
 
   const handleSendMessage = () => {
     // Ajoute ici la logique pour envoyer un nouveau message
@@ -25,7 +26,11 @@ const ChatHeader = () => {
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Messages</Text>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
-          <AntDesign name="plus" size={30} color="black" />
+          <AntDesign
+            name="plus"
+            size={30}
+            color={theme.dark ? "white" : "black"}
+          />
         </TouchableOpacity>
       </View>
 

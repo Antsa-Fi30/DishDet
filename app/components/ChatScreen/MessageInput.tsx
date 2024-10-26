@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { TextInput } from "react-native-paper";
+import { TextInput, useTheme } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
 const MessageInput = ({ onSend }) => {
   const [message, setMessage] = useState("");
-
+  const theme = useTheme();
   const handleSend = () => {
     if (message.trim().length > 0) {
       onSend(message);
@@ -22,13 +22,10 @@ const MessageInput = ({ onSend }) => {
         onChangeText={(text) => setMessage(text)}
         placeholder="Tapez votre message..."
         style={styles.input}
-        theme={{ colors: { primary: "#FF4D4D" } }} // Thème rouge
-        outlineColor="#FF4D4D" // Couleur de la bordure
-        activeOutlineColor="#FF4D4D" // Couleur de la bordure active
       />
       <TouchableOpacity
         onPress={handleSend}
-        style={styles.sendButton}
+        style={[styles.sendButton, { backgroundColor: theme.colors.primary }]}
         disabled={message.trim().length === 0}
       >
         <Feather name="send" size={20} color="white" />

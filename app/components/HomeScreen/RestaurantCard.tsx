@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Card, Text, Title, Paragraph } from "react-native-paper";
+import { Card, Text, Title, Paragraph, useTheme } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { RestaurantDetailsProp } from "../../constants/NavigationType";
@@ -16,11 +16,18 @@ type RestoCardProps = {
 
 const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
   const navigation = useNavigation<RestaurantDetailsProp>();
+  const theme = useTheme();
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("RestaurantDetails", { restaurant })}
     >
-      <Card mode="contained" style={styles.card}>
+      <Card
+        mode="contained"
+        style={[
+          styles.card,
+          { backgroundColor: theme.colors.elevation.level3 },
+        ]}
+      >
         {/* Image en entête */}
         <Image source={require("../../../assets/1.jpg")} style={styles.image} />
 
@@ -28,8 +35,12 @@ const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
         <Card.Content>
           <Title style={styles.title}>{restaurant.name}</Title>
           <Paragraph style={styles.location}>
-            <MaterialIcons name="location-on" size={16} color="gray" /> Paris,
-            France
+            <MaterialIcons
+              name="location-on"
+              size={16}
+              color={theme.colors.tertiary}
+            />
+            Paris, France
           </Paragraph>
 
           {/* Section de notation */}
@@ -43,7 +54,11 @@ const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
             </View>
             <View>
               <TouchableOpacity>
-                <MaterialIcons name="bookmark-outline" size={18} color="#000" />
+                <MaterialIcons
+                  name="bookmark-outline"
+                  size={18}
+                  color={theme.colors.tertiary}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -59,7 +74,6 @@ const styles = StyleSheet.create({
   card: {
     width: 200,
     maxWidth: 200,
-    backgroundColor: "#fff",
     marginTop: 10,
     borderRadius: 20,
     overflow: "hidden",

@@ -34,8 +34,6 @@ import LanguageScreen from "../screens/SettingsScreen/LanguageScreen";
 import LocationScreen from "../screens/SettingsScreen/LocationScreen";
 import NotificationScreen from "../screens/SettingsScreen/NotificationScreen";
 import FeedbackScreen from "../screens/SettingsScreen/FeedbackScreen";
-//Components
-import HeaderPage from "../components/templates/HeaderPage";
 
 const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();

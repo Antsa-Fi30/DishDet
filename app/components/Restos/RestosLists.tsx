@@ -1,7 +1,6 @@
 import React from "react";
 import {
   View,
-  Text,
   FlatList,
   StyleSheet,
   Image,
@@ -11,6 +10,7 @@ import {
 import { Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { RestaurantListNavigationProp } from "../../constants/NavigationType";
+import { Text, useTheme } from "react-native-paper";
 
 type Restaurant = {
   id: string;
@@ -51,6 +51,12 @@ const restaurants: Restaurant[] = [
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
+  {
+    id: "5",
+    name: "Restaurant 4",
+    location: "Paris, France",
+    image: "https://via.placeholder.com/150",
+  },
   // Ajoutez d'autres restaurants si nécessaire
 ];
 
@@ -66,10 +72,14 @@ const exploreCategories: ExploreCategory[] = [
 
 const ViewAllPage: React.FC = () => {
   const navigation = useNavigation<RestaurantListNavigationProp>();
+  const theme = useTheme();
 
   const renderRestaurant = ({ item }: { item: Restaurant }) => (
     <TouchableOpacity
-      style={styles.restaurantCard}
+      style={[
+        styles.restaurantCard,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
       onPress={() =>
         navigation.navigate("RestaurantDetails", { restaurant: item })
       }
@@ -93,7 +103,9 @@ const ViewAllPage: React.FC = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.backdrop }]}
+    >
       <Text style={styles.sectionTitle}>Explore</Text>
       <FlatList
         data={exploreCategories}
@@ -118,8 +130,8 @@ const ViewAllPage: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     paddingHorizontal: 15,
+    paddingVertical: 15,
     borderBottomStartRadius: 25,
     borderBottomEndRadius: 25,
   },
@@ -148,7 +160,7 @@ const styles = StyleSheet.create({
   restaurantCard: {
     flexDirection: "row",
     marginBottom: 15,
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: "#ddd",
     borderRadius: 10,
     padding: 10,
