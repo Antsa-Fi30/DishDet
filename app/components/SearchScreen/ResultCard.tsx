@@ -2,11 +2,26 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, Avatar } from "react-native-paper";
+import {
+  RestaurantDetailsProp,
+  RestaurantDetailsRouteProp,
+} from "../../constants/NavigationType";
 
-const ResultCard = ({ item }) => {
-  const navigation = useNavigation();
-  const getStars = (rating) => {
+type RestaurantResult = {
+  name: string;
+  location: string;
+  rating: number;
+};
+
+type ResultCardProps = {
+  item: RestaurantResult;
+};
+
+const ResultCard: React.FC<ResultCardProps> = ({ item }) => {
+  const navigation = useNavigation<RestaurantDetailsProp>();
+
+  const getStars = (rating: number) => {
     rating = Math.min(3, Math.max(0, rating));
     const filledStars = Array.from({ length: rating }, (_, i) => "★");
     const emptyStars = Array.from({ length: 3 - rating }, (_, i) => "☆");
@@ -18,9 +33,9 @@ const ResultCard = ({ item }) => {
     <>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.push("Restaurant details", { product: item })}
+        onPress={() => navigation.push("RestaurantDetails", { product: item })}
       >
-        <Image style={styles.image} source={require("../../../assets/1.jpg")} />
+        <Avatar.Image source={require("../../../assets/1.jpg")} />
         <View style={styles.cardContent}>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.description}>{item.location}</Text>
@@ -41,14 +56,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1,
   },
-  image: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 2,
-    borderColor: "#ebf0f7",
-  },
-
   card: {
     shadowColor: "#00000021",
     shadowOffset: {
@@ -57,7 +64,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
-    elevation: 12,
+    elevation: 10,
     marginLeft: 10,
     marginRight: 10,
     marginVertical: 10,
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     color: "black",
-    justifyContent: "text-align",
+    justifyContent: "flex-start",
   },
   price: {
     fontWeight: "bold",

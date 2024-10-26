@@ -6,7 +6,7 @@ export type RootStackParamList = {
   Home: undefined;
   NotificationDetails: { notificationId: number };
   RestaurantList: undefined;
-  RestaurantDetails: any;
+  RestaurantDetails: { restaurant: any };
   Search: any;
   Message: { chatId: string };
   EditProfile: undefined;

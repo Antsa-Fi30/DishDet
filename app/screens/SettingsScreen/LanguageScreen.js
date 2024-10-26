@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
+import LanguageContent from "../../components/Settings/LanguageContent";
 
 const LanguageScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ const LanguageScreen = () => {
       <View style={styles.subContainer}>
         <SettingsHead title={"Change your language"} />
         <View style={styles.parameters}>
-          <Text style={styles.title}>You are </Text>
+          <LanguageContent />
         </View>
       </View>
     </ScrollView>
@@ -24,7 +25,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     padding: 10,
+    marginHorizontal: 10,
     marginVertical: 10,
+    borderRadius: 25,
   },
   subContainer: {
     paddingHorizontal: 12,

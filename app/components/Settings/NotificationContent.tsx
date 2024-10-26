@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const RestoDetailsScreen = () => {
+const NotificationContent = () => {
   return (
     <View>
-      <Text>RestoDetailsScreen</Text>
+      <Text>NotificationContent</Text>
     </View>
   );
 };
 
-export default RestoDetailsScreen;
+export default NotificationContent;
 
 const styles = StyleSheet.create({});

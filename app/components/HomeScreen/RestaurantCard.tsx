@@ -3,22 +3,30 @@ import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Card, Text, Title, Paragraph } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { RestaurantDetailsProp } from "../../constants/NavigationType";
 
-type RestoCardProps = {
+type Resto = {
+  id: number;
   name: string;
 };
 
-const RestaurantCard: React.FC<RestoCardProps> = ({ name }) => {
-  const navigation = useNavigation();
+type RestoCardProps = {
+  restaurant: Resto;
+};
+
+const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
+  const navigation = useNavigation<RestaurantDetailsProp>();
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("RestaurantDetails", { restaurant })}
+    >
       <Card mode="contained" style={styles.card}>
         {/* Image en entête */}
         <Image source={require("../../../assets/1.jpg")} style={styles.image} />
 
         {/* Contenu de la carte */}
         <Card.Content>
-          <Title style={styles.title}>{name}</Title>
+          <Title style={styles.title}>{restaurant.name}</Title>
           <Paragraph style={styles.location}>
             <MaterialIcons name="location-on" size={16} color="gray" /> Paris,
             France

@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton, Text } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
+import FeedbackContent from "../../components/Settings/FeedbackContent";
 
 const FeedbackScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ const FeedbackScreen = () => {
       <View style={styles.subContainer}>
         <SettingsHead title={"Give us a feedback"} />
         <View style={styles.parameters}>
-          <Text style={styles.title}>You are </Text>
+          <FeedbackContent />
         </View>
       </View>
     </ScrollView>
@@ -24,8 +25,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     padding: 10,
+    marginHorizontal: 10,
     marginVertical: 10,
+    borderRadius: 25,
   },
+
   subContainer: {
     paddingHorizontal: 12,
     paddingVertical: 12,

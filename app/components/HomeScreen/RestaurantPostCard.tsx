@@ -3,7 +3,18 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { Avatar, Surface } from "react-native-paper";
 import Octicons from "@expo/vector-icons/Octicons";
 
-const RestaurantPostCard = ({ post }) => {
+type RestaurantActuality = {
+  id: string;
+  restaurantName: string;
+  description: string;
+  timeAgo: string;
+};
+
+type RestaurantPostCardProps = {
+  post: RestaurantActuality;
+};
+
+const RestaurantPostCard: React.FC<RestaurantPostCardProps> = ({ post }) => {
   return (
     <Surface mode="flat" style={styles.card}>
       {/* Header avec Avatar et Nom du restaurant */}

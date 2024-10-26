@@ -2,7 +2,18 @@ import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import RestaurantPostCard from "./RestaurantPostCard";
 
-const RestaurantFeed = ({ posts }) => {
+type RestaurantActuality = {
+  id: string;
+  restaurantName: string;
+  description: string;
+  timeAgo: string;
+};
+
+type RestaurantFeedProps = {
+  posts: RestaurantActuality[];
+};
+
+const RestaurantFeed: React.FC<RestaurantFeedProps> = ({ posts }) => {
   return (
     <View>
       <FlatList

@@ -3,6 +3,7 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { IconButton, Text } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
+import NotificationContent from "../../components/NotificationScreen/NotificationContent";
 
 const NotificationScreen = () => {
   const navigation = useNavigation();
@@ -11,7 +12,7 @@ const NotificationScreen = () => {
       <View style={styles.subContainer}>
         <SettingsHead title={"Manage Notification"} />
         <View style={styles.parameters}>
-          <Text style={styles.title}>You are </Text>
+          <NotificationContent />
         </View>
       </View>
     </ScrollView>
@@ -24,7 +25,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     padding: 10,
+    marginHorizontal: 10,
     marginVertical: 10,
+    borderRadius: 25,
   },
   subContainer: {
     paddingHorizontal: 12,

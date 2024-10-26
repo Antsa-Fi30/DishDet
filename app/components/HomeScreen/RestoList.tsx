@@ -23,7 +23,7 @@ const RestoList: React.FC<RestoProps> = ({ restos, title, label }) => {
       <FlatList
         data={restos}
         renderItem={({ index, item }) => (
-          <RestaurantCard key={index} name={item.name} />
+          <RestaurantCard key={index} restaurant={item} />
         )}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

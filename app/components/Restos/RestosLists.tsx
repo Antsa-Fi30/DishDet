@@ -39,6 +39,18 @@ const restaurants: Restaurant[] = [
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
+  {
+    id: "3",
+    name: "Restaurant 3",
+    location: "Paris, France",
+    image: "https://via.placeholder.com/150",
+  },
+  {
+    id: "4",
+    name: "Restaurant 4",
+    location: "Paris, France",
+    image: "https://via.placeholder.com/150",
+  },
   // Ajoutez d'autres restaurants si nécessaire
 ];
 
@@ -47,6 +59,9 @@ const exploreCategories: ExploreCategory[] = [
   { id: "1", title: "Emotions", image: "https://via.placeholder.com/150" },
   { id: "2", title: "Hungry", image: "https://via.placeholder.com/150" },
   { id: "3", title: "Romantic", image: "https://via.placeholder.com/150" },
+  { id: "4", title: "Romantic", image: "https://via.placeholder.com/150" },
+  { id: "5", title: "Romantic", image: "https://via.placeholder.com/150" },
+  { id: "6", title: "Romantic", image: "https://via.placeholder.com/150" },
 ];
 
 const ViewAllPage: React.FC = () => {
@@ -87,31 +102,36 @@ const ViewAllPage: React.FC = () => {
         style={styles.exploreList}
       />
 
-      <Text style={styles.sectionTitle}>Nearby</Text>
-      <FlatList
-        data={restaurants}
-        renderItem={renderRestaurant}
-        keyExtractor={(item) => item.id}
-        style={styles.restaurantList}
-      />
+      <View style={styles.restaurantList}>
+        <Text style={styles.sectionTitle}>Nearby</Text>
+        <FlatList
+          data={restaurants}
+          renderItem={renderRestaurant}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
     backgroundColor: "#fff",
-    padding: 15,
+    paddingHorizontal: 15,
+    borderBottomStartRadius: 25,
+    borderBottomEndRadius: 25,
   },
+
   sectionTitle: {
     fontSize: 18,
     fontFamily: "Montserrat-SemiBold",
     marginBottom: 10,
   },
+
   exploreList: {
     marginBottom: 20,
   },
+
   exploreCard: {
     marginRight: 15,
     alignItems: "center",
@@ -122,9 +142,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 5,
   },
-  restaurantList: {
-    marginBottom: 20,
-  },
+  restaurantList: {},
   restaurantCard: {
     flexDirection: "row",
     marginBottom: 15,
