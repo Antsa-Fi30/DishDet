@@ -1,14 +1,20 @@
 import React from "react";
-import { View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Text } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
 import LanguageContent from "../../components/Settings/LanguageContent";
 
 const LanguageScreen = () => {
   const navigation = useNavigation();
+  const theme = useTheme();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
+    >
       <View style={styles.subContainer}>
         <SettingsHead title={"Change your language"} />
         <View style={styles.parameters}>

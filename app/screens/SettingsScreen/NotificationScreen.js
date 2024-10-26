@@ -1,13 +1,18 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
 import NotificationContent from "../../components/Settings/NotificationContent";
 
 const NotificationScreen = () => {
-  const navigation = useNavigation();
+  const theme = useTheme();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
+    >
       <View style={styles.subContainer}>
         <SettingsHead title={"Manage Notification"} />
         <View style={styles.parameters}>

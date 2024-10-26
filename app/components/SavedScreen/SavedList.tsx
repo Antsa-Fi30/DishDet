@@ -3,9 +3,9 @@ import React from "react";
 import RestoList from "../HomeScreen/RestoList";
 
 const data2 = [
-  { id: "4", name: "Restaurant 4" },
-  { id: "5", name: "Restaurant 5" },
-  { id: "6", name: "Restaurant 6" },
+  { id: 1, name: "Restaurant 4" },
+  { id: 2, name: "Restaurant 5" },
+  { id: 3, name: "Restaurant 6" },
 ];
 
 const SavedList = () => {
@@ -13,7 +13,7 @@ const SavedList = () => {
     <View>
       <RestoList
         restos={data2}
-        type={"Your favorite"}
+        title={"Your favorite"}
         label={"There are your favorite restos"}
       />
     </View>

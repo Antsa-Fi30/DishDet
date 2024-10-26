@@ -25,7 +25,10 @@ const MessageInput = ({ onSend }) => {
       />
       <TouchableOpacity
         onPress={handleSend}
-        style={[styles.sendButton, { backgroundColor: theme.colors.primary }]}
+        style={[
+          styles.sendButton,
+          { backgroundColor: theme.colors.elevation.level3 },
+        ]}
         disabled={message.trim().length === 0}
       >
         <Feather name="send" size={20} color="white" />

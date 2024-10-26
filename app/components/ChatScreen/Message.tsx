@@ -26,7 +26,7 @@ const Message = ({ message, sender, timestamp }) => {
           styles.messageContainer,
           isUser
             ? (styles.userMessageContainer,
-              { backgroundColor: theme.colors.primary })
+              { backgroundColor: theme.colors.elevation.level3 })
             : (styles.botMessageContainer,
               { backgroundColor: theme.colors.surfaceDisabled }),
         ]}

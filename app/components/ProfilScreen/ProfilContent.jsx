@@ -1,28 +1,20 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  GestureResponderEvent,
-} from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Octicons from "@expo/vector-icons/Octicons";
 import { Text, useTheme } from "react-native-paper";
 
-type SettingsButtonProps = {
-  icon: any;
-  label: string;
-  onPress: (event: GestureResponderEvent) => void;
-};
+const SettingsButton = ({ icon, label, onPress }) => {
+  const theme = useTheme();
 
-const SettingsButton: React.FC<SettingsButtonProps> = ({
-  icon,
-  label,
-  onPress,
-}) => {
   return (
     <TouchableOpacity style={[styles.button]} onPress={onPress}>
-      <Octicons style={{ color: "red" }} name={icon} size={24} color="black" />
+      <Octicons
+        style={{ color: theme.colors.primary }}
+        name={icon}
+        size={24}
+        color="black"
+      />
       <Text style={[styles.buttonText]}>{label}</Text>
     </TouchableOpacity>
   );

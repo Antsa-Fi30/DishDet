@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Text } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import Octicons from "@expo/vector-icons/Octicons";
 
 type SettingsHeadProps = {
@@ -10,13 +10,18 @@ type SettingsHeadProps = {
 
 const SettingsHead: React.FC<SettingsHeadProps> = ({ title }) => {
   const navigation = useNavigation();
+  const theme = useTheme();
   return (
     <View style={styles.headTitle}>
       <TouchableOpacity
         style={styles.buttonback}
         onPress={() => navigation.goBack()}
       >
-        <Octicons name="arrow-left" size={25} color="black" />
+        <Octicons
+          name="arrow-left"
+          size={25}
+          color={theme.dark ? "white" : "black"}
+        />
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>

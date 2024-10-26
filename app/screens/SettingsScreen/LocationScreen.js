@@ -1,14 +1,20 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { IconButton, Text } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import SettingsHead from "../../components/templates/SettingsHead";
 import LocationContent from "../../components/Settings/LocationContent";
 
 const LocationScreen = () => {
   const navigation = useNavigation();
+  const theme = useTheme();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={[
+        styles.container,
+        { backgroundColor: theme.colors.elevation.level1 },
+      ]}
+    >
       <View style={styles.subContainer}>
         <SettingsHead title={"Change your location"} />
         <View style={styles.parameters}>

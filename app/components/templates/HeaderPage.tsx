@@ -5,7 +5,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Octicons from "@expo/vector-icons/Octicons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
-const HeaderPage = ({ title }) => {
+type HeaderPageProps = {
+  title: string;
+};
+
+const HeaderPage: React.FC<HeaderPageProps> = ({ title }) => {
   const navigation = useNavigation();
   const route = useRoute();
   const theme = useTheme();

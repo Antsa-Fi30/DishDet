@@ -15,8 +15,8 @@ export default Itineraire;
 const styles = StyleSheet.create({
   routeButton: {
     position: "absolute",
-    bottom: 10,
     left: 100,
+    top: 20,
   },
   routeButtonText: {
     fontFamily: "Montserrat-SemiBold",
