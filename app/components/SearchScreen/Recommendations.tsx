@@ -1,16 +1,22 @@
 import { StyleSheet, View, FlatList, Dimensions } from "react-native";
-import { Text } from "react-native-paper";
 import React from "react";
-import HeadingTitle from "../templates/HeadingTitle";
-import RestaurantCard from "../HomeScreen/RestaurantCard";
 import RestoList from "../HomeScreen/RestoList";
 
-const Recommendations = ({ data }) => {
+type Recommendations = {
+  id: number;
+  name: string;
+};
+
+type RecommendationProps = {
+  data: Recommendations[];
+};
+
+const Recommendations: React.FC<RecommendationProps> = ({ data }) => {
   return (
     <View>
       <RestoList
+        title="Recommended"
         restos={data}
-        type={"Recommendations"}
         label={"Recommendation based on your emotions"}
       />
     </View>

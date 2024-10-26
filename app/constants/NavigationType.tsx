@@ -1,10 +1,15 @@
 import { RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
+type NotificationDetailsParams =
+  | { type: "promotion"; offerDetails: string; restaurants: any[] }
+  | { type: "newRestaurants"; newRestaurants: any[] }
+  | { type: "reminder"; reminderMessage: string; restaurant: any };
+
 // Définissez vos routes et leurs paramètres (s'il y en a)
 export type RootStackParamList = {
   Home: undefined;
-  NotificationDetails: { notificationId: number };
+  NotificationDetails: NotificationDetailsParams;
   RestaurantList: undefined;
   RestaurantDetails: { restaurant: any };
   Search: any;

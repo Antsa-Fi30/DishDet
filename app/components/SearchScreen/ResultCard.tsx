@@ -3,10 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Avatar } from "react-native-paper";
-import {
-  RestaurantDetailsProp,
-  RestaurantDetailsRouteProp,
-} from "../../constants/NavigationType";
+import { RestaurantDetailsProp } from "../../constants/NavigationType";
 
 type RestaurantResult = {
   name: string;
