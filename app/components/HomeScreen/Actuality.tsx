@@ -42,7 +42,7 @@ const restaurantPosts = [
 
 const Actuality = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <RestaurantFeed posts={restaurantPosts} />
     </View>
   );
@@ -50,4 +50,8 @@ const Actuality = () => {
 
 export default Actuality;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 60,
+  },
+});

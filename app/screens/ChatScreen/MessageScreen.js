@@ -4,7 +4,7 @@ import MessageContent from "../../components/ChatScreen/MessageContent";
 
 const MessageScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <MessageContent />
     </View>
   );

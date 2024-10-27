@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { TextInput, useTheme } from "react-native-paper";
 import Feather from "@expo/vector-icons/Feather";
+
 const MessageInput = ({ onSend }) => {
   const [message, setMessage] = useState("");
   const theme = useTheme();

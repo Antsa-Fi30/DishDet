@@ -15,5 +15,6 @@ export default SavedScreen;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 15,
+    marginBottom: 60,
   },
 });

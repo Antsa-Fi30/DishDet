@@ -4,6 +4,7 @@ import {
   FlatList,
   StyleSheet,
   Image,
+  Pressable,
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
@@ -13,7 +14,7 @@ import { RestaurantListNavigationProp } from "../../constants/NavigationType";
 import { Text, useTheme } from "react-native-paper";
 
 type Restaurant = {
-  id: string;
+  id: number;
   name: string;
   location: string;
   image: string;
@@ -28,32 +29,32 @@ type ExploreCategory = {
 // Simulez des données pour les restaurants Nearby
 const restaurants: Restaurant[] = [
   {
-    id: "1",
+    id: 1,
     name: "Restaurant 1",
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
   {
-    id: "2",
+    id: 2,
     name: "Restaurant 2",
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
   {
-    id: "3",
+    id: 3,
     name: "Restaurant 3",
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
   {
-    id: "4",
+    id: 4,
     name: "Restaurant 4",
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
   {
-    id: "5",
-    name: "Restaurant 4",
+    id: 5,
+    name: "Restaurant ",
     location: "Paris, France",
     image: "https://via.placeholder.com/150",
   },
@@ -75,7 +76,7 @@ const ViewAllPage: React.FC = () => {
   const theme = useTheme();
 
   const renderRestaurant = ({ item }: { item: Restaurant }) => (
-    <TouchableOpacity
+    <Pressable
       style={[
         styles.restaurantCard,
         { backgroundColor: theme.colors.elevation.level1 },
@@ -92,7 +93,7 @@ const ViewAllPage: React.FC = () => {
         <Text style={styles.restaurantName}>{item.name}</Text>
         <Text style={styles.restaurantLocation}>{item.location}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 
   const renderExploreCategory = ({ item }: { item: ExploreCategory }) => (
@@ -104,7 +105,7 @@ const ViewAllPage: React.FC = () => {
 
   return (
     <SafeAreaView
-      style={[styles.container, { backgroundColor: theme.colors.backdrop }]}
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
       <Text style={styles.sectionTitle}>Explore</Text>
       <FlatList
@@ -121,7 +122,8 @@ const ViewAllPage: React.FC = () => {
         <FlatList
           data={restaurants}
           renderItem={renderRestaurant}
-          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          nestedScrollEnabled={true}
         />
       </View>
     </SafeAreaView>

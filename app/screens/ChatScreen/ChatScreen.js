@@ -4,7 +4,7 @@ import ChatContent from "../../components/ChatScreen/ChatContent";
 
 const ChatScreen = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <ChatContent />
     </View>
   );
@@ -12,4 +12,8 @@ const ChatScreen = () => {
 
 export default ChatScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 60,
+  },
+});

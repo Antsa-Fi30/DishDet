@@ -37,15 +37,19 @@ const typeresto = [
 
 const NearbyContent = () => {
   return (
-    <>
+    <View style={styles.container}>
       <SearchSource />
       <Promotions />
       <ExploreList typeresto={typeresto} label={""} />
       <RestoList restos={data1} title={"Nearby"} label={""} />
-    </>
+    </View>
   );
 };
 
 export default NearbyContent;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 60,
+  },
+});

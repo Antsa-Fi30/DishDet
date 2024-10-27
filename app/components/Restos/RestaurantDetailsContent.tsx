@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
-import { Text, Title, Paragraph } from "react-native-paper";
+import { View, StyleSheet, Image, ScrollView } from "react-native";
+import { Text, Title, Paragraph, useTheme } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 
 type Restos = {
@@ -15,8 +15,16 @@ type RestaurantDetailsContentProps = {
 const RestaurantDetailsContent: React.FC<RestaurantDetailsContentProps> = ({
   restaurant,
 }) => {
+  const theme = useTheme();
   return (
-    <View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={{
+        backgroundColor: theme.colors.background,
+        height: "100%",
+        maxHeight: "100%",
+      }}
+    >
       {/* Image principale */}
       <Image source={require("../../../assets/1.jpg")} style={styles.image} />
 
@@ -43,7 +51,7 @@ const RestaurantDetailsContent: React.FC<RestaurantDetailsContentProps> = ({
           <MaterialIcons name="star-outline" size={18} color="#FFD700" />
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

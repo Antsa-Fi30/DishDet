@@ -5,7 +5,7 @@ import ChatLists from "./ChatLists";
 
 const ChatContent = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <ChatSearch />
       <ChatLists />
     </View>
@@ -14,4 +14,8 @@ const ChatContent = () => {
 
 export default ChatContent;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 60,
+  },
+});

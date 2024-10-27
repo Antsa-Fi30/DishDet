@@ -20,21 +20,51 @@ const ChatLists = () => {
       lastMessage: "D'accord, merci !",
       timestamp: "Yesterday",
     },
+    {
+      name: "Alice3",
+      lastMessage: "D'accord, merci !",
+      timestamp: "Yesterday",
+    },
+    {
+      name: "Alice3",
+      lastMessage: "D'accord, merci !",
+      timestamp: "Yesterday",
+    },
+    {
+      name: "Alice3",
+      lastMessage: "D'accord, merci !",
+      timestamp: "Yesterday",
+    },
+    {
+      name: "Alice3",
+      lastMessage: "D'accord, merci !",
+      timestamp: "Yesterday",
+    },
+    {
+      name: "Alice3",
+      lastMessage: "D'accord, merci !",
+      timestamp: "Yesterday",
+    },
   ];
   return (
-    <FlatList
-      data={persons}
-      contentContainerStyle={styles.container}
-      renderItem={({ item }) => <ChatItem chat={item} />}
-      showsVerticalScrollIndicator={false}
-    />
+    <>
+      <FlatList
+        style={styles.ListContainer}
+        data={persons}
+        contentContainerStyle={styles.container}
+        renderItem={({ item }) => <ChatItem chat={item} />}
+        showsVerticalScrollIndicator={false}
+      />
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    backgroundColor: "transparent",
+  },
+  ListContainer: {
+    marginBottom: 126,
   },
 });
 

@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginHorizontal: 18,
     marginVertical: 20,
-    borderWidth: 2, // Épaisseur de la bordure
+    borderWidth: 0.5, // Épaisseur de la bordure
     borderColor: "#ddd", // Couleur de la bordure
     gap: 10,
   },

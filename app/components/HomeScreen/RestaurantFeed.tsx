@@ -20,6 +20,7 @@ const RestaurantFeed: React.FC<RestaurantFeedProps> = ({ posts }) => {
         data={posts}
         renderItem={({ item }) => <RestaurantPostCard post={item} />}
         keyExtractor={(item) => item.id}
+        nestedScrollEnabled={true}
         contentContainerStyle={{ padding: 10 }}
       />
     </View>

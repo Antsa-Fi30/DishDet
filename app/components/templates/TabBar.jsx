@@ -88,7 +88,7 @@ const TabBar = ({ state, navigation }) => {
               backgroundColor: primaryColor,
               borderRadius: 35,
               marginHorizontal: 12,
-              height: dimension.height - 15,
+              height: dimension.height - 20,
               width: buttonWidth - 25,
             },
           ]}
@@ -114,16 +114,17 @@ const TabBar = ({ state, navigation }) => {
 export default TabBar;
 const styles = StyleSheet.create({
   tabbar: {
-    // position: "absolute",
-    position: "static",
-    // bottom: 10,
+    position: "absolute",
+    // position: "static",
+    bottom: 8,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 20,
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
-    // borderRadius: 35,
+    marginHorizontal: 20,
+    // borderTopLeftRadius: 35,
+    // borderTopRightRadius: 35,
+    borderRadius: 35,
     borderCurve: "continuous",
   },
 });

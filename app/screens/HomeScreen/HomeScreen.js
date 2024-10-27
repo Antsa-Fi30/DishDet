@@ -5,7 +5,11 @@ import HomeContent from "../../components/HomeScreen/HomeContent";
 const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled={true}
+      >
         <HomeContent navigation={navigation} />
       </ScrollView>
     </SafeAreaView>
