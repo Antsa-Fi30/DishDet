@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import ResultList from "./ResultList";
 
-const Result = ({ data }) => {
+const Result = () => {
   return (
     <View>
-      <ResultList data={data} />
+      <ResultList />
     </View>
   );
 };

@@ -6,8 +6,8 @@ import Result from "./Result";
 import Recommendations from "./Recommendations";
 
 const data = [
-  { id: "1", name: "Restaurant 1" },
-  { id: "2", name: "Restaurant 2" },
+  { id: 1, name: "Restaurant 1", favorite: true },
+  { id: 2, name: "Restaurant 2", favorite: true },
 ];
 
 const SearchContent = () => {
@@ -16,7 +16,7 @@ const SearchContent = () => {
       <SeachInput />
       <Recommendations data={data} />
       <Recent />
-      <Result data={data.filter((item) => item.name === "Restaurant 1")} />
+      <Result />
     </ScrollView>
   );
 };

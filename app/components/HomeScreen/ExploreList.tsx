@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
   list: {
     display: "flex",
     flexDirection: "row",
-    gap: 10,
+    gap: 4,
+    alignSelf: "center",
     paddingVertical: 2,
-    paddingHorizontal: 1,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   label: {
     fontFamily: "Montserrat-Regular",

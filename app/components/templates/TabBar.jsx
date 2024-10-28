@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",
     // position: "static",
-    bottom: 8,
+    bottom: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

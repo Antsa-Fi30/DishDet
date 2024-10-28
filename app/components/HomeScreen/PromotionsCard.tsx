@@ -41,7 +41,7 @@ const PromotionsCard: React.FC<promotionsProps> = ({ index, item }) => {
             </Button>
           </View>
         </View>
-        <Badge size={25} style={styles.badge}>
+        <Badge size={20} style={styles.badge}>
           {item.badge}
         </Badge>
       </ImageBackground>
@@ -79,19 +79,19 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Montserrat-Bold",
-    fontSize: 20,
+    fontSize: 16,
     color: "#fff",
     marginBottom: 5,
   },
   description: {
     fontFamily: "Montserrat-Medium",
-    fontSize: 14,
+    fontSize: 13,
     color: "#ddd",
     marginBottom: 10,
   },
   validity: {
     fontFamily: "Montserrat-Medium",
-    fontSize: 12,
+    fontSize: 11,
     color: "#aaa",
     marginBottom: 15,
   },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   ctaLabel: {
     fontFamily: "Montserrat-Medium",
     color: "white",
-    fontSize: 12,
+    fontSize: 11,
   },
   ctacontainer: {
     flexDirection: "row",

@@ -6,20 +6,8 @@ import { List, Text } from "react-native-paper";
 const Recent = () => {
   return (
     <View style={styles.container}>
-      <HeadingTitle text={"Recents"} viewAll={"Restaurant List"} />
+      <HeadingTitle text={"Recents"} viewAll={false} />
       <View style={styles.listcontainer}>
-        <List.Item
-          title={<Text style={styles.label}>Burger</Text>}
-          // left={(props) => <List.Icon {...props} icon="folder" />}
-          right={(props) => <List.Icon {...props} icon="folder" />}
-          style={styles.item}
-        />
-        <List.Item
-          title={<Text style={styles.label}>Burger</Text>}
-          // left={(props) => <List.Icon {...props} icon="folder" />}
-          right={(props) => <List.Icon {...props} icon="folder" />}
-          style={styles.item}
-        />
         <List.Item
           title={<Text style={styles.label}>Burger</Text>}
           // left={(props) => <List.Icon {...props} icon="folder" />}
@@ -47,6 +35,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "Montserrat-Regular",
-    fontSize: 16,
+    fontSize: 14,
   },
 });

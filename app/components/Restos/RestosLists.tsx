@@ -1,17 +1,15 @@
-import React from "react";
 import {
-  View,
-  FlatList,
   StyleSheet,
-  Image,
+  View,
+  ScrollView,
   Pressable,
-  TouchableOpacity,
-  SafeAreaView,
+  Image,
+  FlatList,
 } from "react-native";
-import { Avatar } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-import { RestaurantListNavigationProp } from "../../constants/NavigationType";
+import React from "react";
 import { Text, useTheme } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+import { RestaurantDetailsProp } from "../../constants/NavigationType";
 
 type Restaurant = {
   id: number;
@@ -20,145 +18,132 @@ type Restaurant = {
   image: string;
 };
 
-type ExploreCategory = {
-  id: string;
-  title: string;
-  image: string;
-};
-
-// Simulez des données pour les restaurants Nearby
-const restaurants: Restaurant[] = [
-  {
-    id: 1,
-    name: "Restaurant 1",
-    location: "Paris, France",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 2,
-    name: "Restaurant 2",
-    location: "Paris, France",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 3,
-    name: "Restaurant 3",
-    location: "Paris, France",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 4,
-    name: "Restaurant 4",
-    location: "Paris, France",
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 5,
-    name: "Restaurant ",
-    location: "Paris, France",
-    image: "https://via.placeholder.com/150",
-  },
-  // Ajoutez d'autres restaurants si nécessaire
-];
-
-// Simulez des données pour les catégories Explore
-const exploreCategories: ExploreCategory[] = [
-  { id: "1", title: "Emotions", image: "https://via.placeholder.com/150" },
-  { id: "2", title: "Hungry", image: "https://via.placeholder.com/150" },
-  { id: "3", title: "Romantic", image: "https://via.placeholder.com/150" },
-  { id: "4", title: "Romantic", image: "https://via.placeholder.com/150" },
-  { id: "5", title: "Romantic", image: "https://via.placeholder.com/150" },
-  { id: "6", title: "Romantic", image: "https://via.placeholder.com/150" },
-];
-
-const ViewAllPage: React.FC = () => {
-  const navigation = useNavigation<RestaurantListNavigationProp>();
+const RestosLists = () => {
+  const navigation = useNavigation<RestaurantDetailsProp>();
   const theme = useTheme();
 
-  const renderRestaurant = ({ item }: { item: Restaurant }) => (
-    <Pressable
-      style={[
-        styles.restaurantCard,
-        { backgroundColor: theme.colors.elevation.level1 },
-      ]}
-      onPress={() =>
-        navigation.navigate("RestaurantDetails", { restaurant: item })
-      }
-    >
-      <Image
-        source={require("../../../assets/15.jpg")}
-        style={styles.restaurantImage}
-      />
-      <View>
-        <Text style={styles.restaurantName}>{item.name}</Text>
-        <Text style={styles.restaurantLocation}>{item.location}</Text>
-      </View>
-    </Pressable>
-  );
-
-  const renderExploreCategory = ({ item }: { item: ExploreCategory }) => (
-    <TouchableOpacity style={styles.exploreCard}>
-      <Avatar.Image source={require("../../../assets/1.jpg")} size={80} />
-      <Text style={styles.exploreTitle}>{item.title}</Text>
-    </TouchableOpacity>
-  );
+  const restaurants: Restaurant[] = [
+    {
+      id: 1,
+      name: "Restaurant 1",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 2,
+      name: "Restaurant 2",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 3,
+      name: "Restaurant 3",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 4,
+      name: "Restaurant 4",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 5,
+      name: "Restaurant 5",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 6,
+      name: "Restaurant 6",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 7,
+      name: "Restaurant 7",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 8,
+      name: "Restaurant 8",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 9,
+      name: "Restaurant 9",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 10,
+      name: "Restaurant 10",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    {
+      id: 11,
+      name: "Restaurant 11",
+      location: "Paris, France",
+      image: "https://via.placeholder.com/150",
+    },
+    // Ajoutez d'autres restaurants si nécessaire
+  ];
 
   return (
-    <SafeAreaView
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
-      <Text style={styles.sectionTitle}>Explore</Text>
-      <FlatList
-        data={exploreCategories}
-        renderItem={renderExploreCategory}
-        keyExtractor={(item) => item.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.exploreList}
-      />
-
-      <View style={styles.restaurantList}>
-        <Text style={styles.sectionTitle}>Nearby</Text>
+    <View style={styles.container}>
+      <View style={styles.subcontainer}>
         <FlatList
+          style={styles.restaurantList}
           data={restaurants}
-          renderItem={renderRestaurant}
-          showsVerticalScrollIndicator={false}
-          nestedScrollEnabled={true}
+          renderItem={({ item }) => (
+            <Pressable
+              style={[
+                styles.restaurantCard,
+                { backgroundColor: theme.colors.elevation.level1 },
+              ]}
+              onPress={() =>
+                navigation.navigate("RestaurantDetails", { restaurant: item })
+              }
+            >
+              <Image
+                source={require("../../../assets/1.jpg")} // Utilisation de l'URL de l'image du restaurant
+                style={styles.restaurantImage}
+              />
+              <View>
+                <Text style={styles.restaurantName}>{item.name}</Text>
+                <Text style={styles.restaurantLocation}>{item.location}</Text>
+              </View>
+            </Pressable>
+          )}
+          keyExtractor={(item) => item.id.toString()}
         />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
+
+export default RestosLists;
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderBottomStartRadius: 25,
-    borderBottomEndRadius: 25,
+    maxHeight: "100%",
   },
-
-  sectionTitle: {
-    fontSize: 18,
-    fontFamily: "Montserrat-SemiBold",
-    marginBottom: 10,
+  subcontainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 5,
   },
-
-  exploreList: {
+  title: {
+    fontFamily: "Montserrat-Bold",
+    fontSize: 20,
+    paddingVertical: 13,
+  },
+  restaurantList: {
     marginBottom: 20,
   },
-
-  exploreCard: {
-    marginRight: 15,
-    alignItems: "center",
-  },
-
-  exploreTitle: {
-    fontFamily: "Montserrat-Medium",
-    fontSize: 14,
-    marginTop: 5,
-  },
-  restaurantList: {},
   restaurantCard: {
     flexDirection: "row",
     marginBottom: 15,
@@ -184,5 +169,3 @@ const styles = StyleSheet.create({
     color: "#aaa",
   },
 });
-
-export default ViewAllPage;

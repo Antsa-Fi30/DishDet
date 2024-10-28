@@ -7,6 +7,7 @@ import React from "react";
 type RestoType = {
   id: number;
   name: string;
+  favorite: boolean;
 };
 
 type RestoProps = {
@@ -36,9 +37,7 @@ const RestoList: React.FC<RestoProps> = ({ restos, title, label }) => {
 export default RestoList;
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: "2%",
-  },
+  container: {},
   list: {
     display: "flex",
     flexDirection: "row",

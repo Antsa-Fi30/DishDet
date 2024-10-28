@@ -21,9 +21,9 @@ const data2 = [
 ];
 
 const data3 = [
-  { id: 4, name: "Restaurant 4" },
+  { id: 4, name: "Restaurant 4", favorite: true },
   { id: 5, name: "Restaurant 5" },
-  { id: 9, name: "Restaurant 9" },
+  { id: 9, name: "Restaurant 9", favorite: true },
 ];
 
 const typeresto = [
@@ -50,6 +50,6 @@ export default NearbyContent;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 60,
+    marginBottom: 70,
   },
 });

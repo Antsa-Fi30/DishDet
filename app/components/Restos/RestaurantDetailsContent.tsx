@@ -67,17 +67,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Montserrat-Bold",
-    fontSize: 22,
+    fontSize: 24,
     marginBottom: 10,
   },
   location: {
     fontFamily: "Montserrat-Regular",
     color: "gray",
+    fontSize: 14,
     marginBottom: 10,
   },
   description: {
     fontFamily: "Montserrat-Regular",
-    fontSize: 16,
+    fontSize: 14,
     lineHeight: 24,
     marginBottom: 20,
   },

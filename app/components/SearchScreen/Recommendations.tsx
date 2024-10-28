@@ -5,6 +5,7 @@ import RestoList from "../HomeScreen/RestoList";
 type Recommendations = {
   id: number;
   name: string;
+  favorite: boolean;
 };
 
 type RecommendationProps = {

@@ -27,25 +27,10 @@ const ResultList = () => {
       location: "Berlin, Germany",
       rating: 4.0,
     },
-    {
-      id: 4,
-      image: "assets/1.jpg",
-      name: "Restaurant D",
-      location: "Berlin, Germany",
-      rating: 5,
-    },
-    {
-      id: 5,
-      image: "assets/1.jpg",
-      name: "Restaurant E",
-      location: "Berlin, Germany",
-      rating: 4.0,
-    },
-    // Ajoutez d'autres données ici...
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <Text style={styles.label}>Results:</Text>
 
       <ScrollView style={styles.containerList}>

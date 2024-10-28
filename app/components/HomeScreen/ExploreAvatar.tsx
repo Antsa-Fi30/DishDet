@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     position: "absolute",
-    backgroundColor: "rgba(0, 0, 0, 0.4)", // Semi-transparent grey overlay
+    backgroundColor: "rgba(0, 0, 0, 0.3)", // Semi-transparent grey overlay
     width: 90,
     height: 90,
     borderRadius: 50, // To match the circular shape of the avatar
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "#fff", // White color for the text to be readable
     fontFamily: "Montserrat-Bold",
-    fontSize: 15,
+    fontSize: 12.5,
     textAlign: "center",
   },
 });

@@ -8,6 +8,7 @@ import { RestaurantDetailsProp } from "../../constants/NavigationType";
 type Resto = {
   id: number;
   name: string;
+  favorite: boolean;
 };
 
 type RestoCardProps = {
@@ -53,13 +54,23 @@ const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
               <MaterialIcons name="star-outline" size={18} color="#FFD700" />
             </View>
             <View>
-              <TouchableOpacity>
-                <MaterialIcons
-                  name="bookmark-outline"
-                  size={18}
-                  color={theme.colors.tertiary}
-                />
-              </TouchableOpacity>
+              {restaurant.favorite ? (
+                <TouchableOpacity>
+                  <MaterialIcons
+                    name="bookmark"
+                    size={18}
+                    color={theme.colors.tertiary}
+                  />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity>
+                  <MaterialIcons
+                    name="bookmark-outline"
+                    size={18}
+                    color={theme.colors.tertiary}
+                  />
+                </TouchableOpacity>
+              )}
             </View>
           </View>
         </Card.Content>
@@ -93,10 +104,12 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "Montserrat-Bold",
     marginTop: 10,
-    fontSize: 15,
+    fontSize: 16,
   },
   location: {
     fontFamily: "Montserrat-Regular",
+    fontSize: 12,
+
     flexDirection: "row",
     alignItems: "center",
     color: "gray",
