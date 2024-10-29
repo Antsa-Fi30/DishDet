@@ -9,6 +9,7 @@ type NotificationDetailsParams =
 // Définissez vos routes et leurs paramètres (s'il y en a)
 export type RootStackParamList = {
   Home: undefined;
+  Notifications: any;
   NotificationDetails: NotificationDetailsParams;
   RestaurantList: undefined;
   RestaurantDetails: { restaurant: any };
@@ -22,6 +23,11 @@ export type RootStackParamList = {
 };
 
 // Propriétés de navigation pour chaque écran
+export type NotificationsNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Notifications"
+>;
+
 export type NotificationNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "NotificationDetails"
@@ -85,6 +91,11 @@ export type MessageRouteProp = RouteProp<RootStackParamList, "Message">;
 export type NotificationDetailsRouteProp = RouteProp<
   RootStackParamList,
   "NotificationDetails"
+>;
+
+export type NotificationsRouteProp = RouteProp<
+  RootStackParamList,
+  "Notifications"
 >;
 
 export type EditProfileRouteProp = RouteProp<RootStackParamList, "EditProfile">;

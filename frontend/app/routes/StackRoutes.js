@@ -1,7 +1,18 @@
+import { useState, useEffect } from "react";
+
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //Pages:
+
+//Welcome
+import Welcome from "../screens/shared/Welcome";
+
+//Login and signin
+import Login from "../screens/shared/Login";
+import Signin from "../screens/shared/Signin";
+
 //Home Page
 import Routes from "./Routes";
 
@@ -27,9 +38,46 @@ import NotificationDetailsHeader from "../components/NotificationScreen/Notifica
 const Stack = createNativeStackNavigator();
 
 const StackRoutes = ({ theme }) => {
+  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+
+  useEffect(() => {
+    const checkFirstLaunch = async () => {
+      const hasLaunched = await AsyncStorage.getItem("hasLaunched");
+      if (hasLaunched === null) {
+        // Première ouverture
+        setIsFirstLaunch(true);
+        await AsyncStorage.setItem("hasLaunched", "true");
+      } else {
+        // Pas la première ouverture
+        setIsFirstLaunch(false);
+      }
+    };
+
+    checkFirstLaunch();
+  }, []);
+
+  if (isFirstLaunch === null) {
+    return null; // Affiche un écran de chargement si nécessaire
+  }
+
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={isFirstLaunch ? "Welcome" : "App"}>
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Welcome"
+          component={Welcome}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Login"
+          component={Login}
+        />
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name="Signin"
+          component={Signin}
+        />
         <Stack.Screen
           options={{ headerShown: false }}
           name="App"

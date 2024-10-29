@@ -7,8 +7,8 @@ import StackRoutes from "./app/routes/StackRoutes";
 //Expo fonts
 import { useFonts } from "expo-font";
 
+//Theme:
 import { PaperProvider, MD3LightTheme, MD3DarkTheme } from "react-native-paper";
-
 import { FlatUITheme, DarkFlatUITheme } from "./app/utils/theme"; // Importer les thèmes
 
 const App = () => {
@@ -18,14 +18,15 @@ const App = () => {
     "Montserrat-SemiBold": require("./assets/fonts/Montserrat-SemiBold.ttf"),
     "Montserrat-Bold": require("./assets/fonts/Montserrat-Bold.ttf"),
   });
+  const [isFirstTime, setIsFirstTime] = useState(false);
 
   if (!loaded && !error) {
     return null;
   }
 
   return (
-    <PaperProvider theme={MD3DarkTheme}>
-      <StackRoutes theme={DarkFlatUITheme} />
+    <PaperProvider theme={MD3LightTheme}>
+      <StackRoutes theme={FlatUITheme} />
     </PaperProvider>
   );
 };

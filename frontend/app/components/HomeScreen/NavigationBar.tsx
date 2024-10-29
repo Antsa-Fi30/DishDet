@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     paddingVertical: 10,
+    marginTop: 10,
     // borderBottomWidth: 1,
     // borderBottomColor: "#ddd",
   },
