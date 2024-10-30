@@ -10,7 +10,7 @@ const Booking = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    Restaurantid: {
+    restaurantid: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -18,7 +18,7 @@ const Booking = sequelize.define(
         key: "id",
       },
     },
-    Userid: {
+    userid: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -26,10 +26,10 @@ const Booking = sequelize.define(
         key: "id",
       },
     },
-    DateBooking: {
+    dateBooking: {
       type: DataTypes.DATE,
     },
-    ReservedPlaces: {
+    reservedPlaces: {
       type: DataTypes.INTEGER,
     },
   },

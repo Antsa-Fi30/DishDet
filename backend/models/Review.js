@@ -10,7 +10,7 @@ const Review = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    Restaurantid: {
+    restaurantid: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -18,7 +18,7 @@ const Review = sequelize.define(
         key: "id",
       },
     },
-    Userid: {
+    userid: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
@@ -26,13 +26,13 @@ const Review = sequelize.define(
         key: "id",
       },
     },
-    Rating: {
+    rating: {
       type: DataTypes.INTEGER,
     },
-    Comments: {
+    comments: {
       type: DataTypes.TEXT,
     },
-    ReviewDate: {
+    reviewDate: {
       type: DataTypes.DATE,
     },
   },

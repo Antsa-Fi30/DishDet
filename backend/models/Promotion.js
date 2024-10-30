@@ -10,7 +10,7 @@ const Promotion = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    Restaurantid: {
+    restaurantID: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -18,13 +18,13 @@ const Promotion = sequelize.define(
         key: "id",
       },
     },
-    Description: {
+    description: {
       type: DataTypes.TEXT,
     },
-    DateStart: {
+    dateStart: {
       type: DataTypes.DATE,
     },
-    DateEnd: {
+    dateEnd: {
       type: DataTypes.DATE,
     },
   },

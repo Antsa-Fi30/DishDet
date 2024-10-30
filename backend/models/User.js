@@ -10,14 +10,14 @@ const Utilisateur = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    Name: {
+    name: {
       type: DataTypes.STRING(255),
     },
-    Email: {
+    email: {
       type: DataTypes.STRING(255),
       unique: true,
     },
-    Password: {
+    password: {
       type: DataTypes.STRING(255),
     },
   },

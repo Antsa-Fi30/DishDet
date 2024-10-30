@@ -4,30 +4,33 @@ const sequelize = require("../config/database");
 const Restaurant = sequelize.define(
   "restaurants",
   {
-    ID: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    Nom: {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    latitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    longitude: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    reservations: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    cuisineType: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    Latitude: {
-      type: DataTypes.FLOAT,
-    },
-    Longitude: {
-      type: DataTypes.FLOAT,
-    },
-    PlacesReservation: {
-      type: DataTypes.INTEGER,
-    },
-    TypeCuisine: {
-      type: DataTypes.STRING(255),
-    },
   },
   {
-    tableName: "restaurants",
     timestamps: false, // Si tu veux pas les colonnes createdAt et updatedAt
   }
 );

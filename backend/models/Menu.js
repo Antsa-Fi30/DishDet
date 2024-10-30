@@ -9,7 +9,7 @@ const Menu = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    Restaurantid: {
+    restaurantId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -17,16 +17,16 @@ const Menu = sequelize.define(
         key: "id",
       },
     },
-    NomPlat: {
+    itemName: {
       type: DataTypes.STRING(255),
     },
-    Description: {
+    description: {
       type: DataTypes.TEXT,
     },
-    Price: {
-      type: DataTypes.FLOAT,
+    price: {
+      type: DataTypes.INTEGER,
     },
-    Categorie: {
+    categorie: {
       type: DataTypes.STRING(50),
     },
   },
