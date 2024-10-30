@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import RestaurantPostCard from "./RestaurantPostCard";
 
 type RestaurantActuality = {
@@ -16,17 +16,19 @@ type RestaurantFeedProps = {
 const RestaurantFeed: React.FC<RestaurantFeedProps> = ({ posts }) => {
   return (
     <View>
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => <RestaurantPostCard post={item} />}
-        keyExtractor={(item) => item.id}
-        nestedScrollEnabled={true}
-        contentContainerStyle={{ padding: 10 }}
-      />
+      <ScrollView contentContainerStyle={styles.container}>
+        {posts.map((post) => (
+          <RestaurantPostCard key={post.id} post={post} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
 
 export default RestaurantFeed;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 70,
+  },
+});

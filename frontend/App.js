@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 //Routes Navigation
@@ -10,6 +10,8 @@ import { useFonts } from "expo-font";
 //Theme:
 import { PaperProvider, MD3LightTheme, MD3DarkTheme } from "react-native-paper";
 import { FlatUITheme, DarkFlatUITheme } from "./app/utils/theme"; // Importer les thèmes
+
+import axios from "axios";
 
 const App = () => {
   const [loaded, error] = useFonts({

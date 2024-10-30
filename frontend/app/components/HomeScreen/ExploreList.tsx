@@ -26,7 +26,6 @@ const ExploreList: React.FC<ExploreListProps> = ({ typeresto, label }) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.list}
-        nestedScrollEnabled={true}
       />
     </View>
   );

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RestaurantFeed from "./RestaurantFeed";
 
 const restaurantPosts = [
@@ -41,6 +41,15 @@ const restaurantPosts = [
 ];
 
 const Actuality = () => {
+  const [actus, setActus] = useState([]);
+
+  useEffect(() => {
+    const fetchActus = async () => {
+      try {
+      } catch (error) {}
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <RestaurantFeed posts={restaurantPosts} />
@@ -52,6 +61,6 @@ export default Actuality;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 60,
+    marginBottom: 0,
   },
 });

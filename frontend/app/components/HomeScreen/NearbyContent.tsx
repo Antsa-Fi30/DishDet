@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import SearchSource from "./SearchSource";
 import RestoList from "././RestoList";
@@ -37,12 +37,12 @@ const typeresto = [
 
 const NearbyContent = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <SearchSource />
       <Promotions />
       <ExploreList typeresto={typeresto} label={""} />
       <RestoList restos={data1} title={"Nearby"} label={""} />
-    </View>
+    </ScrollView>
   );
 };
 
