@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 //ORM Sequelize configurations
-const sequelize = require("./config/configdatabase");
+const sequelize = require("./config/database");
 
 //Routes
 
