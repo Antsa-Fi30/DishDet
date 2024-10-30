@@ -8,60 +8,61 @@ import { formatDate } from "../../utils/formatDate";
 const EditProm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [units, setUnits] = useState([]);
-  const [selectedUnits, setSelectedUnits] = useState();
-  const [person, setPerson] = useState({
-    FirstName: "",
-    LastName: "",
-    Quality: "",
-    birthDate: "",
-    startDate: "",
-    endDate: "",
-    Units: selectedUnits,
+  const [restos, setRestos] = useState([]);
+  const [selectedRestos, setSelectedRestos] = useState();
+  const [promo, setPromo] = useState({
+    restaurantID: selectedRestos.id,
+    description: "",
+    dateStart: "",
+    dateEnd: "",
   });
 
   useEffect(() => {
-    const fetchUnite = async () => {
-      try {
-        const response = await axios.get("http://localhost:5000/api/unites");
-        setUnits(response.data);
-      } catch (err) {
-        console.error("Error adding person:", err);
-      }
-    };
-    const fetchPerson = async () => {
+    const fetchRestos = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/person/${id}`
+          "http://localhost:5000/api/restaurants"
         );
-        setPerson(response.data);
-        console.log();
-      } catch (error) {
-        console.error("Error fetching person data:", error);
+        setRestos(response.data);
+      } catch (err) {
+        console.error("Error adding promo:", err);
       }
     };
-    fetchUnite();
-    fetchPerson();
+    const fetchpromo = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/promo/${id}`
+        );
+        setPromo(response.data);
+        console.log();
+      } catch (error) {
+        console.error("Error fetching promo data:", error);
+      }
+    };
+    fetchRestos();
+    fetchpromo();
   }, [id]);
 
   const handleChange = (e) => {
-    setPerson({ ...person, [e.target.name]: e.target.value });
+    setPromo({ ...promo, [e.target.name]: e.target.value });
   };
 
   const handleUnitChange = (e) => {
     const UnitId = e.target.value;
-    setSelectedUnits(UnitId), setPerson({ ...person, Units: UnitId });
+    setSelectedRestos(UnitId), setPromo({ ...promo, Restos: UnitId });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/persons/${id}`, person);
-      navigate("/persons");
+      await axios.put(`http://localhost:5000/api/promos/${id}`, promo);
+      navigate("/promos");
     } catch (error) {
-      console.error("Error updating person:", error);
+      console.error("Error updating promo:", error);
     }
   };
+
+  console.log(restos);
 
   return (
     <div>
@@ -88,7 +89,7 @@ const EditProm = () => {
             </button>
 
             <div className="my-3 textgrad font-bold text-3xl">
-              Modifier une personne
+              Modifier une promone
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <div>
@@ -106,7 +107,7 @@ const EditProm = () => {
                     type="text"
                     name="FirstName"
                     id="FirstName"
-                    value={person.FirstName}
+                    value={promo.FirstName}
                     onChange={handleChange}
                   />
                 </div>
@@ -126,7 +127,7 @@ const EditProm = () => {
                     type="text"
                     name="LastName"
                     id="LastName"
-                    value={person.LastName}
+                    value={promo.LastName}
                     onChange={handleChange}
                   />
                 </div>
@@ -136,12 +137,12 @@ const EditProm = () => {
                 <select
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   required=""
-                  name="Units"
-                  id="Units"
-                  value={person.Units}
+                  name="Restos"
+                  id="Restos"
+                  value={promo.Restos}
                   onChange={handleUnitChange}
                 >
-                  {units.map((unit) => (
+                  {restos.map((unit) => (
                     <option key={unit._id} value={unit._id}>
                       {unit.intitule}
                     </option>
@@ -163,7 +164,7 @@ const EditProm = () => {
                     type="date"
                     name="birthDate"
                     id="birthDate"
-                    value={formatDate(person.birthDate)}
+                    value={formatDate(promo.birthDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -183,7 +184,7 @@ const EditProm = () => {
                     type="date"
                     name="startDate"
                     id="startDate"
-                    value={formatDate(person.startDate)}
+                    value={formatDate(promo.startDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -203,7 +204,7 @@ const EditProm = () => {
                     type="date"
                     name="endDate"
                     id="endDate"
-                    value={formatDate(person.endDate)}
+                    value={formatDate(promo.endDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -217,7 +218,7 @@ const EditProm = () => {
                     className="form-radio h-5 w-5 text-pink-600"
                     name="Quality"
                     value="M"
-                    checked={person.Quality === "M"}
+                    checked={promo.Quality === "M"}
                     onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">M</span>
@@ -228,7 +229,7 @@ const EditProm = () => {
                     className="form-radio h-5 w-5 text-purple-600"
                     name="Quality"
                     value="Mme"
-                    checked={person.Quality === "Mme"}
+                    checked={promo.Quality === "Mme"}
                     onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mme</span>
@@ -239,7 +240,7 @@ const EditProm = () => {
                     className="form-radio h-5 w-5 text-purple-600"
                     name="Quality"
                     value="Mlle"
-                    checked={person.Quality === "Mlle"}
+                    checked={promo.Quality === "Mlle"}
                     onChange={handleChange}
                   />
                   <span className="ml-2 text-gray-700">Mlle</span>

@@ -64,7 +64,7 @@ const Promotions = () => {
   return (
     <div style={{ fontFamily: "Poppins" }}>
       <div className="mb-4">
-        <button id="bottone1" onClick={() => navigate("/addperson")}>
+        <button id="bottone1" onClick={() => navigate("/addpromotion")}>
           <strong>Ajouter une promotion a un restaurant</strong>
         </button>
       </div>

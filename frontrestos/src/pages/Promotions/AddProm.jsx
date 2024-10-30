@@ -5,34 +5,34 @@ import "./AddProm.css";
 
 const AddProm = () => {
   const navigate = useNavigate();
-  const [units, setUnits] = useState([]);
-  const [selectedUnits, setSelectedUnits] = useState();
-  const [person, setPerson] = useState({
-    FirstName: "",
-    LastName: "",
-    Quality: "",
-    birthDate: "",
-    startDate: "",
-    endDate: "",
-    Units: selectedUnits,
+  const [Restos, setRestos] = useState([]);
+  const [selectedRestos, setSelectedRestos] = useState();
+  const [promos, setPromos] = useState({
+    restaurantID: selectedRestos,
+    description: "",
+    dateStart: "",
+    dateEnd: "",
   });
 
   const handleChange = (e) => {
-    setPerson({ ...person, [e.target.name]: e.target.value });
+    setPromos({ ...promos, [e.target.name]: e.target.value });
   };
 
   const handleUnitChange = (e) => {
-    const UnitId = e.target.value;
-    setSelectedUnits(UnitId), setPerson({ ...person, Units: UnitId });
+    const restaurantID = e.target.value;
+    setSelectedRestos(restaurantID),
+      setPromos({ ...promos, Restos: restaurantID });
   };
 
   useEffect(() => {
     const fetchUnite = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/unites");
-        setUnits(response.data);
+        const response = await axios.get(
+          "http://localhost:5000/api/restaurants"
+        );
+        setRestos(response.data);
       } catch (err) {
-        console.error("Error adding person:", err);
+        console.error("Error adding promos:", err);
       }
     };
     fetchUnite();
@@ -41,10 +41,10 @@ const AddProm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/persons", person);
-      navigate("/persons");
+      await axios.post("http://localhost:5000/api/promoss", promos);
+      navigate("/promoss");
     } catch (error) {
-      console.error("Error adding person:", error);
+      console.error("Error adding promos:", error);
     }
   };
 
@@ -73,43 +73,24 @@ const AddProm = () => {
             </button>
 
             <div className="my-3 textgrad font-bold text-3xl">
-              Ajouter une personne
+              Ajouter une Promotion
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <div>
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="FirstName"
+                  htmlFor="description"
                 >
-                  Nom
+                  Description
                 </label>
                 <div className="my-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
-                    autoComplete="FirstName"
+                    autoComplete="description"
                     type="text"
-                    name="FirstName"
-                    id="FirstName"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              <div className="mt-6">
-                <label
-                  className="block text-sm font-medium text-gray-700"
-                  htmlFor="LastName"
-                >
-                  Prénom
-                </label>
-                <div className="my-1">
-                  <input
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
-                    autoComplete="LastName"
-                    type="text"
-                    name="LastName"
-                    id="LastName"
+                    name="description"
+                    id="description"
                     onChange={handleChange}
                   />
                 </div>
@@ -119,14 +100,16 @@ const AddProm = () => {
                 <select
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   required=""
-                  name="Units"
-                  id="Units"
+                  name="Restos"
+                  id="Restos"
                   onChange={handleUnitChange}
                 >
-                  <option value="">Sélectionner une Unité</option>
-                  {units.map((unit) => (
-                    <option key={unit._id} value={unit._id}>
-                      {unit.intitule}
+                  <option value="" disabled>
+                    Sélectionner une Unité
+                  </option>
+                  {Restos.map((unit) => (
+                    <option key={unit.id} value={unit._id}>
+                      {unit.name}
                     </option>
                   ))}
                 </select>
@@ -135,17 +118,17 @@ const AddProm = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="birthDate"
+                  htmlFor="dateStart"
                 >
-                  Date de naissance
+                  Date de début du promotion
                 </label>
                 <div className="mt-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
                     type="date"
-                    name="birthDate"
-                    id="birthDate"
+                    name="dateStart"
+                    id="dateStart"
                     onChange={handleChange}
                   />
                 </div>
@@ -154,73 +137,20 @@ const AddProm = () => {
               <div className="mt-6">
                 <label
                   className="block text-sm font-medium text-gray-700"
-                  htmlFor="startDate"
+                  htmlFor="dateEnd"
                 >
-                  Date d'arrivé
+                  Date de fin du promotion
                 </label>
                 <div className="mt-1">
                   <input
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     required=""
                     type="date"
-                    name="startDate"
-                    id="startDate"
+                    name="dateEnd"
+                    id="dateEnd"
                     onChange={handleChange}
                   />
                 </div>
-              </div>
-
-              <div className="mt-6">
-                <label
-                  className="block text-sm font-medium text-gray-700"
-                  htmlFor="endDate"
-                >
-                  Date de depart
-                </label>
-                <div className="mt-1">
-                  <input
-                    className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    required=""
-                    type="date"
-                    name="endDate"
-                    id="endDate"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center mt-6">
-                <span className="mr-3 text-gray-700 font-medium">Qualité:</span>
-                <label className="inline-flex items-center">
-                  <input
-                    type="radio"
-                    className="form-radio h-5 w-5 text-pink-600"
-                    name="Quality"
-                    value="M"
-                    onChange={handleChange}
-                  />
-                  <span className="ml-2 text-gray-700">M</span>
-                </label>
-                <label className="inline-flex items-center ml-6">
-                  <input
-                    type="radio"
-                    className="form-radio h-5 w-5 text-purple-600"
-                    name="Quality"
-                    value="Mme"
-                    onChange={handleChange}
-                  />
-                  <span className="ml-2 text-gray-700">Mme</span>
-                </label>
-                <label className="inline-flex items-center ml-6">
-                  <input
-                    type="radio"
-                    className="form-radio h-5 w-5 text-purple-600"
-                    name="Quality"
-                    value="Mlle"
-                    onChange={handleChange}
-                  />
-                  <span className="ml-2 text-gray-700">Mlle</span>
-                </label>
               </div>
 
               <div className="mt-6">

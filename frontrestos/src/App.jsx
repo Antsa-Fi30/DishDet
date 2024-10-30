@@ -8,6 +8,7 @@ import MenuList from "./pages/Menus/MenuList";
 import MenuForm from "./pages/Menus/MenuForm";
 import Users from "./pages/Users/Users";
 import AddUser from "./pages/Users/AddUser";
+import Bookings from "./pages/Bookings/Bookings";
 
 const App = () => {
   return (
@@ -50,6 +51,14 @@ const App = () => {
                       Utilisateurs
                     </Link>
                   </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/bookings"
+                      className="block py-2 px-4 rounded hover:bg-gray-700"
+                    >
+                      Reservations
+                    </Link>
+                  </li>
                 </ul>
               </nav>
             </aside>
@@ -69,6 +78,8 @@ const App = () => {
                     {/* Utilisateurs */}
                     <Route path="/users" element={<Users />} />
                     <Route path="/addusers" element={<AddUser />} />
+                    {/* Reservations */}
+                    <Route path="/bookings" element={<Bookings />} />
                   </Routes>
                 </div>
               </div>

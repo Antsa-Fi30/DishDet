@@ -1,16 +1,18 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/formatDate";
 import axios from "axios";
 
-const MenuList = () => {
-  const navigate = useNavigate();
+import "./Bookings.css";
+
+const Bookings = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/menus");
+      const response = await axios.get("http://localhost:5000/api/bookings");
+      console.log(response);
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -25,7 +27,7 @@ const MenuList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/item/${id}`);
+      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
       setData(data.filter((d) => d._id !== id));
     } catch (error) {
       console.error("Error deleting data:", error);
@@ -47,41 +49,32 @@ const MenuList = () => {
 
   return (
     <div style={{ fontFamily: "Poppins" }}>
-      <div className="mb-4">
-        <button id="bottone1" onClick={() => navigate("/addmenu")}>
-          <strong>Ajouter une plat à un restaurant</strong>
-        </button>
-      </div>
       <table className="min-w-full bg-transparent rounded-">
         <thead>
           <tr>
-            <th className="py-2 px-4 ">id</th>
+            <th className="py-2 px-4 ">ID</th>
             <th className="py-2 px-4 ">Restaurant</th>
-            <th className="py-2 px-4 ">Nom du Plat</th>
-            <th className="py-2 px-4 ">Description</th>
-            <th className="py-2 px-4 ">Prix (Ar)</th>
-            <th className="py-2 px-4 ">Categorie</th>
+            <th className="py-2 px-4 ">Utilisateur</th>
+            <th className="py-2 px-4 ">Date de reservation</th>
+            <th className="py-2 px-4 ">Nombre de places</th>
             <th className="py-2 px-4 ">Action</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td className="px-2 justify-center text-center">{item.id}</td>
-              <td className="px-2 justify-center text-center">
-                {item.restaurantId}
-              </td>
+              <td className="px-2 ">{item.id}</td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.itemName}
+                {item.restaurantID}
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 {item.description}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.price}
+                {formatDate(item.dateStart)}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.categorie}
+                {formatDate(item.dateEnd)}
               </td>
               <td className="py-2 px-4 justify-center text-center">
                 <button
@@ -99,4 +92,4 @@ const MenuList = () => {
   );
 };
 
-export default MenuList;
+export default Bookings;
