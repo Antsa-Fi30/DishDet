@@ -1,12 +1,14 @@
-import EulerUnite from "../../components/Dashboard/EulerUnite";
-import EulerPersons from "../../components/Dashboard/EulerPersons";
+import { useEffect } from "react";
+import Data from "../../components/Dashboard/Data";
+import Tableau from "../../components/Dashboard/Tableau";
 
 const Dashboard = () => {
+  useEffect(() => {}, []);
   return (
     <div>
       <div>
-        <EulerUnite />
-        <EulerPersons />
+        <Data />
+        <Tableau />
       </div>
     </div>
   );

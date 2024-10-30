@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddUnite.css";
-import { formatDate } from "../../utils/formatDate";
+import "./AddUser.css";
 
-const EditUnite = () => {
+const AddUser = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [Unite, setUnite] = useState({
     numero: "",
     intitule: "",
@@ -14,22 +12,6 @@ const EditUnite = () => {
     createdDate: "",
     closeDate: "",
   });
-
-  useEffect(() => {
-    const fetchUnite = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/unite/${id}`
-        );
-        setUnite(response.data);
-      } catch (error) {
-        console.error("Error fetching person data:", error);
-      }
-    };
-    fetchUnite();
-  }, [id]);
-
-  console.log(Unite);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,8 +24,8 @@ const EditUnite = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/updateunite/${id}`, Unite);
-      navigate("/unite");
+      await axios.post("http://localhost:5000/api/adduser", Unite);
+      navigate("/users");
     } catch (error) {
       console.error("Error adding Unite:", error);
     }
@@ -52,7 +34,7 @@ const EditUnite = () => {
   return (
     <div>
       <div className="flex flex-col justify-center sm:px-6 lg:px-8">
-        <div className="w-full">
+        <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="glass py-5 px-4 shadow sm:rounded-lg sm:px-10">
             <button id="button" onClick={() => navigate(-1)}>
               <span>
@@ -74,7 +56,7 @@ const EditUnite = () => {
             </button>
 
             <div className="my-3 textgrad font-bold text-3xl">
-              Modifier une Unité
+              Ajouter une Unité
             </div>
             <form method="POST" onSubmit={handleSubmit}>
               <div>
@@ -92,7 +74,6 @@ const EditUnite = () => {
                     type="number"
                     name="numero"
                     id="numero"
-                    value={Unite.numero}
                     onChange={handleChange}
                   />
                 </div>
@@ -112,7 +93,6 @@ const EditUnite = () => {
                     type="text"
                     name="intitule"
                     id="intitule"
-                    value={Unite.intitule}
                     onChange={handleChange}
                   />
                 </div>
@@ -132,7 +112,6 @@ const EditUnite = () => {
                     type="date"
                     name="propDate"
                     id="propDate"
-                    value={formatDate(Unite.propDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -152,7 +131,6 @@ const EditUnite = () => {
                     type="date"
                     name="createdDate"
                     id="createdDate"
-                    value={formatDate(Unite.createdDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -172,7 +150,6 @@ const EditUnite = () => {
                     type="date"
                     name="closeDate"
                     id="closeDate"
-                    value={formatDate(Unite.closeDate)}
                     onChange={handleChange}
                   />
                 </div>
@@ -196,4 +173,4 @@ const EditUnite = () => {
   );
 };
 
-export default EditUnite;
+export default AddUser;

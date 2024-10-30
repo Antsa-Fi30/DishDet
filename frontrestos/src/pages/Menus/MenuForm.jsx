@@ -1,34 +1,17 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./ItemForm.css";
 
-const EditItem = () => {
+const MenuForm = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [items, setItems] = useState({
-    codeType: "",
+    codeType: "Principale",
     adressePostal: "",
     email: "",
     tel: "",
     organisme: "",
     delegationRegionale: "",
   });
-
-  useEffect(() => {
-    const fetchItem = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/item/${id}`
-        );
-        setItems(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching person data:", error);
-      }
-    };
-    fetchItem();
-  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,7 +95,6 @@ const EditItem = () => {
                     name="adressePostal"
                     id="adressePostal"
                     onChange={handleChange}
-                    value={items.adressePostal}
                   />
                 </div>
               </div>
@@ -132,7 +114,6 @@ const EditItem = () => {
                     name="email"
                     id="email"
                     onChange={handleChange}
-                    value={items.email}
                   />
                 </div>
               </div>
@@ -152,7 +133,6 @@ const EditItem = () => {
                     name="tel"
                     id="tel"
                     onChange={handleChange}
-                    value={items.tel}
                   />
                 </div>
               </div>
@@ -171,7 +151,6 @@ const EditItem = () => {
                     type="text"
                     name="organisme"
                     id="organisme"
-                    value={items.organisme}
                     onChange={handleChange}
                   />
                 </div>
@@ -192,7 +171,6 @@ const EditItem = () => {
                     name="delegationRegionale"
                     id="delegationRegionale"
                     onChange={handleChange}
-                    value={items.delegationRegionale}
                   />
                 </div>
               </div>
@@ -215,4 +193,4 @@ const EditItem = () => {
   );
 };
 
-export default EditItem;
+export default MenuForm;

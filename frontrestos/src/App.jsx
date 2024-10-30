@@ -1,16 +1,13 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import AddPerson from "./pages/Persons/AddPerson";
-import Persons from "./pages/Persons/Persons";
-import EditPerson from "./pages/Persons/EditPerson";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import ItemList from "./pages/Items/ItemList";
-import ItemForm from "./pages/Items/ItemForm";
-import EditItem from "./pages/Items/EditItem";
-import Unite from "./pages/Unite/Unite";
-import EditUnite from "./pages/Unite/EditUnite";
-import AddUnite from "./pages/Unite/AddUnite";
-import Euler from "./components/Dashboard/EulerPersons";
+import AddProm from "./pages/Promotions/AddProm";
+import EditProm from "./pages/Promotions/EditProm";
+import Promotions from "./pages/Promotions/Promotions";
+import MenuList from "./pages/Menus/MenuList";
+import MenuForm from "./pages/Menus/MenuForm";
+import Users from "./pages/Users/Users";
+import AddUser from "./pages/Users/AddUser";
 
 const App = () => {
   return (
@@ -31,26 +28,26 @@ const App = () => {
                   </li>
                   <li className="mb-2">
                     <Link
-                      to="/unite"
+                      to="/menus"
                       className="block py-2 px-4 rounded hover:bg-gray-700"
                     >
-                      Unite
+                      Plats
                     </Link>
                   </li>
                   <li className="mb-2">
                     <Link
-                      to="/persons"
+                      to="/promotions"
                       className="block py-2 px-4 rounded hover:bg-gray-700"
                     >
-                      Personnes
+                      Promotions
                     </Link>
                   </li>
                   <li className="mb-2">
                     <Link
-                      to="/items"
+                      to="/users"
                       className="block py-2 px-4 rounded hover:bg-gray-700"
                     >
-                      Adresses
+                      Utilisateurs
                     </Link>
                   </li>
                 </ul>
@@ -61,20 +58,17 @@ const App = () => {
               <div className="w-content">
                 <div className="bg-gray-100 p-4 rounded shadow">
                   <Routes>
-                    {/* Persons */}
+                    {/* Promotions */}
                     <Route path="/" element={<Dashboard />} />
-                    <Route path="/editperson/:id" element={<EditPerson />} />
-                    <Route path="/addperson" element={<AddPerson />} />
-                    <Route path="/persons" element={<Persons />} />
-                    {/* Adresse */}
-                    <Route path="/items" element={<ItemList />} />
-                    <Route path="/editItem/:id" element={<EditItem />} />
-                    <Route path="/addItem" element={<ItemForm />} />
-                    {/* Unite */}
-                    <Route path="/unite" element={<Unite />} />
-                    <Route path="/editUnite/:id" element={<EditUnite />} />
-                    <Route path="/addUnite" element={<AddUnite />} />
-                    <Route path="/graph" element={<Euler />} />
+                    <Route path="/editpromotion/:id" element={<EditProm />} />
+                    <Route path="/addpromotion" element={<AddProm />} />
+                    <Route path="/promotions" element={<Promotions />} />
+                    {/* Menus */}
+                    <Route path="/menus" element={<MenuList />} />
+                    <Route path="/addmenu" element={<MenuForm />} />
+                    {/* Utilisateurs */}
+                    <Route path="/users" element={<Users />} />
+                    <Route path="/addusers" element={<AddUser />} />
                   </Routes>
                 </div>
               </div>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./AddPerson.css";
+import "./AddProm.css";
 
-const AddPerson = () => {
+const AddProm = () => {
   const navigate = useNavigate();
   const [units, setUnits] = useState([]);
   const [selectedUnits, setSelectedUnits] = useState();
@@ -241,4 +241,4 @@ const AddPerson = () => {
   );
 };
 
-export default AddPerson;
+export default AddProm;

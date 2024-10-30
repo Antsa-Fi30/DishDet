@@ -1,16 +1,31 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/formatDate";
 import axios from "axios";
 
-const ItemList = () => {
+import "./Promotions.css";
+
+const Promotions = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/items");
+      const response = await axios.get("http://localhost:5000/api/promotions");
+      console.log(response);
+      setData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error.response ? error.response.data : error.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchUnit = async (id) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/unite/${id}`);
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -21,11 +36,12 @@ const ItemList = () => {
 
   useEffect(() => {
     fetchData();
+    fetchUnit();
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/item/${id}`);
+      await axios.delete(`http://localhost:5000/api/promotions/${id}`);
       setData(data.filter((d) => d._id !== id));
     } catch (error) {
       console.error("Error deleting data:", error);
@@ -46,50 +62,40 @@ const ItemList = () => {
   }
 
   return (
-    <div>
+    <div style={{ fontFamily: "Poppins" }}>
       <div className="mb-4">
-        <button id="bottone1" onClick={() => navigate("/additem")}>
-          <strong>Ajouter une Adresse</strong>
+        <button id="bottone1" onClick={() => navigate("/addperson")}>
+          <strong>Ajouter une promotion a un restaurant</strong>
         </button>
       </div>
       <table className="min-w-full bg-transparent rounded-">
         <thead>
           <tr>
-            <th className="py-2 px-4 ">codeType</th>
-            <th className="py-2 px-4 ">adressePostal</th>
-            <th className="py-2 px-4 ">email</th>
-            <th className="py-2 px-4 ">tel</th>
-            <th className="py-2 px-4 ">organisme</th>
-            <th className="py-2 px-4 ">delegationRegionale</th>
+            <th className="py-2 px-4 ">ID</th>
+            <th className="py-2 px-4 ">Restaurant</th>
+            <th className="py-2 px-4 ">Description</th>
+            <th className="py-2 px-4 ">Date de début(année,mois,jour)</th>
+            <th className="py-2 px-4 ">Date de fin(année,mois,jour)</th>
             <th className="py-2 px-4 ">Action</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
             <tr key={index}>
-              <td className="px-2 ">{item.codeType}</td>
+              <td className="px-2 ">{item.id}</td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.adressePostal}
+                {item.restaurantID}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.email}
+                {item.description}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.tel}
+                {formatDate(item.dateStart)}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.organisme}
+                {formatDate(item.dateEnd)}
               </td>
               <td className="py-2 px-4 justify-center text-center">
-                {item.delegationRegionale}
-              </td>
-              <td className="py-2 px-4 justify-center text-center">
-                <button
-                  onClick={() => navigate(`/edititem/${item._id}`)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-yellow-700"
-                >
-                  Modifier
-                </button>
                 <button
                   onClick={() => handleDelete(item._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded-lg m-2 duration-200 transition-all hover:bg-red-700"
@@ -105,4 +111,4 @@ const ItemList = () => {
   );
 };
 
-export default ItemList;
+export default Promotions;

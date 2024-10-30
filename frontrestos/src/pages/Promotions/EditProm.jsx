@@ -1,11 +1,11 @@
-// src/components/EditPerson.js
+// src/components/EditProm.js
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import "./AddPerson.css";
+import "./AddProm.css";
 import { formatDate } from "../../utils/formatDate";
 
-const EditPerson = () => {
+const EditProm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [units, setUnits] = useState([]);
@@ -264,4 +264,4 @@ const EditPerson = () => {
   );
 };
 
-export default EditPerson;
+export default EditProm;
