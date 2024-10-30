@@ -12,12 +12,30 @@ exports.getMenu = async (req, res) => {
 
 exports.getOneMenu = async (req, res) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    const menu = await Menu.findOne({ where: { id } });
+    res.json(menu);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 exports.addMenu = async (req, res) => {
   try {
-  } catch (error) {}
+    const { restaurantId, itemName, description, price, categorie } = req.body;
+    p;
+    const newMenu = await Menu.create({
+      restaurantId,
+      itemName,
+      description,
+      price,
+      categorie,
+    });
+
+    res.status(201).json(newMenu);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 
 exports.updateMenu = async (req, res) => {

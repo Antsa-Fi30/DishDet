@@ -41,7 +41,7 @@ const AddProm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/promoss", promos);
+      await axios.post("http://localhost:5000/api/addpromotion", promos);
       navigate("/promoss");
     } catch (error) {
       console.error("Error adding promos:", error);

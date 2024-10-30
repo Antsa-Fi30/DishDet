@@ -26,7 +26,7 @@ const MenuForm = () => {
     e.preventDefault();
     try {
       console.log("Submitting items:", items);
-      await axios.post("http://localhost:5000/api/item", items);
+      await axios.post("http://localhost:5000/api/addmenu", items);
       navigate("/items");
     } catch (error) {
       console.error("Error adding items:", error);
