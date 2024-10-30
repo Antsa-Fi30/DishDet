@@ -11,6 +11,9 @@ import { useFonts } from "expo-font";
 import { PaperProvider, MD3LightTheme, MD3DarkTheme } from "react-native-paper";
 import { FlatUITheme, DarkFlatUITheme } from "./app/utils/theme"; // Importer les thèmes
 
+//Auth Contexte
+import { AuthProvider } from "./app/context/authContext";
+
 import axios from "axios";
 
 const App = () => {
@@ -27,9 +30,11 @@ const App = () => {
   }
 
   return (
-    <PaperProvider theme={MD3LightTheme}>
-      <StackRoutes theme={FlatUITheme} />
-    </PaperProvider>
+    <AuthProvider>
+      <PaperProvider theme={MD3LightTheme}>
+        <StackRoutes theme={FlatUITheme} />
+      </PaperProvider>
+    </AuthProvider>
   );
 };
 

@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 
 //React navigation
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+//AuthContexte
+
 //Icon:
 import Octicons from "@expo/vector-icons/Octicons";
 
@@ -39,6 +43,7 @@ const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 const Routes = () => {
+  const { userToken, loading } = useContext(AuthContext);
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen

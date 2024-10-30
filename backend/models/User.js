@@ -1,8 +1,8 @@
-// models/Utilisateur.js
+// models/User.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
-const Utilisateur = sequelize.define(
+const User = sequelize.define(
   "users",
   {
     id: {
@@ -26,4 +26,13 @@ const Utilisateur = sequelize.define(
   }
 );
 
-module.exports = Utilisateur;
+User.beforeCreate(async (user) => {
+  const salt = await bcrypt.genSalt(10);
+  user.motDePasse = await bcrypt.hash(User.motDePasse, salt);
+});
+
+User.prototype.validerMotDePasse = async function (mdp) {
+  return await bcrypt.compare(mdp, this.mdp);
+};
+
+module.exports = User;

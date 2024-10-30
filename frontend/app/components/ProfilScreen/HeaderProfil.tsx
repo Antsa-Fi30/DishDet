@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, Avatar, useTheme } from "react-native-paper";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { AuthContext } from "../../context/authContext";
+import { useNavigation } from "@react-navigation/native";
 
 const HeaderProfil = () => {
   const theme = useTheme();
+  const { signOut } = useContext(AuthContext); // Accéder à signOut
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView
       style={[
@@ -15,7 +20,7 @@ const HeaderProfil = () => {
     >
       <Pressable
         style={styles.button1}
-        onPress={() => console.log("Pressed logout")}
+        onPress={signOut} // Déclencher la déconnexion
       >
         <AntDesign
           name="logout"
@@ -36,10 +41,6 @@ export default HeaderProfil;
 
 const styles = StyleSheet.create({
   container: {
-    // display: "flex",
-    // flexDirection: "row",
-    // alignItems: "center",
-    // justifyContent: "space-between",
     backgroundColor: "#fff",
     padding: 10,
     borderBottomStartRadius: 35,
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-Regular",
     fontSize: 14,
   },
-  //Pas bon mais efficace
   button1: {
     position: "absolute",
     display: "flex",
