@@ -1,0 +1,59 @@
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+}
+
+/* From Uiverse.io by mrhyddenn */
+.shadow__btn {
+  padding: 10px 20px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+}
+
+.shadow__btn {
+  background: rgb(16, 187, 81);
+  box-shadow: 0 0 25px rgb(16, 187, 81);
+}
+
+.shadow__btn:hover {
+  box-shadow: 0 0 5px rgb(16, 187, 81), 0 0 25px rgb(16, 187, 81),
+    0 0 50px rgb(16, 187, 81), 0 0 100px rgb(16, 187, 81);
+}
+
+.shadow1__btn {
+  background: rgb(230, 12, 12);
+  box-shadow: 0 0 25px rgb(230, 12, 12);
+  padding: 10px 20px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+}
+
+.shadow1__btn:hover {
+  box-shadow: 0 0 5px rgb(230, 12, 12), 0 0 25px rgb(230, 12, 12),
+    0 0 50px rgb(230, 12, 12), 0 0 100px rgb(230, 12, 12);
+}
+
+.textgrad {
+  background: #0000ff;
+  background: linear-gradient(to right, #0000ff 0%, #05c1ff 51%, #00ffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

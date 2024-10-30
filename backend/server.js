@@ -9,6 +9,7 @@ const cors = require("cors");
 const sequelize = require("./config/database");
 
 //Routes
+const RestosRoute = require("./routes/RestosRoute");
 
 const app = express();
 const port = 5000;
@@ -31,6 +32,9 @@ sequelize.sync().then(() => {
 //Middlewares
 app.use(cors());
 app.use(bodyParser.json());
+
+//API routes
+app.use("/api", RestosRoute);
 
 app.listen(port, () => {
   console.log(`Serveur backend démarré sur le port ${port}`);
