@@ -1,15 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, Avatar, useTheme } from "react-native-paper";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { AuthContext } from "../../context/authContext";
 import { useNavigation } from "@react-navigation/native";
+import { LoginNavigationProp } from "../../constants/NavigationType";
+import axios from "axios";
 
 const HeaderProfil = () => {
   const theme = useTheme();
-  const { signOut } = useContext(AuthContext); // Accéder à signOut
-  const navigation = useNavigation();
+  const { signOut, token } = useContext(AuthContext); // Accéder au token JWT
+  const navigation = useNavigation<LoginNavigationProp>();
+  const [user, setUser] = useState({ name: "" }); // État pour stocker les données utilisateur
+
+  useEffect(() => {
+    // Fonction pour récupérer les infos du profil
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get("http://192.168.43.205:5000/api/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Erreur de récupération du profil :", error);
+      }
+    };
+
+    fetchProfile();
+  }, [token]);
 
   return (
     <SafeAreaView
@@ -20,7 +41,10 @@ const HeaderProfil = () => {
     >
       <Pressable
         style={styles.button1}
-        onPress={signOut} // Déclencher la déconnexion
+        onPress={() => {
+          signOut();
+          navigation.navigate("Login");
+        }}
       >
         <AntDesign
           name="logout"
@@ -30,8 +54,8 @@ const HeaderProfil = () => {
       </Pressable>
       <View style={styles.subContainer}>
         <Avatar.Image size={70} source={require("../../../assets/1.jpg")} />
-        <Text style={styles.title}>Name</Text>
-        <Text style={styles.localisation}>Localisation</Text>
+        <Text style={styles.title}>{user.name || "Test"}</Text>
+        <Text style={styles.localisation}>Localisation non disponible</Text>
       </View>
     </SafeAreaView>
   );

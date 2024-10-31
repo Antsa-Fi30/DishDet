@@ -6,7 +6,7 @@ const iconSize = 22;
 const greyColor = "#222";
 
 export const icons = {
-  Home: (props) => (
+  HomeScreen: (props) => (
     <Octicons name="home" size={iconSize} color={greyColor} {...props} />
   ),
 

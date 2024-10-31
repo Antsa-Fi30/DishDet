@@ -1,6 +1,7 @@
 // models/User.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const bcrypt = require("bcrypt");
 
 const User = sequelize.define(
   "users",
@@ -26,13 +27,13 @@ const User = sequelize.define(
   }
 );
 
-User.beforeCreate(async (user) => {
-  const salt = await bcrypt.genSalt(10);
-  user.motDePasse = await bcrypt.hash(User.motDePasse, salt);
-});
+// User.beforeCreate(async (user) => {
+//   const salt = await bcrypt.genSalt(10);
+//   user.password = await bcrypt.hash(user.password, salt);
+// });
 
 User.prototype.validerMotDePasse = async function (mdp) {
-  return await bcrypt.compare(mdp, this.mdp);
+  return await bcrypt.compare(mdp, this.password);
 };
 
 module.exports = User;

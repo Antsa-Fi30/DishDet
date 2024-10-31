@@ -16,8 +16,21 @@ exports.getOneBooking = async (req, res) => {
 };
 
 exports.addBooking = async (req, res) => {
+  const { userid, restaurantid, reservationDate, dateBooking, reservedPlaces } =
+    req.body;
+
   try {
-  } catch (error) {}
+    const newReservation = await Booking.create({
+      userid,
+      restaurantid,
+      reservationDate,
+      dateBooking,
+      reservedPlaces,
+    });
+    res.status(201).json(newReservation);
+  } catch (error) {
+    res.status(500).json({ error: "Error creating reservation" });
+  }
 };
 
 exports.updateBooking = async (req, res) => {

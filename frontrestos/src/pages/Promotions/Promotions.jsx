@@ -13,19 +13,10 @@ const Promotions = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/promotions");
+      const response = await axios.get(
+        "http://localhost:5000/api//getPromotionsWithRestaurantName"
+      );
       console.log(response);
-      setData(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error(error.response ? error.response.data : error.message);
-      setLoading(false);
-    }
-  };
-
-  const fetchUnit = async (id) => {
-    try {
-      const response = await axios.get(`http://localhost:5000/api/unite/${id}`);
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -36,7 +27,6 @@ const Promotions = () => {
 
   useEffect(() => {
     fetchData();
-    fetchUnit();
   }, []);
 
   const handleDelete = async (id) => {

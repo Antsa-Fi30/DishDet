@@ -4,7 +4,6 @@ import Octicons from "@expo/vector-icons/Octicons";
 import { useNavigation } from "@react-navigation/native";
 import { Text, useTheme } from "react-native-paper";
 import { NotificationsNavigationProp } from "../../constants/NavigationType";
-
 const HeaderHome = () => {
   const navigation = useNavigation<NotificationsNavigationProp>();
   const theme = useTheme();
@@ -42,7 +41,7 @@ const HeaderHome = () => {
           <TextInput
             maxFontSizeMultiplier={1}
             placeholder="Rechercher un restaurant..."
-            placeholderTextColor="#ddd"
+            placeholderTextColor={theme.dark ? "#ddd" : "#000"}
             style={[
               styles.searchInput,
               { color: theme.dark ? "#fff" : "#000" },

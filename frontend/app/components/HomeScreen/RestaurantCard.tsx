@@ -41,7 +41,7 @@ const RestaurantCard: React.FC<RestoCardProps> = ({ restaurant }) => {
               size={16}
               color={theme.colors.tertiary}
             />
-            Paris, France
+            Antsobolo,Antananrivo
           </Paragraph>
 
           {/* Section de notation */}

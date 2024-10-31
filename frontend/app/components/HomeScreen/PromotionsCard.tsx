@@ -3,14 +3,10 @@ import { Text, Surface, Badge, Button } from "react-native-paper";
 import React from "react";
 
 type promotions = {
-  id: string;
-  image: string;
-  title: string;
+  restaurant: any;
   description: string;
-  validity: string;
-  restaurantLogo: string;
-  badge: string;
-  rating: string;
+  dateStart: string;
+  dateEnd: string;
 };
 
 type promotionsProps = {
@@ -22,14 +18,15 @@ const PromotionsCard: React.FC<promotionsProps> = ({ index, item }) => {
   return (
     <Surface key={index} style={styles.surface}>
       <ImageBackground
-        source={require("../../../assets/1.jpg")}
+        source={require("../../../assets/15.jpg")}
         style={styles.imageBackground}
         imageStyle={styles.imageStyle}
       >
         <View style={styles.overlay}>
-          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.title}>{item.restaurant.name}</Text>
           <Text style={styles.description}>{item.description}</Text>
-          <Text style={styles.validity}>{item.validity}</Text>
+          <Text style={styles.validity}>{item.dateStart}</Text>
+          <Text style={styles.validity}>{item.dateEnd}</Text>
           <View style={styles.ctacontainer}>
             <Button
               mode="contained"
@@ -42,7 +39,7 @@ const PromotionsCard: React.FC<promotionsProps> = ({ index, item }) => {
           </View>
         </View>
         <Badge size={20} style={styles.badge}>
-          {item.badge}
+          asdsad
         </Badge>
       </ImageBackground>
     </Surface>

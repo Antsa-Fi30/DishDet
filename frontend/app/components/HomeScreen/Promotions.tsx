@@ -2,73 +2,36 @@ import { Dimensions, View, StyleSheet, FlatList } from "react-native";
 
 import PromotionsCard from "./PromotionsCard";
 import HeadingTitle from "../templates/HeadingTitle";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const width = Dimensions.get("window").width;
 
-const promotions = [
-  {
-    id: "1",
-    image: "https://example.com/pizza-promo.jpg",
-    title: "Réduction de 20% sur les pizzas",
-    description:
-      "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
-    validity: "Valable jusqu'au 31 octobre 2024",
-    restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
-    badge: "Populaire",
-    rating: "⭐️⭐️⭐️⭐️ 4.5/5",
-  },
-  {
-    id: "2",
-    image: "https://example.com/pizza-promo.jpg",
-    title: "Réduction de 10% sur les pizzas",
-    description:
-      "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
-    validity: "Valable jusqu'au 31 octobre 2024",
-    restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
-    badge: "Dummy",
-    rating: "⭐️⭐️⭐️⭐️ 4.5/5",
-  },
-  {
-    id: "3",
-    image: "https://example.com/pizza-promo.jpg",
-    title: "Réduction de 20% sur les packs",
-    description:
-      "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
-    validity: "Valable jusqu'au 31 octobre 2024",
-    restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
-    badge: "Unknown",
-    rating: "⭐️⭐️⭐️⭐️ 4.5/5",
-  },
-  {
-    id: "4",
-    image: "https://example.com/pizza-promo.jpg",
-    title: "Réduction de 20% sur les burger",
-    description:
-      "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
-    validity: "Valable jusqu'au 31 octobre 2024",
-    restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
-    badge: "VIP",
-    rating: "⭐️⭐️⭐️⭐️ 4.5/5",
-  },
-  {
-    id: "5",
-    image: "https://example.com/pizza-promo.jpg",
-    title: "Réduction de 50% sur les tacos",
-    description:
-      "Profitez d'une réduction de 20% sur toutes les pizzas commandées cette semaine. Offre valable jusqu'au 31 octobre !",
-    validity: "Valable jusqu'au 31 octobre 2024",
-    restaurantLogo: "https://example.com/logo-pizza-paradise.jpg",
-    badge: "Dunno",
-    rating: "⭐️⭐️⭐️⭐️ 4.5/5",
-  },
-];
-
 const Promotions = () => {
+  const [promos, setPromos] = useState([]);
+
+  useEffect(() => {
+    const fetchPromos = async () => {
+      try {
+        const response = await axios.get(
+          "http://192.168.43.205:5000/api/getPromotionsWithRestaurantName"
+        );
+        setPromos(response.data);
+      } catch (error) {
+        console.error("Erreur de récupération des promos :", error);
+      }
+    };
+
+    fetchPromos();
+  }, []);
+
+  console.log(promos);
+
   return (
     <View style={styles.container}>
-      <HeadingTitle viewAll={""} text={"Promotions"} />
+      <HeadingTitle viewAll={false} text={"Promotions"} />
       <FlatList
-        data={promotions}
+        data={promos}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
           <PromotionsCard item={item} index={index} />

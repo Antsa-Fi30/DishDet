@@ -43,12 +43,11 @@ const Tab = createBottomTabNavigator();
 const SettingsStack = createNativeStackNavigator();
 
 const Routes = () => {
-  const { userToken, loading } = useContext(AuthContext);
   return (
     <Tab.Navigator tabBar={(props) => <TabBar {...props} />}>
       <Tab.Screen
         options={{ header: () => <HeaderHome /> }}
-        name="Home"
+        name="HomeScreen"
         component={HomeScreen}
       />
 

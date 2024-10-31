@@ -8,6 +8,8 @@ type NotificationDetailsParams =
 
 // Définissez vos routes et leurs paramètres (s'il y en a)
 export type RootStackParamList = {
+  Login: undefined;
+  Signin: undefined;
   Home: undefined;
   Notifications: any;
   NotificationDetails: NotificationDetailsParams;
@@ -23,6 +25,15 @@ export type RootStackParamList = {
 };
 
 // Propriétés de navigation pour chaque écran
+export type LoginNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Login"
+>;
+export type SigninNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Signin"
+>;
+
 export type NotificationsNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "Notifications"
@@ -46,6 +57,11 @@ export type RestaurantDetailsProp = NativeStackNavigationProp<
 export type SearchNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   "Search"
+>;
+
+export type HomeNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Home"
 >;
 
 export type ChatItemNavigationProp = NativeStackNavigationProp<
@@ -101,6 +117,12 @@ export type NotificationsRouteProp = RouteProp<
 export type EditProfileRouteProp = RouteProp<RootStackParamList, "EditProfile">;
 
 export type LocationRouteProp = RouteProp<RootStackParamList, "Location">;
+
+export type LoginRouteProp = RouteProp<RootStackParamList, "Login">;
+
+export type SigninRouteProp = RouteProp<RootStackParamList, "Signin">;
+
+export type HomeRouteProp = RouteProp<RootStackParamList, "Home">;
 
 export type LanguageRouteProp = RouteProp<RootStackParamList, "Language">;
 

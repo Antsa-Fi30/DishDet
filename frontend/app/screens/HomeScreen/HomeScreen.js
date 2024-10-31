@@ -1,10 +1,14 @@
 import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import HomeContent from "../../components/HomeScreen/HomeContent";
 import axios from "axios";
+import { AuthContext } from "../../context/authContext";
 
 const HomeScreen = () => {
+  const { userToken, loading } = useContext(AuthContext);
   const [data, setData] = useState([]);
+
+  console.log(userToken);
 
   useEffect(() => {
     const fetchData = async () => {

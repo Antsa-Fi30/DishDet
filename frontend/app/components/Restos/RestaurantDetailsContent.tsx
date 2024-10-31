@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Image, ScrollView } from "react-native";
-import { Text, Title, Paragraph, useTheme } from "react-native-paper";
+import { Text, Title, Paragraph, useTheme, Button } from "react-native-paper";
 import { MaterialIcons } from "@expo/vector-icons";
 
 type Restos = {
@@ -32,14 +32,16 @@ const RestaurantDetailsContent: React.FC<RestaurantDetailsContentProps> = ({
       <View style={styles.detailsContainer}>
         <Title style={styles.title}>{restaurant.name}</Title>
         <Paragraph style={styles.location}>
-          <MaterialIcons name="location-on" size={16} color="gray" /> Paris,
-          France
+          <MaterialIcons name="location-on" size={16} color="gray" />{" "}
+          Antsobolo,Antananrivo
         </Paragraph>
 
         {/* Section de description (Exemple de description, peut être ajustée selon les données disponibles) */}
         <Paragraph style={styles.description}>
-          Description du restaurant, informations sur le type de cuisine,
-          ambiance, et autres détails importants.
+          {restaurant.reservations}
+        </Paragraph>
+        <Paragraph style={styles.description}>
+          {restaurant.cuisineType}
         </Paragraph>
 
         {/* Section de notation */}
@@ -49,6 +51,12 @@ const RestaurantDetailsContent: React.FC<RestaurantDetailsContentProps> = ({
           <MaterialIcons name="star" size={18} color="#FFD700" />
           <MaterialIcons name="star-half" size={18} color="#FFD700" />
           <MaterialIcons name="star-outline" size={18} color="#FFD700" />
+        </View>
+
+        <View>
+          <Button mode="contained-tonal" onPress={() => {}}>
+            Resever
+          </Button>
         </View>
       </View>
     </ScrollView>

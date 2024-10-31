@@ -44,12 +44,13 @@ import LoadingScreen from "./LoadingScreen";
 const Stack = createNativeStackNavigator();
 
 const StackRoutes = ({ theme }) => {
-  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+  const [isFirstLaunch, setIsFirstLaunch] = useState(false);
   const { userToken, loading } = useContext(AuthContext);
 
   useEffect(() => {
     const checkFirstLaunch = async () => {
       const hasLaunched = await AsyncStorage.getItem("hasLaunched");
+      console.log(hasLaunched);
       if (hasLaunched === null) {
         setIsFirstLaunch(true);
         await AsyncStorage.setItem("hasLaunched", "true");
@@ -73,25 +74,16 @@ const StackRoutes = ({ theme }) => {
           isFirstLaunch
             ? "Welcome" // Première ouverture de l'application
             : userToken
-            ? "App" // Si l'utilisateur est connecté
-            : "Login" // Si l'utilisateur n'est pas connecté
+            ? "Home" // Si l'utilisateur est connecté
+            : "Signin" // Si l'utilisateur n'est pas connecté
         }
       >
-        {/* Affichage de l'écran de bienvenue si c'est la première ouverture */}
-        {isFirstLaunch && (
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Welcome"
-            component={Welcome}
-          />
-        )}
-
         {/* Routes accessibles seulement si l'utilisateur est connecté */}
-        {userToken ? (
+        {userToken !== "" ? (
           <>
             <Stack.Screen
               options={{ headerShown: false }}
-              name="App"
+              name="Home"
               component={Routes} // Page principale après connexion
             />
             <Stack.Screen
@@ -126,10 +118,20 @@ const StackRoutes = ({ theme }) => {
               name="Message"
               component={MessageScreen}
             />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Login"
+              component={Login}
+            />
           </>
         ) : (
           // Routes de connexion/inscription si l'utilisateur n'est pas connecté
           <>
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Welcome"
+              component={Welcome}
+            />
             <Stack.Screen
               options={{ headerShown: false }}
               name="Login"
@@ -139,6 +141,11 @@ const StackRoutes = ({ theme }) => {
               options={{ headerShown: false }}
               name="Signin"
               component={Signin}
+            />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Home"
+              component={Routes} // Page principale après connexion
             />
           </>
         )}

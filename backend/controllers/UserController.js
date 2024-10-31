@@ -27,5 +27,10 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-  } catch (error) {}
+    const { id } = req.params;
+    User.destroy({ where: { id } });
+    res.status(200);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
