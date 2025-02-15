@@ -111,7 +111,9 @@ const TabBar = ({ state, navigation }) => {
     </SafeAreaView>
   );
 };
+
 export default TabBar;
+
 const styles = StyleSheet.create({
   tabbar: {
     position: "absolute",

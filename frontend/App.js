@@ -31,8 +31,8 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <PaperProvider theme={MD3LightTheme}>
-        <StackRoutes theme={FlatUITheme} />
+      <PaperProvider theme={MD3DarkTheme}>
+        <StackRoutes theme={DarkFlatUITheme} />
       </PaperProvider>
     </AuthProvider>
   );

@@ -49,7 +49,7 @@ const Routes = () => {
         options={{ header: () => <HeaderHome /> }}
         name="HomeScreen"
         component={HomeScreen}
-      />
+      /> 
 
       <Tab.Screen
         options={{ header: () => <ChatHeader /> }}

@@ -14,7 +14,7 @@ const Promotions = () => {
     const fetchPromos = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.43.205:5000/api/getPromotionsWithRestaurantName"
+          "http://192.168.43.205:5000/api/promotions"
         );
         setPromos(response.data);
       } catch (error) {

@@ -12,7 +12,7 @@ const sequelize = require("./config/database");
 
 //Seeds
 // const seedDatabase = require("./config/Restaurant.seed");
-// const PromoSeedDatabase = require("./config/Promotion.seed");
+// const PromoSeedDatabase = require("./config/Promotion.seed");r
 // const MenuSeedDatabase = require("./config/Menu.seed");
 
 //Routes

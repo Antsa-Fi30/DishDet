@@ -23,7 +23,6 @@ const PromotionsCard: React.FC<promotionsProps> = ({ index, item }) => {
         imageStyle={styles.imageStyle}
       >
         <View style={styles.overlay}>
-          <Text style={styles.title}>{item.restaurant.name}</Text>
           <Text style={styles.description}>{item.description}</Text>
           <Text style={styles.validity}>{item.dateStart}</Text>
           <Text style={styles.validity}>{item.dateEnd}</Text>
